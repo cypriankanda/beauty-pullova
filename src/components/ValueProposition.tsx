@@ -50,7 +50,7 @@ const ValueProposition = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Why Choose <span className="text-primary">BeautyHome</span>?
+            Why Choose <span className="text-primary">Pullova Beauty</span>?
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Experience the perfect blend of luxury, convenience, and professional care

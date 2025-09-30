@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Sparkles className="w-6 h-6 text-accent" />
-              <span className="text-2xl font-bold">BeautyHome</span>
+              <span className="text-2xl font-bold">Pullova Beauty</span>
             </div>
             <p className="text-white/70 leading-relaxed mb-6">
               Premium beauty services delivered to your home by certified professionals across the USA.
@@ -109,7 +109,7 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-white/70 text-sm">
-              © {currentYear} BeautyHome. All rights reserved.
+              © {currentYear} Pullova Beauty. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm">
               <a href="#" className="text-white/70 hover:text-accent transition-colors">

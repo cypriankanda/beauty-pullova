@@ -16,10 +16,9 @@ const Navigation = () => {
   }, []);
 
   const navLinks = [
+    { name: "Join Waitlist", href: "#waitlist" },
     { name: "Services", href: "#services" },
     { name: "How It Works", href: "#how-it-works" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Join Us", href: "#waitlist" },
   ];
 
   return (
@@ -41,7 +40,7 @@ const Navigation = () => {
           >
             <Sparkles className={`w-6 h-6 ${isScrolled ? "text-primary" : "text-white"}`} />
             <span className={`text-2xl font-bold ${isScrolled ? "text-primary" : "text-white"}`}>
-              BeautyHome
+              Pullova Beauty
             </span>
           </motion.div>
 

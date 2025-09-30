@@ -66,6 +66,12 @@ const Navigation = () => {
             >
               Sign In
             </Button>
+            <Button
+              asChild
+              className="rounded-full px-6 bg-secondary text-white hover:bg-secondary/90 shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse hover:animate-none"
+            >
+              <a href="#waitlist">Join Waitlist</a>
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}

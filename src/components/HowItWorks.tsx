@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Search, Calendar, Home, CreditCard, Briefcase, Users, TrendingUp } from "lucide-react";
+import { Search, Calendar, Home, CreditCard, Briefcase, Users, TrendingUp, UserCheck, Settings } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const customerSteps = [
@@ -29,7 +29,7 @@ const customerSteps = [
 
 const beauticianSteps = [
   {
-    icon: Briefcase,
+    icon: UserCheck,
     title: "Create Profile",
     description: "Sign up and showcase your skills, certifications, and portfolio",
   },
@@ -57,7 +57,7 @@ const agentSteps = [
     description: "Recruit and manage a team of beauticians",
   },
   {
-    icon: Briefcase,
+    icon: Settings,
     title: "Manage Operations",
     description: "Oversee bookings, schedules, and quality control",
   },

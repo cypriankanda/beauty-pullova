@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-beauty.jpg";
-import { Sparkles } from "lucide-react";
+import { Sparkles, User, Scissors, Briefcase } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -27,6 +27,25 @@ const Hero = () => {
         animate={{ y: [0, 20, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
       />
+      <motion.div
+        className="absolute top-1/3 right-1/4 w-16 h-16 bg-primary/10 rounded-lg blur-lg"
+        animate={{ 
+          rotate: [0, 180, 360],
+          scale: [1, 1.2, 1]
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 left-1/4 w-24 h-24 bg-secondary/10 rounded-full blur-xl"
+        animate={{ 
+          y: [0, -30, 0],
+          x: [0, 20, 0]
+        }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-2/3 right-1/3 w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: "2s" }} />
+      <div className="absolute bottom-1/4 left-1/2 w-2 h-2 bg-accent rounded-full animate-ping" style={{ animationDelay: "3s" }} />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
@@ -66,41 +85,50 @@ const Hero = () => {
           >
             <Button
               size="lg"
-              className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-semibold rounded-full shadow-2xl hover:shadow-accent/50 transition-all duration-300 hover:scale-105"
+              className="bg-white text-primary hover:bg-white/90 px-8 py-6 text-lg font-semibold rounded-full shadow-2xl hover:shadow-accent/50 transition-all duration-300 hover:scale-105 flex items-center gap-2"
             >
+              <User className="w-5 h-5" />
               Book a Service
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/20 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105"
+              className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/20 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2"
             >
+              <Scissors className="w-5 h-5" />
               Become a Beautician
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="bg-secondary/20 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-secondary/30 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105"
+              className="bg-secondary/20 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-secondary/30 px-8 py-6 text-lg font-semibold rounded-full transition-all duration-300 hover:scale-105 flex items-center gap-2"
             >
+              <Briefcase className="w-5 h-5" />
               Join as Agent
             </Button>
           </motion.div>
 
+          {/* Trust Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="mt-16 flex justify-center gap-8 text-white/80 text-sm"
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="mt-12"
           >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              <span>500+ Certified Professionals</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-              <span>50,000+ Services Completed</span>
+            <p className="text-white/60 text-sm mb-4">As Featured In:</p>
+            <div className="flex justify-center gap-8 items-center flex-wrap">
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                <span className="text-white font-semibold text-sm">TechCrunch</span>
+              </div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                <span className="text-white font-semibold text-sm">Forbes</span>
+              </div>
+              <div className="px-6 py-3 bg-white/10 backdrop-blur-sm rounded-lg border border-white/20">
+                <span className="text-white font-semibold text-sm">Vogue</span>
+              </div>
             </div>
           </motion.div>
+
         </motion.div>
       </div>
 

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Sparkles, Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
@@ -26,12 +26,12 @@ const Footer = () => {
   ];
 
   const company = [
-    "About Us",
-    "How It Works",
-    "For Beauticians",
-    "For Agents",
-    "Careers",
-    "Press"
+    { label: "About Us", href: "#", isRoute: false },
+    { label: "How It Works", href: "#", isRoute: false },
+    { label: "For Beauticians", href: "#", isRoute: false },
+    { label: "For Agents", href: "#", isRoute: false },
+    { label: "Careers", href: "/career", isRoute: true },
+    { label: "Press", href: "#", isRoute: false }
   ];
 
   const legal = [
@@ -39,6 +39,16 @@ const Footer = () => {
     { label: "Terms of Service", href: "#" },
     { label: "Cookie Policy", href: "#" }
   ];
+
+  const handleNavigation = (href: string, isRoute: boolean) => {
+    if (isRoute) {
+      // For route navigation, scroll to top and change URL
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.history.pushState({}, '', href);
+      // Trigger a custom event that your router can listen to
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
+  };
 
   return (
     <footer ref={ref} className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
@@ -102,7 +112,6 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="flex items-center gap-3 mb-6 group cursor-pointer">
-               
                 <span className="text-2xl font-bold">Pullova Beauty</span>
               </div>
               <p className="text-gray-400 leading-relaxed mb-8">
@@ -174,17 +183,23 @@ const Footer = () => {
               <ul className="space-y-3">
                 {company.map((item, index) => (
                   <motion.li
-                    key={item}
+                    key={item.label}
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
                   >
                     <a
-                      href="#"
-                      className="text-gray-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-300 group"
+                      href={item.href}
+                      onClick={(e) => {
+                        if (item.isRoute) {
+                          e.preventDefault();
+                          handleNavigation(item.href, true);
+                        }
+                      }}
+                      className="text-gray-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-300 group cursor-pointer"
                     >
                       <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -ml-6 group-hover:ml-0 transition-all duration-300" />
-                      {item}
+                      {item.label}
                     </a>
                   </motion.li>
                 ))}

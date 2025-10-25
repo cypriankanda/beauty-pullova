@@ -26,7 +26,12 @@ const INITIAL_STATS = [
   { country: "South Africa", flag: "" },
 ];
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  headline: string;
+  subtext: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
   const [images, setImages] = useState(USER_HERO_IMAGES);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -44,9 +49,6 @@ const Hero: React.FC = () => {
     { value: "10+", label: "Licensed Professionals" },
   ];
 
-  const HEADLINE = "Pullova Beauty Services Delivered to You";
-  const SUBTEXT =
-    "Book certified beauty professionals who come to your home. Premium services, salon-quality results, on your global schedule.";
   const TRUST_TEXT = "Trusted by 100+ Initial Customers";
 
   if (images.length === 0) {
@@ -121,7 +123,7 @@ const Hero: React.FC = () => {
 
             {/* Subtext */}
             <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed max-w-xl">
-              {SUBTEXT}
+              {subtext}
             </p>
 
             {/* Feature Blocks */}

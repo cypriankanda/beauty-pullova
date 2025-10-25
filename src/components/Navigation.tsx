@@ -13,6 +13,33 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
+    e.preventDefault();
+    
+    // Check if we're on a different page (not home)
+    const isNotHomePage = window.location.pathname !== '/' && window.location.pathname !== '/index.html';
+    
+    if (isNotHomePage && href.startsWith('#')) {
+      // Navigate to home page with hash
+      window.location.href = '/' + href;
+    } else if (href.startsWith('#')) {
+      // We're on home page, just scroll to section
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Regular navigation
+      window.location.href = href;
+    }
+    
+    setIsMobileMenuOpen(false);
+  };
+
+  const handleLogoClick = () => {
+    window.location.href = '/';
+  };
+
   const navLinks = [
     { name: "Services", href: "#services" },
     { name: "How It Works", href: "#how-it-works" },
@@ -33,13 +60,15 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <motion.div
-            className="flex items-center gap-2 cursor-pointer"
+            className="flex items-center gap-3 cursor-pointer"
             whileHover={{ scale: 1.05 }}
+            onClick={handleLogoClick}
           >
-            <div className={`w-0 h-0 rounded-lg flex items-center justify-center ${
-              isScrolled ? "bg-gradient-to-br from-pink-500 to-purple-600" : "bg-white/20"
-            }`}>
-            </div>
+            <img 
+              src="/PULLOVA1.svg" 
+              alt="Pullova Logo" 
+              className="w-10 h-10"
+            />
             <span
               className={`text-2xl font-extrabold tracking-wide ${
                 isScrolled ? "text-gray-900" : "text-white"
@@ -55,6 +84,7 @@ const Navigation = () => {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={`font-medium transition-colors hover:text-pink-500 ${
                   isScrolled ? "text-gray-800" : "text-white"
                 }`}
@@ -71,7 +101,10 @@ const Navigation = () => {
             >
               Book Now
             </Button>
-            <a href="#waitlist">
+            <a 
+              href="#waitlist"
+              onClick={(e) => handleNavClick(e, '#waitlist')}
+            >
               <Button
                 className="px-6 bg-purple-500 text-white hover:bg-purple-600 shadow-md hover:shadow-lg transition-all rounded-full"
               >
@@ -117,8 +150,8 @@ const Navigation = () => {
                 <a
                   key={link.name}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block py-2 text-gray-800 font-medium hover:text-pink-500 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
@@ -126,7 +159,11 @@ const Navigation = () => {
               <Button className="w-full bg-pink-500 text-white rounded-full hover:bg-pink-600">
                 Book Now
               </Button>
-              <a href="#waitlist" className="block" onClick={() => setIsMobileMenuOpen(false)}>
+              <a 
+                href="#waitlist" 
+                className="block"
+                onClick={(e) => handleNavClick(e, '#waitlist')}
+              >
                 <Button className="w-full bg-purple-500 text-white rounded-full hover:bg-purple-600">
                   Join Waitlist
                 </Button>

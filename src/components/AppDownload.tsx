@@ -1,71 +1,137 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Smartphone, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React, { useRef } from 'react';
+// Assuming Framer Motion hooks and components are available in the environment
+import { motion, useInView } from "framer-motion";
+import { Smartphone, Download, ArrowRight } from "lucide-react";
 
+// Mock Icons to replace the complex SVG definitions, using inline SVGs from Lucide for simplicity
+const AppStoreIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" className="w-6 h-6">
+    <path d="M12 2a10 10 0 0 0-9.8 11.8A10 10 0 0 0 12 22a10 10 0 0 0 9.8-8.2A10 10 0 0 0 12 2zM12 4a8 8 0 0 1 7.7 5.7L12 12V4zm-7.7 5.7A8 8 0 0 1 12 20a8 8 0 0 1-7.7-5.7z"/>
+    <path d="M15 15.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" fill="#fff" />
+  </svg>
+);
+
+const GooglePlayIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" className="w-6 h-6">
+    <path d="M3.1 3.2L12 12 3.1 20.8A.5.5 0 0 1 3 20.5V3.5a.5.5 0 0 1 .1-.3z"/>
+    <path d="M12.5 13.7l6.5-3.7L12.5 6.3v7.4z" fill="#fff" />
+    <path d="M19.3 12.5L12 21.6 4.7 12.5h14.6z" fill="#fff" opacity=".5" />
+    <path d="M19.3 11.5L12 2.4 4.7 11.5h14.6z" fill="#fff" opacity=".7" />
+  </svg>
+);
+
+
+// NOTE ON ASSETS: We are using the local path as requested. This path will resolve correctly 
+// when the component is placed inside your React project's asset pipeline.
+// ----------------------------------------------------------------------
+const MOCKUP_IMAGE_URL = 'src/assets/signin.png';
+
+
+// Main component
 const AppDownload = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  // Trigger animation slightly sooner for a smoother look
+  const isInView = useInView(ref, { once: true, margin: "-150px 0px" });
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
-    <section ref={ref} className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-5xl mx-auto bg-gradient-to-br from-primary via-secondary to-primary rounded-3xl overflow-hidden shadow-2xl">
-          <div className="grid md:grid-cols-2 gap-8 items-center p-8 md:p-12">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6">
-                <Smartphone className="w-8 h-8 text-white" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Download Our App
-              </h2>
-              <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                Get the best experience with our mobile app. Book services, track your beautician, and manage your appointments on the go.
-              </p>
+    // Outer section: Dark background for high contrast
+    <section ref={ref} className="py-24 sm:py-32 bg-gray-900 font-inter">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* CTA Card: Modern, angled layout with a subtle, deep gradient */}
+        <div className="relative bg-gradient-to-br from-purple-700 to-indigo-800 rounded-[3rem] p-8 md:p-16 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-white text-primary hover:bg-white/90 px-6 py-6 rounded-2xl font-semibold text-base flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all duration-300"
-                >
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
-                  </svg>
+          {/* Decorative Background Shapes (abstract circles) */}
+          <div className="absolute top-0 left-0 w-96 h-96 bg-indigo-600/30 rounded-full blur-[100px] opacity-70 animate-pulse" />
+          <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-500/30 rounded-full blur-[100px] opacity-70 animate-pulse delay-1000" />
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center relative z-10">
+
+            {/* Left Column: Text Content and Buttons */}
+            <motion.div
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"}
+              variants={containerVariants}
+            >
+              <motion.div variants={itemVariants} className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-6 border border-white/30 shadow-inner">
+                <Smartphone className="w-8 h-8 text-white" strokeWidth={2.5} />
+              </motion.div>
+              
+              <motion.h2 variants={itemVariants} className="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
+                Get Your Personalized Download
+              </motion.h2>
+              
+              <motion.p variants={itemVariants} className="text-xl text-indigo-200 mb-10 leading-relaxed max-w-lg">
+                <strong>Great news!</strong> If you joined our waitlist, check your email for a personalized download link to get instant access to exclusive features and seamless booking.
+              </motion.p>
+
+              {/* Download Buttons: Enhanced design for clickability and visual hierarchy */}
+              <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+                {/* Primary Button - Solid Fill */}
+                <a href="#" className="flex items-center justify-center gap-3 bg-white text-gray-900 px-8 py-4 rounded-xl font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-[1.03] hover:shadow-white/40 focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-purple-700">
+                  <AppStoreIcon />
                   App Store
-                </Button>
-                <Button
-                  size="lg"
-                  className="bg-white text-primary hover:bg-white/90 px-6 py-6 rounded-2xl font-semibold text-base flex items-center gap-3 shadow-xl hover:shadow-2xl transition-all duration-300"
-                >
-                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.5,12.92 20.16,13.19L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
-                  </svg>
+                </a>
+                {/* Secondary Button - Outline for hierarchy */}
+                <a href="#" className="flex items-center justify-center gap-3 bg-transparent text-white border-2 border-white/50 px-8 py-4 rounded-xl font-bold text-lg shadow-2xl transition-all duration-300 transform hover:scale-[1.03] hover:border-white focus:outline-none focus:ring-4 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-purple-700">
+                  <GooglePlayIcon />
                   Google Play
-                </Button>
-              </div>
+                </a>
+              </motion.div>
             </motion.div>
 
+            {/* Right Column: High-Fidelity Mockup with subtle 3D effect */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative hidden md:block"
+              initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
+              animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+              className="relative hidden md:flex justify-center h-[500px] group perspective-[1000px]"
             >
-              <div className="relative w-full h-96 flex items-center justify-center">
-                {/* Phone Mockup Placeholder */}
-                <div className="relative w-64 h-full bg-white/10 backdrop-blur-md rounded-3xl border-4 border-white/20 shadow-2xl p-2">
-                  <div className="w-full h-full bg-gradient-to-br from-white/5 to-white/10 rounded-2xl flex items-center justify-center">
-                    <Download className="w-20 h-20 text-white/50 animate-pulse" />
-                  </div>
+              {/* Phone Mockup Frame - High detail with 3D tilt */}
+              <div 
+                className="absolute w-[280px] h-[480px] bg-gray-900 rounded-[40px] p-2 shadow-[0_15px_40px_rgba(0,0,0,0.8),_0_0_0_4px_rgba(255,255,255,0.1)] transition-all duration-500 ease-out transform rotate-x-6 rotate-z-[-2deg] group-hover:rotate-x-0 group-hover:rotate-z-0"
+                style={{
+                    transformStyle: 'preserve-3d',
+                    transform: isInView ? 'rotateX(0deg) rotateZ(0deg)' : 'rotateX(10deg) rotateZ(-5deg)',
+                    transition: 'transform 1.0s ease-out 0.5s'
+                }}
+              >
+                {/* Screen Content: The local image will load here in your project */}
+                <div className="w-full h-full rounded-[30px] overflow-hidden shadow-inner-[0_0_10px_rgba(0,0,0,0.5)]">
+                  <img
+                    src={MOCKUP_IMAGE_URL}
+                    alt="App screen preview showing a sign in screen"
+                    className="w-full h-full object-cover"
+                    // Fallback visual if the local path cannot be resolved (only visible in environments without assets)
+                    onError={(e) => {
+                      const img = e.currentTarget as HTMLImageElement;
+                      // clear the onerror handler to avoid loops (use any to bypass strict typing on the DOM handler)
+                      (img as any).onerror = null;
+                      img.style.display = 'none'; // Hide broken image icon
+                      // Use parentElement which is typed as HTMLElement | null
+                      const parent = img.parentElement as HTMLElement | null;
+                      if (parent) {
+                        parent.style.backgroundColor = '#3730a3';
+                        parent.innerHTML = '<div class="flex items-center justify-center h-full text-white/50 text-sm font-bold p-4">Asset: src/assets/signin.png (Local Asset Not Loaded in Preview)</div>';
+                      }
+                    }}
+                  />
                 </div>
-                {/* Decorative Elements */}
-                <div className="absolute -right-4 -top-4 w-24 h-24 bg-accent/30 rounded-full blur-2xl animate-float" />
-                <div className="absolute -left-4 -bottom-4 w-32 h-32 bg-white/20 rounded-full blur-2xl" style={{ animationDelay: "1s" }} />
               </div>
             </motion.div>
           </div>

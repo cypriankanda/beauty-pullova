@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Scissors, Palette, Hand, Sparkles, Droplet, Heart } from "lucide-react";
+import { Scissors, Palette, Hand, Sparkles, Droplet, Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const services = [
@@ -10,42 +10,54 @@ const services = [
     title: "Hair Styling & Color",
     description: "Professional cuts, coloring, and styling treatments",
     price: "From $45",
-    gradient: "from-primary/20 to-secondary/20",
+    gradient: "from-rose-500/10 via-pink-500/10 to-purple-500/10",
+    iconGradient: "from-rose-500 to-pink-600",
+    popular: false,
   },
   {
     icon: Palette,
     title: "Makeup & Glam",
     description: "Full makeup for any occasion, natural to glamorous",
     price: "From $60",
-    gradient: "from-secondary/20 to-accent/30",
+    gradient: "from-purple-500/10 via-pink-500/10 to-orange-500/10",
+    iconGradient: "from-purple-500 to-pink-600",
+    popular: true,
   },
   {
     icon: Hand,
     title: "Nails & Manicure",
     description: "Complete nail care, manicures, and artistic designs",
     price: "From $35",
-    gradient: "from-accent/30 to-primary/20",
+    gradient: "from-orange-500/10 via-amber-500/10 to-yellow-500/10",
+    iconGradient: "from-orange-500 to-amber-600",
+    popular: false,
   },
   {
-    icon: Sparkles,
+    icon: Hand,
     title: "Massage & Spa",
     description: "Relaxing massages and rejuvenating spa treatments",
     price: "From $70",
-    gradient: "from-primary/20 to-accent/30",
+    gradient: "from-blue-500/10 via-cyan-500/10 to-teal-500/10",
+    iconGradient: "from-blue-500 to-cyan-600",
+    popular: false,
   },
   {
     icon: Droplet,
     title: "Skincare Treatments",
     description: "Advanced facials and skincare therapy sessions",
     price: "From $55",
-    gradient: "from-secondary/20 to-primary/20",
+    gradient: "from-teal-500/10 via-emerald-500/10 to-green-500/10",
+    iconGradient: "from-teal-500 to-emerald-600",
+    popular: false,
   },
   {
     icon: Heart,
     title: "Bridal & Events",
     description: "Complete beauty packages for your special day",
     price: "From $250",
-    gradient: "from-accent/30 to-secondary/20",
+    gradient: "from-pink-500/10 via-rose-500/10 to-red-500/10",
+    iconGradient: "from-pink-500 to-rose-600",
+    popular: true,
   },
 ];
 
@@ -54,72 +66,141 @@ const ServiceCategories = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section ref={ref} className="py-24 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden relative">
+      {/* Animated background elements */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Our <span className="text-primary">Services</span>
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-block mb-4"
+          >
+            <span className="px-5 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary rounded-full text-sm font-semibold tracking-wide border border-primary/20">
+              PREMIUM SERVICES
+            </span>
+          </motion.div>
+          
+          <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+            Our <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">Services</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Premium beauty services delivered by certified professionals
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Premium beauty services delivered by certified professionals, right to your doorstep
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative overflow-hidden rounded-3xl p-8 bg-white/80 backdrop-blur-sm border-2 border-transparent hover:border-primary/30 shadow-lg hover:shadow-2xl transition-all duration-500"
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1,
+                  ease: [0.25, 0.4, 0.25, 1]
+                }}
+                className="group relative"
               >
-                {/* Glassmorphism Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                
-                {/* Content */}
-                <div className="relative z-10">
-                  {/* Icon */}
-                  <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-8 h-8 text-white" />
-                  </div>
-
-                  {/* Service Info */}
-                  <h3 className="text-2xl font-bold text-foreground mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Price & CTA */}
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-primary">
-                      {service.price}
-                    </span>
-                    <Button
-                      variant="ghost"
-                      className="text-primary hover:text-secondary hover:bg-primary/5 font-semibold group-hover:translate-x-1 transition-transform duration-300"
+                <div className="relative overflow-hidden rounded-3xl p-8 bg-white border border-gray-200 shadow-lg hover:shadow-2xl transition-all duration-500 h-full flex flex-col hover:-translate-y-2">
+                  
+                  {/* Popular Badge */}
+                  {service.popular && (
+                    <motion.div
+                      initial={{ scale: 0, rotate: -12 }}
+                      animate={isInView ? { scale: 1, rotate: -12 } : {}}
+                      transition={{ delay: index * 0.1 + 0.5, type: "spring", stiffness: 200 }}
+                      className="absolute -top-3 -right-3 z-20"
                     >
-                      Book Now →
-                    </Button>
-                  </div>
-                </div>
+                      <div className="bg-gradient-to-r from-amber-400 to-orange-500 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg border-2 border-white">
+                        ⭐ Popular
+                      </div>
+                    </motion.div>
+                  )}
 
-                {/* Border Glow Effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary via-secondary to-primary opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                  {/* Animated gradient background on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  
+                  {/* Radial glow effect */}
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
+                  
+                  {/* Content */}
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Icon with enhanced animation */}
+                    <div className="mb-6">
+                      <motion.div
+                        whileHover={{ scale: 1.15, rotate: 10 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                        className={`relative w-20 h-20 bg-gradient-to-br ${service.iconGradient} rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-shadow duration-500`}
+                      >
+                        <Icon className="w-10 h-10 text-white" />
+                        
+                        {/* Animated ring */}
+                        <div className="absolute inset-0 rounded-2xl border-2 border-white/30 group-hover:scale-110 transition-transform duration-500" />
+                      </motion.div>
+                    </div>
+
+                    {/* Service Info */}
+                    <div className="flex-grow">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed mb-6">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    {/* Price & CTA */}
+                    <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100">
+                      <div>
+                        <span className="text-sm text-gray-500 block mb-1">Starting at</span>
+                        <span className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                          {service.price}
+                        </span>
+                      </div>
+                      <Button
+                        className="bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 group/btn rounded-xl px-6 h-12"
+                      >
+                        <span className="mr-2">Book Now</span>
+                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Decorative corner elements */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
               </motion.div>
             );
           })}
         </div>
+
+        {/* View All Services CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center mt-16"
+        >
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-gray-900 to-gray-700 text-white hover:from-gray-800 hover:to-gray-600 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl px-10 h-14 text-lg font-semibold group"
+          >
+            <span>Explore All Services</span>
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

@@ -21,7 +21,8 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   const [form, setForm] = useState({ fullName: "", email: "", platform: "" });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [memberCount, setMemberCount] = useState(254);
+  const [memberCount, setMemberCount] = useState(10);
+  // localStorage.removeItem('member-count'); // For testing purposes only
 
   useEffect(() => {
     const loadMemberCount = () => {
@@ -83,7 +84,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       // Don't wait for GAS (instant UX)
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      setMessage("✅ You've been added to the waitlist!");
+      setMessage(" You've been added to the waitlist!");
       setForm({ fullName: "", email: "", platform: "" });
     } catch (error) {
       console.error("Error submitting:", error);
@@ -270,7 +271,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
             {message && (
               <p
                 className={`text-center mt-5 text-base px-4 font-semibold ${
-                  message.startsWith("✅")
+                  message.startsWith("")
                     ? "text-green-400"
                     : "text-yellow-400"
                 }`}

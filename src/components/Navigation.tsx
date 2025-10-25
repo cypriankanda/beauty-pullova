@@ -50,10 +50,8 @@ const Navigation = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 ${
-        isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md"
-          : "bg-gradient-to-r from-pink-500/60 to-purple-500/60 backdrop-blur-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 bg-white/95 backdrop-blur-md ${
+        isScrolled ? "shadow-md" : "shadow-sm"
       }`}
     >
       <div className="container mx-auto px-4 h-full">
@@ -69,11 +67,7 @@ const Navigation = () => {
               alt="Pullova Logo" 
               className="w-10 h-10"
             />
-            <span
-              className={`text-2xl font-extrabold tracking-wide ${
-                isScrolled ? "text-gray-900" : "text-white"
-              }`}
-            >
+            <span className="text-2xl font-extrabold tracking-wide text-gray-900">
               Pullova Home Beauty
             </span>
           </motion.div>
@@ -85,29 +79,19 @@ const Navigation = () => {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`font-medium transition-colors hover:text-pink-500 ${
-                  isScrolled ? "text-gray-800" : "text-white"
-                }`}
+                className="font-medium text-gray-800 transition-colors hover:text-pink-500"
               >
                 {link.name}
               </a>
             ))}
-            <Button
-              className={`px-6 shadow-sm transition-all rounded-full ${
-                isScrolled
-                  ? "bg-pink-500 text-white hover:bg-pink-600"
-                  : "bg-white text-pink-600 hover:bg-gray-100"
-              }`}
-            >
+            <Button className="px-6 bg-pink-500 text-white hover:bg-pink-600 shadow-sm transition-all rounded-full">
               Book Now
             </Button>
             <a 
               href="#waitlist"
               onClick={(e) => handleNavClick(e, '#waitlist')}
             >
-              <Button
-                className="px-6 bg-purple-500 text-white hover:bg-purple-600 shadow-md hover:shadow-lg transition-all rounded-full"
-              >
+              <Button className="px-6 bg-purple-500 text-white hover:bg-purple-600 shadow-md hover:shadow-lg transition-all rounded-full">
                 Join Waitlist
               </Button>
             </a>
@@ -120,17 +104,9 @@ const Navigation = () => {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? (
-              <X
-                className={`w-6 h-6 ${
-                  isScrolled ? "text-gray-800" : "text-white"
-                }`}
-              />
+              <X className="w-6 h-6 text-gray-800" />
             ) : (
-              <Menu
-                className={`w-6 h-6 ${
-                  isScrolled ? "text-gray-800" : "text-white"
-                }`}
-              />
+              <Menu className="w-6 h-6 text-gray-800" />
             )}
           </button>
         </div>

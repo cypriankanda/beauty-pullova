@@ -16,14 +16,17 @@ const USER_HERO_IMAGES = [
   "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955407/hero-beautyy_pmruqi.jpg",
   "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955277/Gemini_Generated_Image_mdr1psmdr1psmdr1_zgvctm.png",
   "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955118/gurpreet-singh-YL4xphQzZrw-unsplash_r6mbut.jpg",
+  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1761399405/2_fipgb3.jpg",
+  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1761399405/3_snnfgu.jpg",
+  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1761399404/1_syqwyd.jpg",
   "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955118/allison-christine-n4MHxHD1dKI-unsplash_ti0yhb.jpg",
 ];
 
 const INITIAL_STATS = [
-  { country: "USA", flag: "" },
-  { country: "Kenya", flag: "" },
-  { country: "Nigeria", flag: "" },
-  { country: "South Africa", flag: "" },
+  { country: "USA", flag: "🇺🇸" },
+  { country: "Kenya", flag: "🇰🇪" },
+  { country: "Nigeria", flag: "🇳🇬" },
+  { country: "South Africa", flag: "🇿🇦" },
 ];
 
 interface HeroProps {
@@ -34,6 +37,7 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
   const [images, setImages] = useState(USER_HERO_IMAGES);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageError, setImageError] = useState<string[]>([]);
 
   useEffect(() => {
     if (images.length < 2) return;
@@ -42,6 +46,26 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
     }, 5000);
     return () => clearInterval(interval);
   }, [images]);
+
+  // Preload images and check for errors
+  useEffect(() => {
+    const errors: string[] = [];
+    USER_HERO_IMAGES.forEach((src) => {
+      const img = new Image();
+      img.onload = () => console.log(`Loaded: ${src}`);
+      img.onerror = () => {
+        console.error(`Failed to load: ${src}`);
+        errors.push(src);
+      };
+      img.src = src;
+    });
+    
+    setTimeout(() => {
+      if (errors.length > 0) {
+        setImageError(errors);
+      }
+    }, 3000);
+  }, []);
 
   const STARTING_STATS = [
     { value: "100+", label: "Beauty Sessions Completed" },
@@ -55,11 +79,17 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
     return (
       <section className="relative min-h-screen flex items-center justify-center bg-white">
         <p className="text-xl text-gray-500">
-          Loading amazing visuals... <span className="animate-pulse"></span>
+          Loading amazing visuals... <span className="animate-pulse">✨</span>
         </p>
       </section>
     );
   }
+
+  const handleImageError = () => {
+    console.error(`Image failed to load: ${images[currentIndex]}`);
+    // Skip to next image if current one fails
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-rose-50 via-white to-purple-50 font-sans pt-24 md:pt-32">
@@ -236,6 +266,8 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
                   src={images[currentIndex]}
                   alt="Professional beauty service at home"
                   className="w-full h-full object-cover absolute inset-0"
+                  onError={handleImageError}
+                  loading="eager"
                 />
               </div>
 
@@ -264,6 +296,16 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-rose-400 to-pink-400 rounded-full blur-2xl opacity-50" />
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-purple-400 to-indigo-400 rounded-full blur-2xl opacity-50" />
             </div>
+
+            {/* Debug Info - Remove after testing */}
+            {imageError.length > 0 && (
+              <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600">
+                <p className="font-semibold mb-1">Failed to load images:</p>
+                {imageError.map((url, idx) => (
+                  <p key={idx} className="truncate">{url}</p>
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

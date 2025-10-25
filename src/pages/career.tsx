@@ -216,7 +216,7 @@ const CareerPage = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="John Doe"
+                    placeholder="Remi Omoyayi"
                     className={`w-full bg-white/5 border ${errors.name ? 'border-red-500' : 'border-white/10'} rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 transition-colors`}
                   />
                   {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}

@@ -1,7 +1,18 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Facebook, Instagram, Twitter, Linkedin, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { useInView } from "framer-motion";
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+  ArrowRight,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
@@ -22,7 +33,7 @@ const Footer = () => {
     "Nail Care",
     "Skincare & Spa",
     "Bridal Packages",
-    "Special Events"
+    "Special Events",
   ];
 
   const company = [
@@ -31,31 +42,32 @@ const Footer = () => {
     { label: "For Beauticians", href: "#", isRoute: false },
     { label: "For Agents", href: "#", isRoute: false },
     { label: "Careers", href: "/career", isRoute: true },
-    { label: "Press", href: "#", isRoute: false }
+    { label: "Press", href: "#", isRoute: false },
   ];
 
   const legal = [
     { label: "Privacy Policy", href: "#" },
     { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" }
+    { label: "Cookie Policy", href: "#" },
   ];
 
   const handleNavigation = (href: string, isRoute: boolean) => {
     if (isRoute) {
-      // For route navigation, scroll to top and change URL
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      window.history.pushState({}, '', href);
-      // Trigger a custom event that your router can listen to
-      window.dispatchEvent(new PopStateEvent('popstate'));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.history.pushState({}, "", href);
+      window.dispatchEvent(new PopStateEvent("popstate"));
     }
   };
 
   return (
-    <footer ref={ref} className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden">
-      {/* Animated background elements */}
+    <footer
+      ref={ref}
+      className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden"
+    >
+      {/* Decorative Blurs */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
-      
+
       {/* Newsletter Section */}
       <div className="relative z-10 border-b border-white/10">
         <div className="container mx-auto px-4 py-16">
@@ -68,19 +80,28 @@ const Footer = () => {
             <motion.div
               initial={{ scale: 0 }}
               animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.2,
+                type: "spring",
+                stiffness: 200,
+              }}
               className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl mb-6 shadow-lg"
             >
               <Mail className="w-8 h-8 text-white" />
             </motion.div>
-            
+
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              Stay Updated with <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Beauty Tips</span>
+              Stay Updated with{" "}
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Beauty Tips
+              </span>
             </h3>
             <p className="text-gray-400 text-lg mb-8">
-              Subscribe to our newsletter for exclusive offers, beauty tips, and updates
+              Subscribe to our newsletter for exclusive offers, beauty tips, and
+              updates.
             </p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -112,12 +133,21 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="flex items-center gap-3 mb-6 group cursor-pointer">
+                <motion.img
+                  src="/PULLOVA1.svg"
+                  alt="Pullova Logo"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="w-40 h-40 object-contain"
+                />
                 <span className="text-2xl font-bold">Pullova Beauty</span>
               </div>
               <p className="text-gray-400 leading-relaxed mb-8">
-                Premium beauty services delivered to your home by certified professionals across the USA.
+                Premium beauty services delivered to your home by certified
+                professionals across the USA.
               </p>
-              
+
               {/* Social Links */}
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => {
@@ -128,7 +158,12 @@ const Footer = () => {
                       href={social.href}
                       initial={{ opacity: 0, scale: 0 }}
                       animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.3, delay: 0.2 + index * 0.1, type: "spring", stiffness: 200 }}
+                      transition={{
+                        duration: 0.3,
+                        delay: 0.2 + index * 0.1,
+                        type: "spring",
+                        stiffness: 200,
+                      }}
                       whileHover={{ scale: 1.1, y: -2 }}
                       className="w-11 h-11 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center hover:bg-gradient-to-br hover:from-primary hover:to-secondary hover:border-transparent transition-all duration-300 group"
                       aria-label={social.label}
@@ -256,7 +291,9 @@ const Footer = () => {
                     </div>
                     <div>
                       <div className="text-gray-500 text-sm mb-1">Location</div>
-                      <span className="text-white font-medium">Seattle, USA</span>
+                      <span className="text-white font-medium">
+                        Seattle, USA
+                      </span>
                     </div>
                   </div>
                 </li>
@@ -282,7 +319,10 @@ const Footer = () => {
                     href={item.href}
                     initial={{ opacity: 0, y: 10 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.7 + index * 0.1,
+                    }}
                     className="text-gray-400 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-primary after:to-secondary hover:after:w-full after:transition-all after:duration-300"
                   >
                     {item.label}

@@ -23,10 +23,10 @@ const USER_HERO_IMAGES = [
 ];
 
 const INITIAL_STATS = [
-  { country: "USA", flag: "🇺🇸" },
-  { country: "Kenya", flag: "🇰🇪" },
-  { country: "Nigeria", flag: "🇳🇬" },
-  { country: "South Africa", flag: "🇿🇦" },
+  { country: "USA", flag: "" },
+  { country: "Kenya", flag: "" },
+  { country: "Nigeria", flag: "" },
+  { country: "South Africa", flag: "" },
 ];
 
 interface HeroProps {

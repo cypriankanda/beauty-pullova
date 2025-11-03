@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useInView } from "framer-motion";
 import {
   Facebook,
@@ -15,10 +15,72 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Regional contact data interface
+interface RegionData {
+  phone: string;
+  phoneHref: string;
+  location: string;
+  email: string;
+}
+
+// Import your region data (you'll create these files)
+const regionalData: Record<string, RegionData> = {
+  kenya: {
+    phone: "+254 712 345 678",
+    phoneHref: "tel:+254712345678",
+    location: "Nairobi, Kenya",
+    email: "info.kenya@pullovabeauty.com",
+  },
+  usa: {
+    phone: "+1 (253) 553-9800",
+    phoneHref: "tel:+12535539800",
+    location: "Seattle, USA",
+    email: "info@pullovabeauty.com",
+  },
+};
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [contactData, setContactData] = useState<RegionData>(regionalData.usa);
+
+  // Detect user's region on component mount
+  useEffect(() => {
+    const detectRegion = async () => {
+      try {
+        // Check URL parameter for testing (e.g., ?region=usa or ?region=kenya)
+        const urlParams = new URLSearchParams(window.location.search);
+        const testRegion = urlParams.get('region');
+        
+        if (testRegion === 'kenya' || testRegion === 'usa') {
+          console.log('Using test region from URL:', testRegion);
+          setContactData(regionalData[testRegion]);
+          return;
+        }
+
+        // Try to get region from geolocation API
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        
+        console.log('Detected country code:', data.country_code);
+        
+        // Check if user is in Kenya
+        if (data.country_code === "KE") {
+          setContactData(regionalData.kenya);
+        } else {
+          // Default to USA for all other regions
+          setContactData(regionalData.usa);
+        }
+      } catch (error) {
+        console.error("Error detecting region:", error);
+        // Fallback to USA if detection fails
+        setContactData(regionalData.usa);
+      }
+    };
+
+    detectRegion();
+  }, []);
 
   const socialLinks = [
     { icon: Facebook, href: "#", label: "Facebook" },
@@ -145,7 +207,7 @@ const Footer = () => {
               </div>
               <p className="text-gray-400 leading-relaxed mb-8">
                 Premium beauty services delivered to your home by certified
-                professionals across the USA.
+                professionals.
               </p>
 
               {/* Social Links */}
@@ -241,7 +303,7 @@ const Footer = () => {
               </ul>
             </motion.div>
 
-            {/* Contact */}
+            {/* Contact - Dynamic based on region */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -260,10 +322,10 @@ const Footer = () => {
                     <div>
                       <div className="text-gray-500 text-sm mb-1">Email</div>
                       <a
-                        href="mailto:hello@beautyhome.com"
+                        href={`mailto:${contactData.email}`}
                         className="text-white hover:text-primary transition-colors font-medium"
                       >
-                        hello@beautyhome.com
+                        {contactData.email}
                       </a>
                     </div>
                   </div>
@@ -276,10 +338,10 @@ const Footer = () => {
                     <div>
                       <div className="text-gray-500 text-sm mb-1">Phone</div>
                       <a
-                        href="tel:+1234567890"
+                        href={contactData.phoneHref}
                         className="text-white hover:text-primary transition-colors font-medium"
                       >
-                        +1 (234) 567-890
+                        {contactData.phone}
                       </a>
                     </div>
                   </div>
@@ -292,7 +354,7 @@ const Footer = () => {
                     <div>
                       <div className="text-gray-500 text-sm mb-1">Location</div>
                       <span className="text-white font-medium">
-                        Seattle, USA
+                        {contactData.location}
                       </span>
                     </div>
                   </div>

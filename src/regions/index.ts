@@ -1,9 +1,9 @@
-import { kenyaRegion } from "./kenya";
-import { usaRegion } from "./usa";
+export interface RegionData {
+  phone: string;
+  phoneHref: string;
+  location: string;
+  email: string;
+}
 
-export const regions = {
-  kenya: kenyaRegion,
-  usa: usaRegion,
-};
-
-export type RegionKey = keyof typeof regions;
+export { default as kenyaData } from './kenya';
+export { default as usaData } from './usa';

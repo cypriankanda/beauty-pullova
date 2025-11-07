@@ -26,10 +26,10 @@ interface RegionData {
 // Import your region data (you'll create these files)
 const regionalData: Record<string, RegionData> = {
   kenya: {
-    phone: "+254 712 345 678",
-    phoneHref: "tel:+254712345678",
+    phone: "+254 714 714 405",
+    phoneHref: "tel:+254714714405",
     location: "Nairobi, Kenya",
-    email: "info.kenya@pullovabeauty.com",
+    email: "info@pullovabeauty.com",
   },
   usa: {
     phone: "+1 (253) 553-9800",
@@ -206,8 +206,8 @@ const Footer = () => {
                 <span className="text-2xl font-bold">Pullova Beauty</span>
               </div>
               <p className="text-gray-400 leading-relaxed mb-8">
-                Premium beauty services delivered to your home by certified
-                professionals.
+                Luxury beauty & grooming delivered to your door.
+                 150+ cities and growing.
               </p>
 
               {/* Social Links */}

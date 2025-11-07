@@ -147,7 +147,7 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
               </span>
               <br />
               <span className="bg-gradient-to-r from-rose-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Services Delivered to You
+                Look Good. Feel Unstoppable.
               </span>
             </h1>
 

@@ -15,11 +15,11 @@ const CountUp = ({ end, duration, separator }) => {
 };
 
 
-// Updated statistics based on the request to significantly reduce numbers for a starting app
+
 const stats = [
   {
     icon: CheckCircle,
-    value: 250, // Reduced significantly from 12,500
+    value: 50000, 
     suffix: "+",
     label: "Beauty Sessions Completed",
     color: "text-rose-600",
@@ -28,7 +28,7 @@ const stats = [
   },
   {
     icon: Award,
-    value: 15, // Reduced significantly from 625
+    value: 2500, 
     suffix: "+",
     label: "Licensed Professionals",
     color: "text-purple-600",
@@ -37,7 +37,7 @@ const stats = [
   },
   {
     icon: Globe,
-    value: 4, // Reduced significantly from 35 (reflecting the 4 initial markets)
+    value: 150, // Reduced significantly from 35 (reflecting the 4 initial markets)
     suffix: "+",
     label: "Cities Globally Served",
     color: "text-pink-600",

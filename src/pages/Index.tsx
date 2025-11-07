@@ -31,7 +31,7 @@ const Index = () => {
         <Navigation />
         <Hero
           headline="Pullova Kenya 🇰🇪"
-          subtext="Book certified beauty professionals across Nairobi and Kenya — from glam to grooming, we come to you."
+          subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available 7 AM – 10 PM, same‑day included."
         />
         <Statistics />
         <Waitlist region="Kenya" />
@@ -51,7 +51,7 @@ const Index = () => {
         <Navigation />
         <Hero
           headline="Pullova USA"
-          subtext="Find top-rated beauty experts near you — salon-quality results, right at your doorstep."
+          subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available 7 AM – 10 PM, same‑day included."
         />
         <Statistics />
         <Waitlist region="USA" />

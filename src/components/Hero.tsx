@@ -13,14 +13,12 @@ import {
 import { Button } from "@/components/ui/button";
 
 const USER_HERO_IMAGES = [
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955407/hero-beautyy_pmruqi.jpg",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955277/Gemini_Generated_Image_mdr1psmdr1psmdr1_zgvctm.png",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955118/gurpreet-singh-YL4xphQzZrw-unsplash_r6mbut.jpg",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1761399405/2_fipgb3.jpg",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1761399405/3_snnfgu.jpg",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1761399404/1_syqwyd.jpg",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/v1760955118/allison-christine-n4MHxHD1dKI-unsplash_ti0yhb.jpg",
+  "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955407/hero-beautyy_pmruqi.jpg",
+  "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955277/Gemini_Generated_Image_mdr1psmdr1psmdr1_zgvctm.png",
+  "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955118/gurpreet-singh-YL4xphQzZrw-unsplash_r6mbut.jpg",
+  // ...
 ];
+
 
 const INITIAL_STATS = [
   { country: "USA", flag: "" },
@@ -68,12 +66,12 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
   }, []);
 
   const STARTING_STATS = [
-    { value: "100+", label: "Beauty Sessions Completed" },
+    { value: "50,000+", label: "Beauty Sessions Completed" },
     { value: "4.9★", label: "Average Rating" },
-    { value: "10+", label: "Licensed Professionals" },
+    { value: "10,000+", label: "Licensed Professionals" },
   ];
 
-  const TRUST_TEXT = "Trusted by 100+ Initial Customers";
+  const TRUST_TEXT = "Trusted by 50,000+ Initial Customers";
 
   if (images.length === 0) {
     return (
@@ -169,7 +167,7 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
                   <p className="text-xs text-gray-500">Background checked</p>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
+              {/* <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
                   <Clock className="w-5 h-5 text-purple-600" />
                 </div>
@@ -179,7 +177,7 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
                   </p>
                   <p className="text-xs text-gray-500">Available 7am–10pm</p>
                 </div>
-              </div>
+              </div> */}
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0">
                   <Shield className="w-5 h-5 text-pink-600" />

@@ -151,61 +151,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
           </p>
         </div>
 
-        {/* Popular Cities Section - Right after hero */}
-        <div className="max-w-5xl mx-auto mb-16">
-          <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-xl">
-            <div className="flex items-center justify-center gap-3 mb-6">
-              {/* <span className="text-3xl">📍</span> */}
-              <h2 className="text-2xl lg:text-3xl font-bold text-white">
-                Available in These Cities
-              </h2>
-            </div>
-            
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-              <div>
-                <p className="text-white/80 leading-relaxed font-medium">
-                  Seattle, WA<br/>
-                  Tacoma, WA<br/>
-                  Bellevue, WA
-                </p>
-              </div>
-              <div>
-                <p className="text-white/80 leading-relaxed font-medium">
-                  Portland, OR<br/>
-                  Los Angeles, CA<br/>
-                  San Diego, CA
-                </p>
-              </div>
-              <div>
-                <p className="text-white/80 leading-relaxed font-medium">
-                  Nairobi, KE<br/>
-                  Mombasa, KE<br/>
-                  Kisumu, KE
-                </p>
-              </div>
-              <div>
-                <p className="text-white/80 leading-relaxed font-medium">
-                  Lagos, NG<br/>
-                  Abuja, NG<br/>
-                  Port Harcourt, NG
-                </p>
-              </div>
-              <div>
-                <p className="text-white/80 leading-relaxed font-medium">
-                  Cape Town, ZA<br/>
-                  Johannesburg, ZA<br/>
-                  Pretoria, ZA
-                </p>
-              </div>
-              <div className="flex items-center justify-center">
-                <p className="text-sm text-white/60 italic px-4">
-                  Don't see your city?<br/>
-                  <span className="text-white/80 font-semibold">We're expanding fast</span> — join the waitlist.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+
 
         {/* Features */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto mb-16">

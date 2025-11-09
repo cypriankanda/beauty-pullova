@@ -68,7 +68,7 @@ const Navigation = () => {
               className="w-10 h-10"
             />
             <span className="text-2xl font-extrabold tracking-wide text-gray-900">
-              Pullova Home Beauty
+              Pullova Home Beauty Services
             </span>
           </motion.div>
 

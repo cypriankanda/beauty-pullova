@@ -28,7 +28,7 @@ const stats = [
   },
   {
     icon: Award,
-    value: 2500, 
+    value: 10000, 
     suffix: "+",
     label: "Licensed Professionals",
     color: "text-purple-600",
@@ -37,7 +37,7 @@ const stats = [
   },
   {
     icon: Globe,
-    value: 150, // Reduced significantly from 35 (reflecting the 4 initial markets)
+    value: 100, 
     suffix: "+",
     label: "Cities Globally Served",
     color: "text-pink-600",

@@ -102,6 +102,7 @@ const Footer = () => {
     { label: "About Us", href: "#", isRoute: false },
     { label: "How It Works", href: "#", isRoute: false },
     { label: "For Beauticians", href: "#", isRoute: false },
+    { label: "For Saloons", href: "#", isRoute: false },
     { label: "For Agents", href: "#", isRoute: false },
     { label: "Careers", href: "/career", isRoute: true },
     { label: "Press", href: "#", isRoute: false },
@@ -201,7 +202,7 @@ const Footer = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="w-40 h-40 object-contain"
+                  className="w-48 h-48 object-contain"
                 />
                 <span className="text-2xl font-bold">Pullova Beauty</span>
               </div>

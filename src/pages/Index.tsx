@@ -9,11 +9,73 @@ import AppDownload from "@/components/AppDownload";
 import Footer from "@/components/Footer";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
+// Define interfaces for component props
+interface HeroProps {
+  headline: string;
+  subtext: string;
+}
+
+interface RegionalComponentProps {
+  region?: string;
+}
+
 const Index = () => {
   const { country, loading } = useGeoCountry();
 
-  // Optional: temporary override for testing region content manually
-  // const country = "United States"; // or "Kenya" or "Other"
+  const renderContent = (country: string) => {
+    const commonComponents = (
+      <>
+        <Statistics />
+        <ServiceCategories />
+        <HowItWorks />
+        <AppDownload />
+        <Footer />
+      </>
+    );
+
+    if (country === "Kenya") {
+      return (
+        <div className="min-h-screen">
+          <Navigation />
+          <Hero
+            headline="Pullova Kenya 🇰🇪"
+            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available anytime, same‑day included."
+          />
+          <Waitlist region="Kenya" />
+          {commonComponents}
+          <Services region="Kenya" />
+        </div>
+      );
+    }
+
+    if (country === "United States") {
+      return (
+        <div className="min-h-screen">
+          <Navigation />
+          <Hero
+            headline="Pullova USA"
+            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available 7 AM – 10 PM, same‑day included."
+          />
+          <Waitlist region="USA" />
+          {commonComponents}
+          <Services region="USA" />
+        </div>
+      );
+    }
+
+    return (
+      <div className="min-h-screen">
+        <Navigation />
+        <Hero
+          headline="Pullova 🌍"
+          subtext="We're coming soon to your region. Stay tuned for home-delivered beauty experiences!"
+        />
+        <Waitlist />
+        {commonComponents}
+        <Services />
+      </div>
+    );
+  };
 
   // Show loading screen while detecting location
   if (loading) {
@@ -24,63 +86,7 @@ const Index = () => {
     );
   }
 
-  // 🇰🇪 --- Kenya Content ---
-  if (country === "Kenya") {
-    return (
-      <div className="min-h-screen">
-        <Navigation />
-        <Hero
-          headline="Pullova Kenya 🇰🇪"
-          subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available anytime, same‑day included."
-        />
-        <Statistics />
-        <Waitlist region="Kenya" />
-        <ServiceCategories />
-        <HowItWorks />
-        <Services region="Kenya" />
-        <AppDownload />
-        <Footer />
-      </div>
-    );
-  }
-
-  // 🇺🇸 --- USA Content ---
-  if (country === "United States") {
-    return (
-      <div className="min-h-screen">
-        <Navigation />
-        <Hero
-          headline="Pullova USA"
-          subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available 7 AM – 10 PM, same‑day included."
-        />
-        <Statistics />
-        <Waitlist region="USA" />
-        <ServiceCategories />
-        <HowItWorks />
-        <Services region="USA" />
-        <AppDownload />
-        <Footer />
-      </div>
-    );
-  }
-
-  // 🌍 --- Default Fallback (Other Countries) ---
-  return (
-    <div className="min-h-screen">
-      <Navigation />
-      <Hero
-        headline="Pullova 🌍"
-        subtext="We’re coming soon to your region. Stay tuned for home-delivered beauty experiences!"
-      />
-      <Statistics />
-      <Waitlist />
-      <ServiceCategories />
-      <HowItWorks />
-      <Services />
-      <AppDownload />
-      <Footer />
-    </div>
-  );
+  return renderContent(country);
 };
 
 export default Index;

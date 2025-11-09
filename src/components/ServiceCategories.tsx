@@ -1,15 +1,32 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Scissors, Palette, Hand, Sparkles, Droplet, Heart, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
-const services = [
+interface ServicePricing {
+  usd: string;
+  ksh: string;
+}
+
+interface Service {
+  icon: any;
+  title: string;
+  description: string;
+  pricing: ServicePricing;
+  gradient: string;
+  iconGradient: string;
+  popular: boolean;
+}
+
+const services: Service[] = [
   {
     icon: Scissors,
     title: "Hair Styling & Color",
     description: "Professional cuts, coloring, and styling treatments",
-    price: "From $45",
+    pricing: {
+      usd: "$45",
+      ksh: "KSh 5,850"
+    },
     gradient: "from-rose-500/10 via-pink-500/10 to-purple-500/10",
     iconGradient: "from-rose-500 to-pink-600",
     popular: false,
@@ -18,7 +35,10 @@ const services = [
     icon: Palette,
     title: "Makeup & Glam",
     description: "Full makeup for any occasion, natural to glamorous",
-    price: "From $60",
+    pricing: {
+      usd: "$60",
+      ksh: "KSh 7,800"
+    },
     gradient: "from-purple-500/10 via-pink-500/10 to-orange-500/10",
     iconGradient: "from-purple-500 to-pink-600",
     popular: true,
@@ -27,7 +47,10 @@ const services = [
     icon: Hand,
     title: "Nails & Manicure",
     description: "Complete nail care, manicures, and artistic designs",
-    price: "From $35",
+    pricing: {
+      usd: "$35",
+      ksh: "KSh 4,550"
+    },
     gradient: "from-orange-500/10 via-amber-500/10 to-yellow-500/10",
     iconGradient: "from-orange-500 to-amber-600",
     popular: false,
@@ -36,7 +59,10 @@ const services = [
     icon: Hand,
     title: "Massage & Spa",
     description: "Relaxing massages and rejuvenating spa treatments",
-    price: "From $70",
+    pricing: {
+      usd: "$70",
+      ksh: "KSh 9,100"
+    },
     gradient: "from-blue-500/10 via-cyan-500/10 to-teal-500/10",
     iconGradient: "from-blue-500 to-cyan-600",
     popular: false,
@@ -45,7 +71,10 @@ const services = [
     icon: Droplet,
     title: "Skincare Treatments",
     description: "Advanced facials and skincare therapy sessions",
-    price: "From $55",
+    pricing: {
+      usd: "$55",
+      ksh: "KSh 7,150"
+    },
     gradient: "from-teal-500/10 via-emerald-500/10 to-green-500/10",
     iconGradient: "from-teal-500 to-emerald-600",
     popular: false,
@@ -54,7 +83,10 @@ const services = [
     icon: Heart,
     title: "Bridal & Events",
     description: "Complete beauty packages for your special day",
-    price: "From $250",
+    pricing: {
+      usd: "$250",
+      ksh: "KSh 32,500"
+    },
     gradient: "from-pink-500/10 via-rose-500/10 to-red-500/10",
     iconGradient: "from-pink-500 to-rose-600",
     popular: true,
@@ -64,12 +96,46 @@ const services = [
 const ServiceCategories = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [region, setRegion] = useState<'usa' | 'kenya'>('usa');
+
+  useEffect(() => {
+    const detectRegion = async () => {
+      try {
+        // Check URL parameter for testing
+        const urlParams = new URLSearchParams(window.location.search);
+        const testRegion = urlParams.get('region');
+        
+        if (testRegion === 'kenya' || testRegion === 'usa') {
+          console.log('Using test region from URL:', testRegion);
+          setRegion(testRegion as 'usa' | 'kenya');
+          return;
+        }
+
+        // Detect region via geolocation API
+        const response = await fetch("https://ipapi.co/json/");
+        const data = await response.json();
+        
+        console.log('Detected country code:', data.country_code);
+        
+        if (data.country_code === "KE") {
+          setRegion('kenya');
+        } else {
+          setRegion('usa');
+        }
+      } catch (error) {
+        console.error("Error detecting region:", error);
+        setRegion('usa');
+      }
+    };
+
+    detectRegion();
+  }, []);
 
   return (
     <section ref={ref} className="py-24 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden relative">
       {/* Animated background elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-20 right-10 w-72 h-72 bg-pink-500/5 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -84,13 +150,13 @@ const ServiceCategories = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block mb-4"
           >
-            <span className="px-5 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary rounded-full text-sm font-semibold tracking-wide border border-primary/20">
+            <span className="px-5 py-2 bg-gradient-to-r from-pink-500/10 to-purple-500/10 text-pink-600 rounded-full text-sm font-semibold tracking-wide border border-pink-500/20">
               PREMIUM SERVICES
             </span>
           </motion.div>
           
           <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            Our <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">Services</span>
+            Our <span className="bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 bg-clip-text text-transparent">Services</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Premium beauty services delivered by certified professionals, right to your doorstep
@@ -132,7 +198,7 @@ const ServiceCategories = () => {
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   
                   {/* Radial glow effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
+                  <div className="absolute -inset-1 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500" />
                   
                   {/* Content */}
                   <div className="relative z-10 flex flex-col h-full">
@@ -152,7 +218,7 @@ const ServiceCategories = () => {
 
                     {/* Service Info */}
                     <div className="flex-grow">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors duration-300">
                         {service.title}
                       </h3>
                       <p className="text-gray-600 leading-relaxed mb-6">
@@ -164,22 +230,20 @@ const ServiceCategories = () => {
                     <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100">
                       <div>
                         <span className="text-sm text-gray-500 block mb-1">Starting at</span>
-                        <span className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                          {service.price}
+                        <span className="text-3xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                          {region === 'kenya' ? service.pricing.ksh : service.pricing.usd}
                         </span>
                       </div>
-                      <Button
-                        className="bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 group/btn rounded-xl px-6 h-12"
-                      >
-                        <span className="mr-2">Book Now</span>
+                      <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 rounded-xl px-6 h-12 font-semibold flex items-center gap-2 group/btn">
+                        <span>Book Now</span>
                         <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                      </Button>
+                      </button>
                     </div>
                   </div>
 
                   {/* Decorative corner elements */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-secondary/5 to-transparent rounded-tr-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-pink-500/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-500/5 to-transparent rounded-tr-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </motion.div>
             );
@@ -193,13 +257,10 @@ const ServiceCategories = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center mt-16"
         >
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-gray-900 to-gray-700 text-white hover:from-gray-800 hover:to-gray-600 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl px-10 h-14 text-lg font-semibold group"
-          >
+          <button className="bg-gradient-to-r from-gray-900 to-gray-700 text-white hover:from-gray-800 hover:to-gray-600 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl px-10 h-14 text-lg font-semibold flex items-center gap-2 mx-auto group">
             <span>Explore All Services</span>
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-          </Button>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+          </button>
         </motion.div>
       </div>
     </section>

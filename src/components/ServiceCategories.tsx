@@ -24,8 +24,8 @@ const services: Service[] = [
     title: "Hair Styling & Color",
     description: "Professional cuts, coloring, and styling treatments",
     pricing: {
-      usd: "$45",
-      ksh: "KSh 5,850"
+      usd: "$35",
+      ksh: "KSh 3,500"
     },
     gradient: "from-rose-500/10 via-pink-500/10 to-purple-500/10",
     iconGradient: "from-rose-500 to-pink-600",
@@ -36,8 +36,8 @@ const services: Service[] = [
     title: "Makeup & Glam",
     description: "Full makeup for any occasion, natural to glamorous",
     pricing: {
-      usd: "$60",
-      ksh: "KSh 7,800"
+      usd: "$50",
+      ksh: "KSh 5,000"
     },
     gradient: "from-purple-500/10 via-pink-500/10 to-orange-500/10",
     iconGradient: "from-purple-500 to-pink-600",
@@ -48,8 +48,8 @@ const services: Service[] = [
     title: "Nails & Manicure",
     description: "Complete nail care, manicures, and artistic designs",
     pricing: {
-      usd: "$35",
-      ksh: "KSh 4,550"
+      usd: "$25",
+      ksh: "KSh 2,500"
     },
     gradient: "from-orange-500/10 via-amber-500/10 to-yellow-500/10",
     iconGradient: "from-orange-500 to-amber-600",
@@ -60,8 +60,8 @@ const services: Service[] = [
     title: "Massage & Spa",
     description: "Relaxing massages and rejuvenating spa treatments",
     pricing: {
-      usd: "$70",
-      ksh: "KSh 9,100"
+      usd: "$65",
+      ksh: "KSh 6,500"
     },
     gradient: "from-blue-500/10 via-cyan-500/10 to-teal-500/10",
     iconGradient: "from-blue-500 to-cyan-600",
@@ -72,8 +72,8 @@ const services: Service[] = [
     title: "Skincare Treatments",
     description: "Advanced facials and skincare therapy sessions",
     pricing: {
-      usd: "$55",
-      ksh: "KSh 7,150"
+      usd: "$45",
+      ksh: "KSh 4,500"
     },
     gradient: "from-teal-500/10 via-emerald-500/10 to-green-500/10",
     iconGradient: "from-teal-500 to-emerald-600",
@@ -84,8 +84,8 @@ const services: Service[] = [
     title: "Bridal & Events",
     description: "Complete beauty packages for your special day",
     pricing: {
-      usd: "$250",
-      ksh: "KSh 32,500"
+      usd: "$200",
+      ksh: "KSh 20,000"
     },
     gradient: "from-pink-500/10 via-rose-500/10 to-red-500/10",
     iconGradient: "from-pink-500 to-rose-600",

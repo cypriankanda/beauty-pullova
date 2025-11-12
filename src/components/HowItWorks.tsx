@@ -67,26 +67,31 @@ const beauticianSteps = [
 
 const agentSteps = [
   {
+    icon: Briefcase,
+    title: "Join as an Agent",
+    description:
+      "Partner with Pullova and connect clients to trusted beauticians in your city.",
+  },
+  {
     icon: Users,
-    title: "Build Your Team",
-    description: "Recruit skilled beauticians and manage them easily.",
+    title: "Grow Your Network",
+    description:
+      "Build a local team of professionals and earn from every successful booking.",
   },
   {
     icon: Settings,
-    title: "Manage Operations",
-    description: "Handle appointments, client feedback, and performance all in one place.",
+    title: "Access Tools & Training",
+    description:
+      "Get onboarding, digital tools, and marketing support to help you thrive.",
   },
   {
     icon: TrendingUp,
-    title: "Track Performance",
-    description: "Get insights into revenue, reviews, and activity trends.",
-  },
-  {
-    icon: CreditCard,
-    title: "Earn Commission",
-    description: "Get rewarded for every successful booking from your team.",
+    title: "Earn & Advance",
+    description:
+      "Unlock higher commissions and expand into partnership or franchise roles.",
   },
 ];
+
 
 const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
   <motion.div

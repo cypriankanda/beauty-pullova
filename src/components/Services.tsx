@@ -27,8 +27,8 @@ const services: Service[] = [
       "Professional makeup for any occasion, from natural looks to glamorous events",
     image: makeupImage,
     pricing: {
-      usd: "Starting at $60",
-      ksh: "Starting at KSh 6,800"
+      usd: "Starting at $35",
+      ksh: "Starting at KSh 3,500"
     }
   },
   {
@@ -37,8 +37,8 @@ const services: Service[] = [
       "Cuts, coloring, styling, treatments - all performed by certified stylists",
     image: hairImage,
     pricing: {
-      usd: "Starting at $45",
-      ksh: "Starting at KSh 4,850"
+      usd: "Starting at $50",
+      ksh: "Starting at KSh 5,000"
     }
   },
   {

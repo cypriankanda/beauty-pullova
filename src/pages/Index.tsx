@@ -9,41 +9,32 @@ import AppDownload from "@/components/AppDownload";
 import Footer from "@/components/Footer";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 
-// Define interfaces for component props
-interface HeroProps {
-  headline: string;
-  subtext: string;
-}
-
-interface RegionalComponentProps {
-  region?: string;
-}
-
 const Index = () => {
   const { country, loading } = useGeoCountry();
 
-  const renderContent = (country: string) => {
-    const commonComponents = (
-      <>
-        <Statistics />
-        <ServiceCategories />
-        <HowItWorks />
-        <AppDownload />
-        <Footer />
-      </>
-    );
+  const commonComponents = (
+    <>
+      <Statistics />
+      <ServiceCategories />
+      <HowItWorks />
+      <AppDownload />
+    </>
+  );
 
+  const renderContent = (country: string) => {
     if (country === "Kenya") {
       return (
         <div className="min-h-screen">
           <Navigation />
           <Hero
             headline="Pullova Kenya 🇰🇪"
-            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available anytime, same‑day included."
+            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available anytime, same-day included."
           />
           <Waitlist region="Kenya" />
+
           {commonComponents}
           <Services region="Kenya" />
+          <Footer /> {/* ✔ Footer LAST */}
         </div>
       );
     }
@@ -54,11 +45,13 @@ const Index = () => {
           <Navigation />
           <Hero
             headline="Pullova USA"
-            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available 7 AM – 10 PM, same‑day included."
+            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available 7 AM – 10 PM, same-day included."
           />
           <Waitlist region="USA" />
+
           {commonComponents}
           <Services region="USA" />
+          <Footer /> {/* ✔ Footer LAST */}
         </div>
       );
     }
@@ -71,13 +64,14 @@ const Index = () => {
           subtext="We're coming soon to your region. Stay tuned for home-delivered beauty experiences!"
         />
         <Waitlist />
+
         {commonComponents}
         <Services />
+        <Footer /> {/* ✔ Footer LAST */}
       </div>
     );
   };
 
-  // Show loading screen while detecting location
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen text-gray-500">

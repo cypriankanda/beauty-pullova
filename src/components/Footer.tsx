@@ -197,12 +197,12 @@ const Footer = () => {
             >
               <div className="flex items-center gap-3 mb-6 group cursor-pointer">
                 <motion.img
-                  src="/PULLOVA1.svg"
+                  src="/pullova_logo.svg"
                   alt="Pullova Logo"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="w-48 h-48 object-contain"
+                  className="w-52 h-52 object-contain"
                 />
                 <span className="text-2xl font-bold">Pullova Beauty</span>
               </div>

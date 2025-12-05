@@ -63,9 +63,9 @@ const Navigation = () => {
             onClick={handleLogoClick}
           >
             <img 
-              src="/PULLOVA1.svg" 
+              src="/pullova_logo.svg" 
               alt="Pullova Logo" 
-              className="w-10 h-10"
+              className="w-14 h-14"
             />
             <span className="text-2xl font-extrabold tracking-wide text-gray-900">
               Pullova Home Beauty Services

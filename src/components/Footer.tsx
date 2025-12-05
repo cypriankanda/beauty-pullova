@@ -30,6 +30,7 @@ const regionalData: Record<string, RegionData> = {
     phoneHref: "tel:+254714714405",
     location: "Nairobi, Kenya",
     email: "info@pullovabeauty.com",
+    
   },
   usa: {
     phone: "+1 (253) 553-9800",

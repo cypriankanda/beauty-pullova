@@ -203,9 +203,9 @@ const Footer = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="w-52 h-52 object-contain"
+                  className="w-52 h-80 object-contain"
                 />
-                <span className="text-2xl font-bold">Pullova Beauty</span>
+                {/* <span className="text-2xl font-bold">Pullova Beauty</span>  */}
               </div>
               <p className="text-gray-400 leading-relaxed mb-8">
                 Luxury beauty & grooming delivered to your door.

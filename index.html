@@ -57,20 +57,21 @@
     <!-- Tawk Custom Logic FIRST -->
     <script>
       var Tawk_API = Tawk_API || {};
-
+    
       Tawk_API.onLoad = function () {
-        // Auto-open chat after 5 seconds
-        setTimeout(() => {
-          if (Tawk_API.maximize) Tawk_API.maximize();
-        }, 5000);
-
-        // Add visitor metadata
+        // Ensure widget starts minimized
+        if (Tawk_API.minimize) {
+          Tawk_API.minimize();
+        }
+    
+        // Optional: visitor metadata
         Tawk_API.visitor = {
           language: navigator.language,
           device: navigator.userAgent,
         };
       };
     </script>
+    
 
     <!-- Tawk Widget Script SECOND -->
     <script

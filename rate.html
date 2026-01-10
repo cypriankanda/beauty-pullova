@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyprian Kanda - Professional Services Rate Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .professional-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            margin-bottom: 5px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header .name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+        
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .quick-contact {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-contact-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .intro strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e0e7ff;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .service-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            color: #667eea;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .service-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-left: 6px solid #667eea;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+        
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .service-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .service-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #667eea;
+            line-height: 1;
+        }
+        
+        .service-price-label {
+            font-size: 13px;
+            color: #888;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .service-description {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .service-includes {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #e8ecff;
+        }
+        
+        .service-includes h4 {
+            font-size: 15px;
+            color: #667eea;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        
+        .service-includes ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .service-includes li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            line-height: 1.6;
+        }
+        
+        .service-includes li:before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .pricing-note {
+            background: linear-gradient(135deg, #fff4e6 0%, #ffe8cc 100%);
+            border-left: 5px solid #ff9800;
+            padding: 20px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(255, 152, 0, 0.1);
+        }
+        
+        .pricing-note h4 {
+            color: #e65100;
+            margin-bottom: 12px;
+            font-size: 17px;
+            font-weight: 700;
+        }
+        
+        .pricing-note p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .guarantee-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guarantee-box::before {
+            content: '✓';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .guarantee-box-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .guarantee-box h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .guarantee-box p {
+            font-size: 17px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+            border: 2px solid #d0d9ff;
+        }
+        
+        .contact-section h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 26px;
+            font-weight: 700;
+        }
+        
+        .contact-section .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid #e8ecff;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+        
+        .contact-icon {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-label {
+            font-size: 13px;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contact-value {
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .contact-action {
+            margin-top: 10px;
+            padding: 10px 25px;
+            background: #667eea;
+            color: white;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-action:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+        
+        .service-areas {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #d0d9ff;
+        }
+        
+        .service-areas h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .service-areas p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .student-discount {
+            background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 25px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(255, 152, 0, 0.3);
+        }
+        
+        .student-discount h4 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        
+        .student-discount p {
+            font-size: 16px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .testimonial-section {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 5px solid #667eea;
+        }
+        
+        .testimonial-section h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .testimonial {
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .service-card:hover {
+                transform: none;
+            }
+            
+            .contact-action {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .header .name {
+                font-size: 20px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .service-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <div class="professional-badge">CERTIFIED TECH EXPERT</div>
+                <h1>📱💻 Professional Tech Services</h1>
+                <div class="name">Cyprian Kanda</div>
+                <p>Your Trusted Partner for Device Inspection & Document Excellence</p>
+                <div class="quick-contact">
+                    <div class="quick-contact-item">📱 0714 714 405</div>
+                    <div class="quick-contact-item">📧 cyprianboit@gmail.com</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <p><strong>Protect your investment.</strong> Whether you're buying your first laptop, upgrading your phone, or need professional document editing, I provide expert services that save you money and give you peace of mind. Every inspection is done with you present, and every document is edited with precision.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Devices Inspected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7 Days</div>
+                    <div class="stat-label">Money-Back Guarantee</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24-48h</div>
+                    <div class="stat-label">Document Turnaround</div>
+                </div>
+            </div>
+            
+            <!-- Device Inspection Services -->
+            <div class="service-section">
+                <h2 class="section-title">
+                    <span>🔍</span>
+                    Device Inspection Services
+                </h2>
+                
+                <div class="pricing-note">
+                    <h4>💰 Transparent Pricing Structure</h4>
+                    <p><strong>Standard Rate:</strong> 5% of device purchase price<br>
+                    <strong>Minimum Fee:</strong> KSh 500 | <strong>Maximum Fee:</strong> KSh 2,000<br>
+                    <strong>Why hire me?</strong> I've helped hundreds of students avoid fake devices, dead batteries, and overpriced electronics. Your small investment in inspection could save you thousands!</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div>
+                            <div class="service-name">Budget Devices (Under KSh 25,000)</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="service-price">KSh 500</div>
+                            <div class="service-price-label">Flat Rate</div>
+                        </div>
+                    </div>
+                    <div class="service-description">
+                        Perfect for students and first-time buyers purchasing entry-level phones and laptops. Don't let a tight budget mean compromising on quality assurance!
+                    </div>
+                    <div class="service-includes">
+                        <h4>Comprehensive Inspection Includes:</h4>
+                        <ul>
+                            <li>Complete battery health analysis with cycle count, capacity percentage, and remaining lifespan estimate</li>
+                            <li>Storage capacity verification and speed testing to ensure advertised specs match reality</li>
+                            <li>Performance benchmarking including CPU, RAM, and thermal performance under load</li>
+                            <li>Physical condition assessment covering screen integrity, body damage, port functionality</li>
+                            <li>Full functionality testing: buttons, camera quality, speakers, microphone, all connectivity options</li>
+                            <li>IMEI/Serial number verification against stolen/blacklisted databases</li>
+                            <li>Detailed written report with photographic evidence delivered on-site</li>
+                            <li>Clear recommendation: Proceed with purchase, Negotiate lower price, or Walk away</li>
+                            <li>On-the-spot consultation to explain findings and answer your questions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div>
+                            <div class="service-name">Mid-Range Devices (KSh 25,000 - 60,000)</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="service-price">KSh 1,000</div>
+                            <div class="service-price-label">or 5% (whichever is lower)</div>
+                        </div>
+                    </div>
+                    <div class="service-description">
+                        Comprehensive inspection for mainstream laptops and smartphones. At this price point, hidden defects can cost you big—let me catch them before you pay.
+                    </div>
+                    <div class="service-includes">
+                        <h4>Everything in Budget Package PLUS:</h4>
+                        <ul>
+                            <li>All standard inspection items listed above</li>
+                            <li>Advanced performance stress testing to reveal thermal throttling and cooling issues</li>
+                            <li>Display quality assessment including dead pixel check, backlight bleeding test, color accuracy</li>
+                            <li>Laptop hinge inspection for stability, unusual sounds, alignment, and wear patterns</li>
+                            <li>Comprehensive keyboard testing (every key) and trackpad responsiveness evaluation</li>
+                            <li>Warranty status verification to confirm remaining coverage period</li>
+                            <li>Market value analysis comparing your deal against current Nairobi market prices</li>
+                            <li>Battery replacement cost estimate if health is below optimal</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div>
+                            <div class="service-name">Premium Devices (KSh 60,000 - 150,000+)</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="service-price">KSh 1,500</div>
+                            <div class="service-price-label">Maximum KSh 2,000</div>
+                        </div>
+                    </div>
+                    <div class="service-description">
+                        Ultra-detailed inspection for high-end MacBooks, gaming laptops, flagship phones, and premium devices. When you're investing this much, you deserve forensic-level inspection.
+                    </div>
+                    <div class="service-includes">
+                        <h4>Premium White-Glove Inspection:</h4>
+                        <ul>
+                            <li>All mid-range inspection items listed above</li>
+                            <li>Extended warranty & AppleCare status verification with expiration dates</li>
+                            <li>Authenticity verification to detect refurbished units being sold as brand new</li>
+                            <li>Original accessories verification (charger, cable, box authenticity check)</li>
+                            <li>Detailed benchmark comparisons against factory-new device performance standards</li>
+                            <li>Water damage indicator inspection including internal checks where accessible</li>
+                            <li>Professional photography package for insurance documentation purposes</li>
+                            <li>Post-purchase support: 30-day consultation period for any device questions or concerns</li>
+                            <li>Negotiation coaching: I'll help you use inspection findings to negotiate a better price</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="student-discount">
+                    <h4>🎓 Special Student Offer</h4>
+                    <p><strong>Bring a Friend, Save Money!</strong> When you and a friend both book device inspections together, you each get 10% off your inspection fee. That's KSh 45 saved on a KSh 500 inspection, or KSh 90 saved on a KSh 1,000 inspection!</p>
+                </div>
+            </div>
+            
+            <!-- Document Editing Services -->
+            <div class="service-section">
+                <h2 class="section-title">
+                    <span>📝</span>
+                    Document Editing Services
+                </h2>
+                
+                <div class="service-card">
+                    <div class="service-header">
+                        <div>
+                            <div class="service-name">Professional Document Editing & Formatting</div>
+                            <span class="badge">Popular</span>
+                        </div>
+                        <div style="text-align: right;">
+                            <div class="service-price">KSh 2,000</div>
+                            <div class="service-price-label">per document</div>
+                        </div>
+                    </div>
+                    <div class="service-description">
+                        Transform your documents from good to exceptional. Whether it's an academic paper, professional resume, or business proposal, I ensure your writing is polished, error-free, and makes the right impression. Perfect for students, job seekers, and professionals who demand excellence.
+                    </div>
+                    <div class="service-includes">
+                        <h4>Comprehensive Editing Package:</h4>
+                        <ul>
+                            <li>Thorough grammar, spelling, and punctuation correction throughout the entire document</li>
+                            <li>Sentence structure optimization and flow improvement for better readability</li>
+                            <li>Consistency check covering formatting, writing style, tone, and terminology</li>
+                            <li>Citation and reference formatting in your required style (APA, MLA, Chicago, Harvard, IEEE)</li>
+                            <li>Professional layout and design optimization for visual appeal and readability</li>
+                            <li>Plagiarism check using professional tools with detailed similarity report</li>
+                            <li>Track changes mode so you can see every edit and learn from corrections</li>
+                            <li>Up to 2 rounds of revisions included to ensure your complete satisfaction</li>
+                            <li>Constructive feedback on content structure and argumentation strength</li>
+                            <li>Formatting for submission requirements (word count, margins, spacing, headers)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pricing-note">
+                    <h4>📄 Document Types I Specialize In</h4>
+                    <p><strong>Academic Documents:</strong> Essays, research papers, theses, dissertations, literature reviews, assignments, lab reports<br>
+                    <strong>Professional Documents:</strong> Resumes/CVs, cover letters, LinkedIn profiles, business proposals, reports, presentations<br>
+                    <strong>Application Documents:</strong> Scholarship applications, personal statements, motivation letters, recommendation letters<br>
+                    <strong>Business Documents:</strong> Emails, memos, marketing copy, white papers, case studies<br>
+                    <br>
+                    <strong>Turnaround Time:</strong> 24-48 hours for standard documents (up to 5,000 words)<br>
+                    <strong>Express Service:</strong> 12-hour rush delivery available for +50% fee (KSh 3,000 total)<br>
+                    <strong>Long Documents:</strong> Over 10,000 words? Contact me for custom pricing</p>
+                </div>
+                
+                <div class="testimonial-section">
+                    <h4>💬 What Students Say</h4>
+                    <div class="testimonial">
+                        "Cyprian saved me from buying a phone with a dead battery that the seller claimed was 95% health. He showed me it was actually 67% with 800+ cycles. Saved me KSh 8,000 in negotiations!" - Brian, USIU Student
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Guarantee Section -->
+            <div class="guarantee-box">
+                <div class="guarantee-box-content">
+                    <h3>✓ My 7-Day Inspection Guarantee</h3>
+                    <p>I stand behind my work 100%. If your device fails within 7 days due to any issue I explicitly marked as "PASS" in your inspection report, I will immediately refund your full inspection fee—no questions asked. This guarantee does not cover physical damage after purchase, software issues that develop later, or items I flagged as "CAUTION" or "FAIL" in the report. I'm this confident because I'm thorough, transparent, and I care about your investment.</p>
+                </div>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h3>📞 Book Your Service Today</h3>
+                <p class="subtitle">Fast response • Professional service • Your satisfaction guaranteed</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-label">Call / SMS</div>
+                        <div class="contact-value">0714 714 405</div>
+                        <a href="tel:+254714714405" class="contact-action">Call Now</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-label">WhatsApp</div>
+                        <div class="contact-value">0714 714 405</div>
+                        <a href="https://wa.me/254714714405" class="contact-action" target="_blank">Message on WhatsApp</a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">cyprianboit@gmail.com</div>
+                        <a href="mailto:cyprianboit@gmail.com" class="contact-action">Send Email</a>
+                    </div>
+                </div>
+                
+                <div class="service-areas">
+                    <h4>🗺️ Service Coverage Areas</h4>
+                    <p><strong>Nairobi:</strong> CBD, Westlands, Parklands, Kilimani, Lavington, Luthuli Avenue, Sarit Centre, The Junction, Two Rivers Mall</p>
+                    <p><strong>University Areas:</strong> University of Nairobi (UoN), USIU-Africa, Strathmore University, Kenyatta University (KU), Daystar University, Rongai, Kikuyu, South B/C</p>
+                    <p><strong>Mobile Service:</strong> I come to you! Available for on-site inspections at seller locations, your home, campus, or any public meeting place you prefer.</p>
+                    <p style="margin-top: 15px;"><strong>📅 Availability:</strong> Monday - Saturday, 8:00 AM - 7:00 PM | Sunday by special appointment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

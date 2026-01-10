@@ -83,12 +83,21 @@ const Footer = () => {
     detectRegion();
   }, []);
 
-  const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-  ];
+ const socialLinks = [
+  {
+    icon: Facebook,
+    href: "https://web.facebook.com/profile.php?id=61584951542048",
+    label: "Facebook",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/pullovabeauty/",
+    label: "Instagram",
+  },
+  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+];
+
 
   const services = [
     "Makeup & Styling",

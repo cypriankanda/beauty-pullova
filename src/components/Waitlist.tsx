@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Diamond, Crown, Zap, Mail, User, Smartphone, ChevronRight, Check } from "lucide-react";
+import { Diamond, Crown, Zap, Mail, User, Smartphone, ChevronRight, Check, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -18,7 +18,12 @@ interface WaitlistProps {
 }
 
 const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
-  const [form, setForm] = useState({ fullName: "", email: "", platform: "" });
+  const [form, setForm] = useState({ 
+    fullName: "", 
+    email: "", 
+    platform: "",
+    userType: "" 
+  });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [memberCount, setMemberCount] = useState(10);
@@ -60,6 +65,13 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
     },
   ];
 
+  const userTypes = [
+    { value: "client", label: "Client" },
+    { value: "student-client", label: "Student Client" },
+    { value: "beautician", label: "Beautician" },
+    { value: "intern-beautician", label: "Intern Beautician" },
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -68,7 +80,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
     try {
       // Fire-and-forget request to Google Sheets
       fetch(
-        "https://script.google.com/macros/s/AKfycbxNlAtxWvhzFOItjFAcud0bF3ZBKdb-xklq2sD-Gbar1-I4MPPD0jffrt67mEW2buhm/exec",
+        "https://script.google.com/macros/s/AKfycbxJRQp3L6uWxnyWpqcuMlh-sYaksYyXQVAekRPDWky4tfy_SPTmBiQws9pSNEXAW2EM/exec",
         {
           method: "POST",
           mode: "no-cors",
@@ -85,7 +97,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       setMessage("✓ You've been added to the waitlist!");
-      setForm({ fullName: "", email: "", platform: "" });
+      setForm({ fullName: "", email: "", platform: "", userType: "" });
     } catch (error) {
       console.error("Error submitting:", error);
       setMessage("⚠️ There was a problem. Try again later.");
@@ -187,6 +199,31 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
         {/* Waitlist Form */}
         <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mt-12">
           <div className="flex flex-col items-center gap-4">
+            {/* User Type Selection */}
+            <div className="w-full">
+              <label className="block text-white/80 text-sm font-semibold mb-3 text-center">
+                I am joining as:
+              </label>
+              <div className="grid grid-cols-2 gap-3">
+                {userTypes.map((type) => (
+                  <Button
+                    key={type.value}
+                    type="button"
+                    variant={form.userType === type.value ? "default" : "outline"}
+                    onClick={() => setForm({ ...form, userType: type.value })}
+                    className={`flex items-center justify-center h-12 text-sm font-semibold rounded-xl transition-all ${
+                      form.userType === type.value
+                        ? "bg-purple-600 text-white border-none shadow-lg"
+                        : "bg-white/90 text-gray-700 border-gray-300 hover:bg-white hover:scale-[1.02]"
+                    }`}
+                  >
+                    <Briefcase className="w-4 h-4 mr-2" />
+                    {type.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
             {/* Full Name Input */}
             <div className="relative w-full">
               <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
@@ -242,13 +279,13 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
             {/* Submit Button */}
             <Button
               type="submit"
-              disabled={loading}
+              disabled={loading || !form.userType}
               size="lg"
               style={{
                 backgroundColor: COLORS.accentButton,
                 boxShadow: `0 4px 20px 0 ${COLORS.accentButton}40`,
               }}
-              className="w-full sm:w-auto h-16 px-8 lg:px-10 text-white font-bold text-base lg:text-lg transition-all duration-200 hover:scale-[1.03] hover:brightness-110 rounded-2xl"
+              className="w-full sm:w-auto h-16 px-8 lg:px-10 text-white font-bold text-base lg:text-lg transition-all duration-200 hover:scale-[1.03] hover:brightness-110 rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Securing Spot..." : "Join the waitlist"}
               <ChevronRight className="w-5 h-5 ml-2" />

@@ -238,36 +238,36 @@ const HowItWorks = () => {
         </motion.div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-3 mb-16 h-16 bg-white/80 backdrop-blur-sm p-2 rounded-2xl shadow-lg border border-gray-200">
-            <TabsTrigger
-              value="customer"
-              className="text-base font-semibold rounded-xl data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
-            >
-              For Customers
-            </TabsTrigger>
-            <TabsTrigger
-              value="beautician"
-              className="text-base font-semibold rounded-xl data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
-            >
-              For Beauticians
-            </TabsTrigger>
-            <TabsTrigger
-              value="agent"
-              className="text-base font-semibold rounded-xl data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
-            >
-              For Agents
-            </TabsTrigger>
-          </TabsList>
+  <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-1 sm:grid-cols-3 gap-3 mb-16 h-auto sm:h-16 bg-white/80 backdrop-blur-sm p-2 rounded-2xl shadow-lg border border-gray-200">
+    <TabsTrigger
+      value="customer"
+      className="text-center text-base font-semibold rounded-xl py-3 sm:py-0 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
+    >
+      For Customers
+    </TabsTrigger>
+    <TabsTrigger
+      value="beautician"
+      className="text-center text-base font-semibold rounded-xl py-3 sm:py-0 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
+    >
+      For Beauticians
+    </TabsTrigger>
+    <TabsTrigger
+      value="agent"
+      className="text-center text-base font-semibold rounded-xl py-3 sm:py-0 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
+    >
+      For Agents
+    </TabsTrigger>
+  </TabsList>
 
-          <TabsContent value="customer">
-            {renderSteps(customerSteps)}
-            <AutoMatchInfo isInView={isInView} />
-          </TabsContent>
+  <TabsContent value="customer">
+    {renderSteps(customerSteps)}
+    <AutoMatchInfo isInView={isInView} />
+  </TabsContent>
 
-          <TabsContent value="beautician">{renderSteps(beauticianSteps)}</TabsContent>
+  <TabsContent value="beautician">{renderSteps(beauticianSteps)}</TabsContent>
 
-          <TabsContent value="agent">{renderSteps(agentSteps)}</TabsContent>
-        </Tabs>
+  <TabsContent value="agent">{renderSteps(agentSteps)}</TabsContent>
+</Tabs>
       </div>
     </section>
   );

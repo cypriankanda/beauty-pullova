@@ -14,8 +14,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
-// Regional contact data interface
 interface RegionData {
   phone: string;
   phoneHref: string;
@@ -23,14 +23,12 @@ interface RegionData {
   email: string;
 }
 
-// Import your region data (you'll create these files)
 const regionalData: Record<string, RegionData> = {
   kenya: {
     phone: "+254 714 714 405",
     phoneHref: "tel:+254714714405",
     location: "Nairobi, Kenya",
     email: "info@pullovabeauty.com",
-    
   },
   usa: {
     phone: "+1 (253) 553-9800",
@@ -46,36 +44,30 @@ const Footer = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [contactData, setContactData] = useState<RegionData>(regionalData.usa);
 
-  // Detect user's region on component mount
   useEffect(() => {
     const detectRegion = async () => {
       try {
-        // Check URL parameter for testing (e.g., ?region=usa or ?region=kenya)
         const urlParams = new URLSearchParams(window.location.search);
-        const testRegion = urlParams.get('region');
-        
-        if (testRegion === 'kenya' || testRegion === 'usa') {
-          console.log('Using test region from URL:', testRegion);
+        const testRegion = urlParams.get("region");
+
+        if (testRegion === "kenya" || testRegion === "usa") {
+          console.log("Using test region from URL:", testRegion);
           setContactData(regionalData[testRegion]);
           return;
         }
 
-        // Try to get region from geolocation API
         const response = await fetch("https://ipapi.co/json/");
         const data = await response.json();
-        
-        console.log('Detected country code:', data.country_code);
-        
-        // Check if user is in Kenya
+
+        console.log("Detected country code:", data.country_code);
+
         if (data.country_code === "KE") {
           setContactData(regionalData.kenya);
         } else {
-          // Default to USA for all other regions
           setContactData(regionalData.usa);
         }
       } catch (error) {
         console.error("Error detecting region:", error);
-        // Fallback to USA if detection fails
         setContactData(regionalData.usa);
       }
     };
@@ -83,21 +75,20 @@ const Footer = () => {
     detectRegion();
   }, []);
 
- const socialLinks = [
-  {
-    icon: Facebook,
-    href: "https://web.facebook.com/profile.php?id=61584951542048",
-    label: "Facebook",
-  },
-  {
-    icon: Instagram,
-    href: "https://www.instagram.com/pullovabeauty/",
-    label: "Instagram",
-  },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-];
-
+  const socialLinks = [
+    {
+      icon: Facebook,
+      href: "https://web.facebook.com/profile.php?id=61584951542048",
+      label: "Facebook",
+    },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/pullovabeauty/",
+      label: "Instagram",
+    },
+    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Linkedin, href: "#", label: "LinkedIn" },
+  ];
 
   const services = [
     "Makeup & Styling",
@@ -119,9 +110,8 @@ const Footer = () => {
   ];
 
   const legal = [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms & Conditions", href: "/terms" },
   ];
 
   const handleNavigation = (href: string, isRoute: boolean) => {
@@ -137,7 +127,6 @@ const Footer = () => {
       ref={ref}
       className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden"
     >
-      {/* Decorative Blurs */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
 
@@ -199,6 +188,7 @@ const Footer = () => {
       <div className="relative z-10 py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
             {/* Brand */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -214,14 +204,12 @@ const Footer = () => {
                   transition={{ duration: 0.6, delay: 0.2 }}
                   className="w-52 h-80 object-contain"
                 />
-                {/* <span className="text-2xl font-bold">Pullova Beauty</span>  */}
               </div>
               <p className="text-gray-400 leading-relaxed mb-8">
-                Luxury beauty & grooming delivered to your door.
-                 150+ cities and growing.
+                Luxury beauty &amp; grooming delivered to your door. 150+ cities
+                and growing.
               </p>
 
-              {/* Social Links */}
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
@@ -261,19 +249,16 @@ const Footer = () => {
               <ul className="space-y-3">
                 {services.map((item, index) => (
                   <motion.li
-                    key={item}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
-                  >
-                    <a
-                      href="#"
-                      className="text-gray-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-300 group"
-                    >
-                      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -ml-6 group-hover:ml-0 transition-all duration-300" />
-                      {item}
-                    </a>
-                  </motion.li>
+    // ...
+  >
+    <a // <-- Add the opening tag here
+      href="#"
+      className="text-gray-400 hover:text-white hover:translate-x-1 inline-flex items-center gap-2 transition-all duration-300 group"
+    >
+      <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -ml-6 group-hover:ml-0 transition-all duration-300" />
+      {item}
+    </a>
+  </motion.li>
                 ))}
               </ul>
             </motion.div>
@@ -295,10 +280,10 @@ const Footer = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.05 }}
-                  >
-                    <a
-                      href={item.href}
-                      onClick={(e) => {
+>
+    <a // <-- Add the opening tag here
+      href={item.href}
+      onClick={(e) => {
                         if (item.isRoute) {
                           e.preventDefault();
                           handleNavigation(item.href, true);
@@ -314,7 +299,7 @@ const Footer = () => {
               </ul>
             </motion.div>
 
-            {/* Contact - Dynamic based on region */}
+            {/* Contact */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -331,13 +316,13 @@ const Footer = () => {
                       <Mail className="w-5 h-5 text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
-                      <div className="text-gray-500 text-sm mb-1">Email</div>
-                      <a
-                        href={`mailto:${contactData.email}`}
-                        className="text-white hover:text-primary transition-colors font-medium"
-                      >
-                        {contactData.email}
-                      </a>
+                    <div className="text-gray-500 text-sm mb-1">Email</div>
+  <a // <-- Add the opening tag here
+    href={`mailto:${contactData.email}`}
+    className="text-white hover:text-primary transition-colors font-medium"
+  >
+    {contactData.email}
+  </a>
                     </div>
                   </div>
                 </li>
@@ -347,13 +332,13 @@ const Footer = () => {
                       <Phone className="w-5 h-5 text-primary group-hover:text-white transition-colors duration-300" />
                     </div>
                     <div>
-                      <div className="text-gray-500 text-sm mb-1">Phone</div>
-                      <a
-                        href={contactData.phoneHref}
-                        className="text-white hover:text-primary transition-colors font-medium"
-                      >
-                        {contactData.phone}
-                      </a>
+                    <div className="text-gray-500 text-sm mb-1">Phone</div>
+  <a // <-- Add the opening tag here
+    href={contactData.phoneHref}
+    className="text-white hover:text-primary transition-colors font-medium"
+  >
+    {contactData.phone}
+  </a>
                     </div>
                   </div>
                 </li>
@@ -382,28 +367,38 @@ const Footer = () => {
             className="border-t border-white/10 pt-8"
           >
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-              <p className="text-gray-400 text-sm">
-                © {currentYear} Pullova Technologies Inc. All rights reserved.
-              </p>
+              <div>
+                <p className="text-gray-400 text-sm">
+                  © {currentYear} Pullova Technologies Inc. All rights reserved.
+                </p>
+                <div className="text-gray-500 text-xs mt-2">
+                  Pullova connects clients with independent beauty professionals.
+                </div>
+              </div>
+
               <div className="flex flex-wrap gap-6 text-sm justify-center">
                 {legal.map((item, index) => (
-                  <motion.a
+                  <motion.div
                     key={item.label}
-                    href={item.href}
                     initial={{ opacity: 0, y: 10 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{
                       duration: 0.4,
                       delay: 0.7 + index * 0.1,
                     }}
-                    className="text-gray-400 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-primary after:to-secondary hover:after:w-full after:transition-all after:duration-300"
                   >
-                    {item.label}
-                  </motion.a>
+                    <Link
+                      to={item.href}
+                      className="text-gray-400 hover:text-white transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gradient-to-r after:from-primary after:to-secondary hover:after:w-full after:transition-all after:duration-300"
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </motion.div>
+
         </div>
       </div>
     </footer>

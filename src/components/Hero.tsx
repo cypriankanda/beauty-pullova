@@ -14,8 +14,11 @@ import { Button } from "@/components/ui/button";
 
 const USER_HERO_IMAGES = [
   "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955407/hero-beautyy_pmruqi.jpg",
+  "https://res.cloudinary.com/djicliqf5/image/upload/v1773683753/eze-joseph-YxJraqxH3aQ-unsplash_tuwlnu.jpg",
+  "https://res.cloudinary.com/djicliqf5/image/upload/v1773683754/faustina-okeke-JHbu-eg1rnE-unsplash_x3omug.jpg",
+  "https://res.cloudinary.com/djicliqf5/image/upload/v1773683760/chidy-young-_9cuaC6Y4iA-unsplash_fnww8j.jpg",
   "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955277/Gemini_Generated_Image_mdr1psmdr1psmdr1_zgvctm.png",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955118/gurpreet-singh-YL4xphQzZrw-unsplash_r6mbut.jpg",
+  "https://res.cloudinary.com/djicliqf5/image/upload/v1773683113/beauty1_luhgoc.jpg",
   // ...
 ];
 

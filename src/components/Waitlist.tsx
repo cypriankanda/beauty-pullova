@@ -17,6 +17,9 @@ interface WaitlistProps {
   region?: string;
 }
 
+const WAITLIST_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbzlfPoZYgaaRYKwEgNyp6m5kXt0vyCVXA64xkkc8fQ88PyWhR0gdNHNVFoumaiR9bTYWQ/exec";
+
 const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   const [form, setForm] = useState({ 
     fullName: "", 
@@ -78,16 +81,44 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
     setMessage("");
 
     try {
-      // Fire-and-forget request to Google Sheets
-      fetch(
-        "https://script.google.com/macros/s/AKfycbzlfPoZYgaaRYKwEgNyp6m5kXt0vyCVXA64xkkc8fQ88PyWhR0gdNHNVFoumaiR9bTYWQ/exec",
-        {
+      const payload = {
+        ...form,
+        region: region ?? "Global",
+        submittedAt: new Date().toISOString(),
+        source: window.location.hostname,
+      };
+
+      const encodedPayload = new URLSearchParams(
+        Object.entries(payload).map(([key, value]) => [key, String(value)])
+      );
+
+      let submitted = false;
+      try {
+        // Prefer CORS so production errors are visible.
+        const response = await fetch(WAITLIST_ENDPOINT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
+          body: encodedPayload.toString(),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Waitlist request failed with status ${response.status}`);
+        }
+        submitted = true;
+      } catch (error) {
+        console.warn("Primary waitlist submit failed, retrying with no-cors fallback.", error);
+      }
+
+      if (!submitted) {
+        // Fallback for endpoints that do not return CORS headers.
+        await fetch(WAITLIST_ENDPOINT, {
           method: "POST",
           mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
-        }
-      );
+          body: encodedPayload,
+        });
+      }
 
       const newCount = memberCount + 1;
       localStorage.setItem('member-count', newCount.toString());
@@ -99,7 +130,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       setMessage("✓ You've been added to the waitlist!");
       setForm({ fullName: "", email: "", platform: "", userType: "" });
     } catch (error) {
-      console.error("Error submitting:", error);
+      console.error("Error submitting waitlist data:", error);
       setMessage("⚠️ There was a problem. Try again later.");
     } finally {
       setLoading(false);

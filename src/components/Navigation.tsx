@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react"; 
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -84,6 +85,12 @@ const Navigation = () => {
                 {link.name}
               </a>
             ))}
+            <Link
+              to="/faq"
+              className="font-medium text-gray-800 transition-colors hover:text-pink-500"
+            >
+              FAQ
+            </Link>
             <Button className="px-6 bg-pink-500 text-white hover:bg-pink-600 shadow-sm transition-all rounded-full">
               Book Now
             </Button>
@@ -132,6 +139,13 @@ const Navigation = () => {
                   {link.name}
                 </a>
               ))}
+              <Link
+                to="/faq"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block py-2 text-gray-800 font-medium hover:text-pink-500 transition-colors"
+              >
+                FAQ
+              </Link>
               <Button className="w-full bg-pink-500 text-white rounded-full hover:bg-pink-600">
                 Book Now
               </Button>

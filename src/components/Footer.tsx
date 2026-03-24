@@ -112,6 +112,7 @@ const Footer = () => {
   const legal = [
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms & Conditions", href: "/terms" },
+    { label: "FAQ", href: "/faq" },
   ];
 
   const handleNavigation = (href: string, isRoute: boolean) => {

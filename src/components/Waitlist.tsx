@@ -22,6 +22,42 @@ const WAITLIST_ENDPOINT =
 const TOTAL_FOUNDING_SPOTS = 250;
 const MEMBER_COUNT_STORAGE_KEY = "member-count-v2";
 
+const submitViaHiddenForm = (payload: Record<string, string>): Promise<void> =>
+  new Promise((resolve, reject) => {
+    try {
+      const frameName = `waitlist-submit-${Date.now()}`;
+      const iframe = document.createElement("iframe");
+      iframe.name = frameName;
+      iframe.style.display = "none";
+      document.body.appendChild(iframe);
+
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = WAITLIST_ENDPOINT;
+      form.target = frameName;
+      form.style.display = "none";
+
+      Object.entries(payload).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+
+      setTimeout(() => {
+        form.remove();
+        iframe.remove();
+        resolve();
+      }, 1200);
+    } catch (error) {
+      reject(error);
+    }
+  });
+
 const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   const [form, setForm] = useState({ 
     fullName: "", 
@@ -90,9 +126,10 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
         source: window.location.hostname,
       };
 
-      const encodedPayload = new URLSearchParams(
+      const normalizedPayload = Object.fromEntries(
         Object.entries(payload).map(([key, value]) => [key, String(value)])
       );
+      const encodedPayload = new URLSearchParams(normalizedPayload);
 
       let submitted = false;
       try {
@@ -114,12 +151,8 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       }
 
       if (!submitted) {
-        // Fallback for endpoints that do not return CORS headers.
-        await fetch(WAITLIST_ENDPOINT, {
-          method: "POST",
-          mode: "no-cors",
-          body: encodedPayload,
-        });
+        // Browser-native form POST works cross-origin without CORS preflight.
+        await submitViaHiddenForm(normalizedPayload);
       }
 
       const newCount = memberCount + 1;

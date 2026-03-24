@@ -19,6 +19,8 @@ interface WaitlistProps {
 
 const WAITLIST_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbzlfPoZYgaaRYKwEgNyp6m5kXt0vyCVXA64xkkc8fQ88PyWhR0gdNHNVFoumaiR9bTYWQ/exec";
+const TOTAL_FOUNDING_SPOTS = 250;
+const MEMBER_COUNT_STORAGE_KEY = "member-count-v2";
 
 const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   const [form, setForm] = useState({ 
@@ -29,15 +31,15 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [memberCount, setMemberCount] = useState(10);
-  // localStorage.removeItem('member-count'); // For testing purposes only
+  const [memberCount, setMemberCount] = useState(0);
 
   useEffect(() => {
     const loadMemberCount = () => {
       try {
-        const stored = localStorage.getItem('member-count');
+        const stored = localStorage.getItem(MEMBER_COUNT_STORAGE_KEY);
         if (stored) {
-          setMemberCount(parseInt(stored));
+          const parsedCount = Number.parseInt(stored, 10);
+          setMemberCount(Number.isNaN(parsedCount) ? 0 : parsedCount);
         }
       } catch (error) {
         console.log('Using default member count');
@@ -121,7 +123,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       }
 
       const newCount = memberCount + 1;
-      localStorage.setItem('member-count', newCount.toString());
+      localStorage.setItem(MEMBER_COUNT_STORAGE_KEY, newCount.toString());
       setMemberCount(newCount);
 
       // Don't wait for GAS (instant UX)
@@ -136,6 +138,8 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       setLoading(false);
     }
   };
+
+  const spotsRemaining = Math.max(TOTAL_FOUNDING_SPOTS - memberCount, 0);
 
   return (
     <section
@@ -327,7 +331,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-400" />
                 <span>
-                  Only <strong className="text-white">247</strong> founding
+                  Only <strong className="text-white">{spotsRemaining}</strong> founding
                   spots remaining
                 </span>
               </div>

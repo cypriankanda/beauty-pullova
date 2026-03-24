@@ -79,7 +79,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
     try {
       // Fire-and-forget request to Google Sheets
       fetch(
-        "https://script.google.com/macros/s/AKfycbzlfPoZYgaaRYKwEgNyp6m5kXt0vyCVXA64xkkc8fQ88PyWhR0gdNHNVFoumaiR9bTYWQ/exec",
+        "https://script.google.com/macros/s/AKfycbxsAaZwmVlalFyHw0agR5vRk2You9HkW5SalT2QnmnDpfrJGapDLWU8_xYMGQKhZuqeGA/exec",
         {
           method: "POST",
           mode: "no-cors",

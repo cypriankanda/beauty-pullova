@@ -44,7 +44,7 @@ const Index = () => {
           <Navigation />
           <Hero
             headline="Pullova USA"
-            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available 7 AM – 10 PM, same-day included."
+            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available anytime, same-day included."
           />
           <Waitlist region="USA" />
           {commonComponents}

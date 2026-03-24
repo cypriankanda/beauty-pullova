@@ -74,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
     { value: "10,000+", label: "Licensed Professionals" },
   ];
 
-  const TRUST_TEXT = "Trusted by 50,000+ Initial Customers";
+  const TRUST_TEXT = "The smarter way to manage your beauty clients";
 
   if (images.length === 0) {
     return (

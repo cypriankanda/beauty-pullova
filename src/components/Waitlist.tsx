@@ -78,13 +78,19 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
 
     try {
       // Fire-and-forget request to Google Sheets
-      fetch(
+      await fetch(
         "https://script.google.com/macros/s/AKfycbxsAaZwmVlalFyHw0agR5vRk2You9HkW5SalT2QnmnDpfrJGapDLWU8_xYMGQKhZuqeGA/exec",
         {
           method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fullName: form.fullName,
+            email: form.email,
+            platform: form.platform,
+            userType: form.userType,
+          }),
         }
       );
 

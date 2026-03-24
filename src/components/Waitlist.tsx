@@ -19,44 +19,6 @@ interface WaitlistProps {
 
 const WAITLIST_ENDPOINT =
   "https://script.google.com/macros/s/AKfycbzlfPoZYgaaRYKwEgNyp6m5kXt0vyCVXA64xkkc8fQ88PyWhR0gdNHNVFoumaiR9bTYWQ/exec";
-const TOTAL_FOUNDING_SPOTS = 250;
-const MEMBER_COUNT_STORAGE_KEY = "member-count-v2";
-
-const submitViaHiddenForm = (payload: Record<string, string>): Promise<void> =>
-  new Promise((resolve, reject) => {
-    try {
-      const frameName = `waitlist-submit-${Date.now()}`;
-      const iframe = document.createElement("iframe");
-      iframe.name = frameName;
-      iframe.style.display = "none";
-      document.body.appendChild(iframe);
-
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = WAITLIST_ENDPOINT;
-      form.target = frameName;
-      form.style.display = "none";
-
-      Object.entries(payload).forEach(([key, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
-
-      setTimeout(() => {
-        form.remove();
-        iframe.remove();
-        resolve();
-      }, 1200);
-    } catch (error) {
-      reject(error);
-    }
-  });
 
 const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   const [form, setForm] = useState({ 
@@ -67,15 +29,14 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   });
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-  const [memberCount, setMemberCount] = useState(0);
+  const [memberCount, setMemberCount] = useState(10);
 
   useEffect(() => {
     const loadMemberCount = () => {
       try {
-        const stored = localStorage.getItem(MEMBER_COUNT_STORAGE_KEY);
+        const stored = localStorage.getItem('member-count');
         if (stored) {
-          const parsedCount = Number.parseInt(stored, 10);
-          setMemberCount(Number.isNaN(parsedCount) ? 0 : parsedCount);
+          setMemberCount(parseInt(stored));
         }
       } catch (error) {
         console.log('Using default member count');
@@ -126,10 +87,9 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
         source: window.location.hostname,
       };
 
-      const normalizedPayload = Object.fromEntries(
+      const encodedPayload = new URLSearchParams(
         Object.entries(payload).map(([key, value]) => [key, String(value)])
       );
-      const encodedPayload = new URLSearchParams(normalizedPayload);
 
       let submitted = false;
       try {
@@ -151,12 +111,16 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       }
 
       if (!submitted) {
-        // Browser-native form POST works cross-origin without CORS preflight.
-        await submitViaHiddenForm(normalizedPayload);
+        // Fallback for endpoints that do not return CORS headers.
+        await fetch(WAITLIST_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          body: encodedPayload,
+        });
       }
 
       const newCount = memberCount + 1;
-      localStorage.setItem(MEMBER_COUNT_STORAGE_KEY, newCount.toString());
+      localStorage.setItem('member-count', newCount.toString());
       setMemberCount(newCount);
 
       // Don't wait for GAS (instant UX)
@@ -171,8 +135,6 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       setLoading(false);
     }
   };
-
-  const spotsRemaining = Math.max(TOTAL_FOUNDING_SPOTS - memberCount, 0);
 
   return (
     <section
@@ -364,7 +326,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-green-400" />
                 <span>
-                  Only <strong className="text-white">{spotsRemaining}</strong> founding
+                  Only <strong className="text-white">247</strong> founding
                   spots remaining
                 </span>
               </div>

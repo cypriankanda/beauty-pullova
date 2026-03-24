@@ -17,6 +17,9 @@ interface WaitlistProps {
   region?: string;
 }
 
+const WAITLIST_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbyBr2eFlBFlsETPI3lMewoIdowRLgt-H4tnuRP2qmSyNG3fedtkNJsvwbTcp1IMSJNOYw/exec";
+
 const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   const [form, setForm] = useState({ 
     fullName: "", 
@@ -77,22 +80,44 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
     setMessage("");
 
     try {
-      // Fire-and-forget request to Google Sheets
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbxsAaZwmVlalFyHw0agR5vRk2You9HkW5SalT2QnmnDpfrJGapDLWU8_xYMGQKhZuqeGA/exec",
-        {
+      const payload = {
+        ...form,
+        region: region ?? "Global",
+        submittedAt: new Date().toISOString(),
+        source: window.location.hostname,
+      };
+
+      const encodedPayload = new URLSearchParams(
+        Object.entries(payload).map(([key, value]) => [key, String(value)])
+      );
+
+      let submitted = false;
+      try {
+        // Prefer CORS so production errors are visible.
+        const response = await fetch(WAITLIST_ENDPOINT, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
           },
-          body: JSON.stringify({
-            fullName: form.fullName,
-            email: form.email,
-            platform: form.platform,
-            userType: form.userType,
-          }),
+          body: encodedPayload.toString(),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Waitlist request failed with status ${response.status}`);
         }
-      );
+        submitted = true;
+      } catch (error) {
+        console.warn("Primary waitlist submit failed, retrying with no-cors fallback.", error);
+      }
+
+      if (!submitted) {
+        // Fallback for endpoints that do not return CORS headers.
+        await fetch(WAITLIST_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          body: encodedPayload,
+        });
+      }
 
       const newCount = memberCount + 1;
       localStorage.setItem('member-count', newCount.toString());
@@ -104,7 +129,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       setMessage("✓ You've been added to the waitlist!");
       setForm({ fullName: "", email: "", platform: "", userType: "" });
     } catch (error) {
-      console.error("Error submitting:", error);
+      console.error("Error submitting waitlist data:", error);
       setMessage("⚠️ There was a problem. Try again later.");
     } finally {
       setLoading(false);

@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { FileText, ChevronRight } from "lucide-react";
@@ -21,12 +22,15 @@ const LegalDocumentLayout = ({
   meta,
   toc,
   children,
-  relatedLinks = [
-    { to: "/faq", label: "FAQ" },
-    { to: "/privacy-policy", label: "Privacy Policy" },
-    { to: "/terms", label: "Terms & Conditions" },
-  ],
+  relatedLinks: relatedLinksProp,
 }: LegalDocumentLayoutProps) => {
+  const { t } = useTranslation();
+  const relatedLinks =
+    relatedLinksProp ?? [
+      { to: "/faq", label: t("related.faq") },
+      { to: "/privacy-policy", label: t("related.privacyPolicy") },
+      { to: "/terms", label: t("related.terms") },
+    ];
   const shortTitle = title.replace(/^Pullova Home Beauty\s+/i, "").trim();
 
   return (
@@ -39,7 +43,7 @@ const LegalDocumentLayout = ({
             aria-label="Breadcrumb"
           >
             <Link to="/" className="hover:text-pink-600 transition-colors">
-              Home
+              {t("common.home")}
             </Link>
             <ChevronRight className="w-4 h-4 shrink-0 text-gray-400" aria-hidden />
             <span className="text-gray-700 font-medium">{shortTitle}</span>

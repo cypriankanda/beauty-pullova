@@ -68,9 +68,9 @@ const beauticianSteps = [
 const agentSteps = [
   {
     icon: Briefcase,
-    title: "Join as an Agent",
+    title: "Join as a Saloon Shop",
     description:
-      "Partner with Pullova and connect clients to trusted beauticians in your city.",
+      "Partner with Pullova and connect clients to trusted Saloons in your city.",
   },
   {
     icon: Users,
@@ -233,7 +233,7 @@ const HowItWorks = () => {
             How It <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Works</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            A clean, simple process built for clients, beauticians, and agents alike.
+            A clean, simple process built for clients, beauticians, and Saloon alike.
           </p>
         </motion.div>
 
@@ -255,7 +255,7 @@ const HowItWorks = () => {
       value="agent"
       className="text-center text-base font-semibold rounded-xl py-3 sm:py-0 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
     >
-      For Agents
+      For Saloons
     </TabsTrigger>
   </TabsList>
 

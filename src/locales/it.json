@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "brand": "Pullova Bellezza a domicilio",
+    "services": "Servizi",
+    "howItWorks": "Come funziona",
+    "aboutUs": "Chi siamo",
+    "faq": "FAQ",
+    "bookNow": "Prenota",
+    "joinWaitlist": "Lista d’attesa",
+    "logoAlt": "Logo Pullova",
+    "toggleMenu": "Apri menu"
+  },
+  "common": {
+    "home": "Home",
+    "language": "Lingua"
+  },
+  "related": {
+    "faq": "FAQ",
+    "privacyPolicy": "Informativa sulla privacy",
+    "terms": "Termini e condizioni"
+  }
+}

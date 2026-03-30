@@ -9,6 +9,7 @@ import CareerPage from "./pages/career";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import TermsConditions from "./pages/legal/TermsConditions";
 import FAQ from "./pages/FAQ";
+import HtmlLangSync from "./components/HtmlLangSync";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <HtmlLangSync />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/career" element={<CareerPage />} />

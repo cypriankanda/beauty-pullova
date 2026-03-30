@@ -69,9 +69,9 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
   }, []);
 
   const STARTING_STATS = [
-    { value: "50,000+", label: "Beauty Sessions Completed" },
+    { value: "1,000+", label: "Beauty Sessions Completed" },
     { value: "4.9★", label: "Average Rating" },
-    { value: "10,000+", label: "Licensed Professionals" },
+    { value: "800+", label: "Licensed Professionals" },
   ];
 
   const TRUST_TEXT = "The smarter way to manage your beauty clients";
@@ -220,12 +220,16 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
                 Book Your Service Now
               </Button>
               <Button
-                size="lg"
-                variant="outline"
-                className="text-gray-700 px-8 py-6 font-semibold transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
-              >
-                View Services & Pricing
-              </Button>
+  size="lg"
+  variant="outline"
+  onClick={() => {
+    const section = document.getElementById("services");
+    section?.scrollIntoView({ behavior: "smooth" });
+  }}
+  className="text-gray-700 px-8 py-6 font-semibold transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
+>
+  View Services & Pricing
+</Button>
             </motion.div>
 
             {/* Global Markets Section */}

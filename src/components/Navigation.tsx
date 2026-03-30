@@ -3,8 +3,11 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navigation = () => {
+  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -42,10 +45,10 @@ const Navigation = () => {
   };
 
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "About Us", href: "#about" },
-  ];
+    { nameKey: "nav.services", href: "#services" },
+    { nameKey: "nav.howItWorks", href: "#how-it-works" },
+    { nameKey: "nav.aboutUs", href: "#about" },
+  ] as const;
 
   return (
     <motion.nav
@@ -65,11 +68,11 @@ const Navigation = () => {
           >
             <img 
               src="/pullova_logo.svg" 
-              alt="Pullova Logo" 
+              alt={t("nav.logoAlt")} 
               className="w-14 h-14"
             />
             <span className="text-2xl font-extrabold tracking-wide text-gray-900">
-              Pullova Home Beauty Services
+              {t("nav.brand")}
             </span>
           </motion.div>
 
@@ -77,36 +80,37 @@ const Navigation = () => {
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
-                key={link.name}
+                key={link.nameKey}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="font-medium text-gray-800 transition-colors hover:text-pink-500"
               >
-                {link.name}
+                {t(link.nameKey)}
               </a>
             ))}
             <Link
               to="/faq"
               className="font-medium text-gray-800 transition-colors hover:text-pink-500"
             >
-              FAQ
+              {t("nav.faq")}
             </Link>
+            <LanguageSwitcher />
             <Button className="px-6 bg-pink-500 text-white hover:bg-pink-600 shadow-sm transition-all rounded-full">
-              Book Now
+              {t("nav.bookNow")}
             </Button>
             <a 
               href="#waitlist"
               onClick={(e) => handleNavClick(e, '#waitlist')}
             >
               <Button className="px-6 bg-purple-500 text-white hover:bg-purple-600 shadow-md hover:shadow-lg transition-all rounded-full">
-                Join Waitlist
+                {t("nav.joinWaitlist")}
               </Button>
             </a>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            aria-label="Toggle mobile menu"
+            aria-label={t("nav.toggleMenu")}
             className="md:hidden p-2 rounded-md"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -131,12 +135,12 @@ const Navigation = () => {
             <div className="container mx-auto px-4 py-6 space-y-4">
               {navLinks.map((link) => (
                 <a
-                  key={link.name}
+                  key={link.nameKey}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="block py-2 text-gray-800 font-medium hover:text-pink-500 transition-colors"
                 >
-                  {link.name}
+                  {t(link.nameKey)}
                 </a>
               ))}
               <Link
@@ -144,10 +148,14 @@ const Navigation = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block py-2 text-gray-800 font-medium hover:text-pink-500 transition-colors"
               >
-                FAQ
+                {t("nav.faq")}
               </Link>
+              <LanguageSwitcher
+                className="pt-2"
+                triggerClassName="w-full max-w-none"
+              />
               <Button className="w-full bg-pink-500 text-white rounded-full hover:bg-pink-600">
-                Book Now
+                {t("nav.bookNow")}
               </Button>
               <a 
                 href="#waitlist" 
@@ -155,7 +163,7 @@ const Navigation = () => {
                 onClick={(e) => handleNavClick(e, '#waitlist')}
               >
                 <Button className="w-full bg-purple-500 text-white rounded-full hover:bg-purple-600">
-                  Join Waitlist
+                  {t("nav.joinWaitlist")}
                 </Button>
               </a>
             </div>

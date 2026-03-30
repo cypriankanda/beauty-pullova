@@ -19,7 +19,7 @@ const CountUp = ({ end, duration, separator }) => {
 const stats = [
   {
     icon: CheckCircle,
-    value: 50000, 
+    value: 1000, 
     suffix: "+",
     label: "Beauty Sessions Completed",
     color: "text-rose-600",
@@ -28,7 +28,7 @@ const stats = [
   },
   {
     icon: Award,
-    value: 10000, 
+    value: 800, 
     suffix: "+",
     label: "Licensed Professionals",
     color: "text-purple-600",
@@ -37,7 +37,7 @@ const stats = [
   },
   {
     icon: Globe,
-    value: 100, 
+    value: 15, 
     suffix: "+",
     label: "Cities Globally Served",
     color: "text-pink-600",

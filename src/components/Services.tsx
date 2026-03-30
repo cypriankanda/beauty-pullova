@@ -1,23 +1,23 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
-// Placeholder images - replace with your actual imports
+// Placeholder images
 const makeupImage = "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&h=600&fit=crop";
 const hairImage = "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=600&fit=crop";
 const nailsImage = "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&h=600&fit=crop";
 const skincareImage = "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop";
 
-interface ServicePricing {
-  usd: string;
-  ksh: string;
-}
+// Optional pricing interface (kept for future use)
+// interface ServicePricing {
+//   usd: string;
+//   ksh: string;
+// }
 
 interface Service {
   title: string;
   description: string;
   image: string;
-  pricing: ServicePricing;
+  // pricing?: ServicePricing;
 }
 
 const services: Service[] = [
@@ -26,40 +26,40 @@ const services: Service[] = [
     description:
       "Professional makeup for any occasion, from natural looks to glamorous events",
     image: makeupImage,
-    pricing: {
-      usd: "Starting at $35",
-      ksh: "Starting at KSh 3,500"
-    }
+    // pricing: {
+    //   usd: "Starting at $35",
+    //   ksh: "Starting at KSh 3,500"
+    // }
   },
   {
     title: "Hair Services",
     description:
       "Cuts, coloring, styling, treatments - all performed by certified stylists",
     image: hairImage,
-    pricing: {
-      usd: "Starting at $50",
-      ksh: "Starting at KSh 5,000"
-    }
+    // pricing: {
+    //   usd: "Starting at $50",
+    //   ksh: "Starting at KSh 5,000"
+    // }
   },
   {
     title: "Nail Care",
     description:
       "Manicures, pedicures, nail art, and extensions with premium products",
     image: nailsImage,
-    pricing: {
-      usd: "Starting at $35",
-      ksh: "Starting at KSh 3,550"
-    }
+    // pricing: {
+    //   usd: "Starting at $35",
+    //   ksh: "Starting at KSh 3,550"
+    // }
   },
   {
     title: "Skincare & Spa",
     description:
       "Facials, treatments, and relaxing spa services for glowing skin",
     image: skincareImage,
-    pricing: {
-      usd: "Starting at $20",
-      ksh: "Starting at KSh 2,000"
-    }
+    // pricing: {
+    //   usd: "Starting at $20",
+    //   ksh: "Starting at KSh 2,000"
+    // }
   },
 ];
 
@@ -75,22 +75,17 @@ const Services: React.FC<ServicesProps> = ({ region }) => {
   useEffect(() => {
     const detectRegion = async () => {
       try {
-        // Check URL parameter for testing
         const urlParams = new URLSearchParams(window.location.search);
         const testRegion = urlParams.get('region');
-        
+
         if (testRegion === 'kenya' || testRegion === 'usa') {
-          console.log('Using test region from URL:', testRegion);
           setDetectedRegion(testRegion as 'usa' | 'kenya');
           return;
         }
 
-        // Detect region via geolocation API
         const response = await fetch("https://ipapi.co/json/");
         const data = await response.json();
-        
-        console.log('Detected country code:', data.country_code);
-        
+
         if (data.country_code === "KE") {
           setDetectedRegion('kenya');
         } else {
@@ -98,7 +93,7 @@ const Services: React.FC<ServicesProps> = ({ region }) => {
         }
       } catch (error) {
         console.error("Error detecting region:", error);
-        setDetectedRegion('usa'); // Default fallback
+        setDetectedRegion('usa');
       }
     };
 
@@ -108,6 +103,7 @@ const Services: React.FC<ServicesProps> = ({ region }) => {
   return (
     <section id="services" ref={ref} className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -125,6 +121,7 @@ const Services: React.FC<ServicesProps> = ({ region }) => {
           </p>
         </motion.div>
 
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, index) => (
             <motion.div
@@ -135,16 +132,18 @@ const Services: React.FC<ServicesProps> = ({ region }) => {
               whileHover={{ y: -8 }}
               className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 bg-white border border-gray-200"
             >
-              {/* Image Container with Glassmorphism Overlay */}
+              {/* Image */}
               <div className="relative h-80 overflow-hidden">
                 <img
                   src={service.image}
                   alt={service.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
+
+                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-pink-600/90 via-pink-500/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
 
-                {/* Content Overlay */}
+                {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-8">
                   <motion.div
                     initial={{ y: 20, opacity: 0 }}
@@ -154,17 +153,25 @@ const Services: React.FC<ServicesProps> = ({ region }) => {
                     <h3 className="text-3xl font-bold text-white mb-3">
                       {service.title}
                     </h3>
+
                     <p className="text-white/90 text-lg mb-4 leading-relaxed">
                       {service.description}
                     </p>
-                    <div className="flex items-center justify-between">
+
+                    {/* Actions (Pricing removed but structure preserved) */}
+                    <div className="flex items-center justify-end">
+                      {/* 
                       <span className="text-yellow-300 font-bold text-xl">
-                        {region === 'kenya' ? service.pricing.ksh : service.pricing.usd}
-                      </span>
+                        {region === 'kenya' 
+                          ? service.pricing?.ksh 
+                          : service.pricing?.usd}
+                      </span> 
+                      */}
                       <button className="bg-white/20 backdrop-blur-sm text-white px-6 py-2 rounded-full font-semibold hover:bg-white/30 transition-all duration-300 border border-white/30">
                         Book Now
                       </button>
                     </div>
+
                   </motion.div>
                 </div>
               </div>

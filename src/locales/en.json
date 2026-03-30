@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "brand": "Pullova Home Beauty Services",
+    "services": "Services",
+    "howItWorks": "How It Works",
+    "aboutUs": "About Us",
+    "faq": "FAQ",
+    "bookNow": "Book Now",
+    "joinWaitlist": "Join Waitlist",
+    "logoAlt": "Pullova Logo",
+    "toggleMenu": "Toggle mobile menu"
+  },
+  "common": {
+    "home": "Home",
+    "language": "Language"
+  },
+  "related": {
+    "faq": "FAQ",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  }
+}

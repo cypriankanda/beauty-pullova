@@ -228,7 +228,7 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
   }}
   className="text-gray-700 px-8 py-6 font-semibold transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2"
 >
-  View Services & Pricing
+  View Services
 </Button>
             </motion.div>
 

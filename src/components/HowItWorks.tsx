@@ -15,6 +15,7 @@ import {
   MapPin,
   Star,
   Clock,
+  Shield,
   Target,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -59,9 +60,16 @@ const beauticianSteps = [
     description: "Receive and confirm client requests in real time.",
   },
   {
+    icon: Shield,
+    title: "Join Our Membership",
+    description:
+      "Become part of our exclusive membership umbrella — unlocking premium perks, priority visibility, and a stronger professional network.",
+  },
+  {
     icon: TrendingUp,
-    title: "Grow Your Business",
-    description: "Build a loyal customer base and earn more.",
+    title: "Grow & Earn More",
+    description:
+      "Build a loyal customer base, leverage membership benefits, and maximize your earnings.",
   },
 ];
 

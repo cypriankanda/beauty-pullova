@@ -7,6 +7,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CareerPage from "./pages/career";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import SignUp from "./pages/SignUp";
+import Login from "./pages/Login";
 import TermsConditions from "./pages/legal/TermsConditions";
 import FAQ from "./pages/FAQ";
 import HtmlLangSync from "./components/HtmlLangSync";
@@ -22,6 +24,8 @@ const App = () => (
         <HtmlLangSync />
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/career" element={<CareerPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsConditions />} />

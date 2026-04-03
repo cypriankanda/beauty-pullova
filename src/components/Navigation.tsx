@@ -17,6 +17,18 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     href: string
@@ -52,116 +64,45 @@ const Navigation = () => {
   ] as const;
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-20 bg-white/95 backdrop-blur-md ${
-        isScrolled ? "shadow-md" : "shadow-sm"
-      }`}
-    >
-      <div className="container mx-auto px-4 h-full">
-        <div className="flex items-center justify-between h-full">
-          {/* Logo */}
-          <motion.div
-            className="flex items-center gap-3 cursor-pointer flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
-            onClick={handleLogoClick}
-          >
-            <img
-              src="/PULLOVA1.svg"
-              alt={t("nav.logoAlt")}
-              className="w-14 h-14"
-            />
-            <span className="text-2xl font-extrabold tracking-wide text-gray-900 whitespace-nowrap">
-              {t("nav.brand")}
-            </span>
-          </motion.div>
-
-          {/* Desktop Navigation — gap-5 keeps everything on one line */}
-          <div className="hidden md:flex items-center gap-5">
-            {navLinks.map((link) => (
-              <a
-                key={link.nameKey}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="font-medium text-gray-800 transition-colors hover:text-pink-500 whitespace-nowrap"
-              >
-                {t(link.nameKey)}
-              </a>
-            ))}
-
-            <Link
-              to="/faq"
-              className="font-medium text-gray-800 transition-colors hover:text-pink-500 whitespace-nowrap"
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-16 lg:h-20 bg-white/95 backdrop-blur-md ${
+          isScrolled ? "shadow-md" : "shadow-sm"
+        }`}
+      >
+        <div className="container mx-auto px-4 h-full">
+          <div className="flex items-center justify-between h-full">
+            {/* Logo */}
+            <motion.div
+              className="flex items-center gap-2 cursor-pointer flex-shrink-0 min-w-0"
+              whileHover={{ scale: 1.05 }}
+              onClick={handleLogoClick}
             >
-              {t("nav.faq")}
-            </Link>
+              <img
+                src="/PULLOVA1.svg"
+                alt={t("nav.logoAlt")}
+                className="w-9 h-9 lg:w-14 lg:h-14 flex-shrink-0"
+              />
+              {/* Full brand name only on desktop */}
+              <span className="hidden lg:block text-2xl font-extrabold tracking-wide text-gray-900 whitespace-nowrap">
+                {t("nav.brand")}
+              </span>
+              {/* Short name on mobile */}
+              <span className="lg:hidden text-lg font-extrabold tracking-wide text-gray-900 whitespace-nowrap">
+                Pullova
+              </span>
+            </motion.div>
 
-            <LanguageSwitcher />
-
-            {/* Log In — whitespace-nowrap prevents two-line wrap */}
-            <Link
-              to="/login"
-              className="font-medium text-gray-800 transition-colors hover:text-pink-500 whitespace-nowrap"
-            >
-              Log In
-            </Link>
-
-            {/* Sign Up — outlined */}
-            <Link to="/register">
-              <Button
-                variant="outline"
-                className="px-5 border-pink-400 text-pink-500 hover:bg-pink-50 hover:border-pink-500 transition-all rounded-full font-semibold whitespace-nowrap"
-              >
-                Sign Up
-              </Button>
-            </Link>
-
-            <Button className="px-5 bg-pink-500 text-white hover:bg-pink-600 shadow-sm transition-all rounded-full whitespace-nowrap">
-              {t("nav.bookNow")}
-            </Button>
-
-            <a
-              href="#waitlist"
-              onClick={(e) => handleNavClick(e, "#waitlist")}
-            >
-              <Button className="px-5 bg-purple-500 text-white hover:bg-purple-600 shadow-md hover:shadow-lg transition-all rounded-full whitespace-nowrap">
-                {t("nav.joinWaitlist")}
-              </Button>
-            </a>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            aria-label={t("nav.toggleMenu")}
-            className="md:hidden p-2 rounded-md"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-gray-800" />
-            ) : (
-              <Menu className="w-6 h-6 text-gray-800" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white shadow-lg"
-          >
-            <div className="container mx-auto px-4 py-6 space-y-4">
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-5">
               {navLinks.map((link) => (
                 <a
                   key={link.nameKey}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="block py-2 text-gray-800 font-medium hover:text-pink-500 transition-colors"
+                  className="font-medium text-gray-800 transition-colors hover:text-pink-500 whitespace-nowrap"
                 >
                   {t(link.nameKey)}
                 </a>
@@ -169,56 +110,221 @@ const Navigation = () => {
 
               <Link
                 to="/faq"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-2 text-gray-800 font-medium hover:text-pink-500 transition-colors"
+                className="font-medium text-gray-800 transition-colors hover:text-pink-500 whitespace-nowrap"
               >
                 {t("nav.faq")}
               </Link>
 
+              <LanguageSwitcher />
+
               <Link
                 to="/login"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block py-2 text-gray-800 font-medium hover:text-pink-500 transition-colors"
+                className="font-medium text-gray-800 transition-colors hover:text-pink-500 whitespace-nowrap"
               >
                 Log In
               </Link>
 
-              <LanguageSwitcher
-                className="pt-2"
-                triggerClassName="w-full max-w-none"
-              />
-
-              <Link
-                to="/register"
-                className="block"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
+              <Link to="/register">
                 <Button
                   variant="outline"
-                  className="w-full border-pink-400 text-pink-500 hover:bg-pink-50 rounded-full font-semibold"
+                  className="px-5 border-pink-400 text-pink-500 hover:bg-pink-50 hover:border-pink-500 transition-all rounded-full font-semibold whitespace-nowrap"
                 >
                   Sign Up
                 </Button>
               </Link>
 
-              <Button className="w-full bg-pink-500 text-white rounded-full hover:bg-pink-600">
+              <Button className="px-5 bg-pink-500 text-white hover:bg-pink-600 shadow-sm transition-all rounded-full whitespace-nowrap">
                 {t("nav.bookNow")}
               </Button>
 
               <a
                 href="#waitlist"
-                className="block"
                 onClick={(e) => handleNavClick(e, "#waitlist")}
               >
-                <Button className="w-full bg-purple-500 text-white rounded-full hover:bg-purple-600">
+                <Button className="px-5 bg-purple-500 text-white hover:bg-purple-600 shadow-md hover:shadow-lg transition-all rounded-full whitespace-nowrap">
                   {t("nav.joinWaitlist")}
                 </Button>
               </a>
             </div>
-          </motion.div>
+
+            {/* Mobile Right Side: Hamburger only — CTAs live inside the menu */}
+            <div className="flex lg:hidden items-center gap-1">
+              {/* Compact Book CTA — short label only */}
+              <a href="#waitlist" onClick={(e) => handleNavClick(e, "#waitlist")}>
+                <Button
+                  size="sm"
+                  className="bg-pink-500 text-white hover:bg-pink-600 rounded-full px-3 py-1.5 text-xs font-bold h-8"
+                >
+                  Join
+                </Button>
+              </a>
+
+              {/* Hamburger */}
+              <button
+                aria-label={t("nav.toggleMenu")}
+                aria-expanded={isMobileMenuOpen}
+                className="p-2 rounded-md text-gray-800 hover:bg-gray-100 transition-colors"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  {isMobileMenuOpen ? (
+                    <motion.span
+                      key="close"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="block"
+                    >
+                      <X className="w-6 h-6" />
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="menu"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.15 }}
+                      className="block"
+                    >
+                      <Menu className="w-6 h-6" />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </button>
+            </div>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu — full-screen overlay, sits below the navbar */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+
+            {/* Slide-down panel */}
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="fixed top-16 lg:top-20 left-0 right-0 z-50 bg-white shadow-xl lg:hidden max-h-[calc(100vh-4rem)] overflow-y-auto"
+            >
+              <div className="container mx-auto px-4 py-6 space-y-1">
+                {/* Nav links */}
+                {navLinks.map((link, i) => (
+                  <motion.a
+                    key={link.nameKey}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    className="flex items-center py-3 px-2 text-gray-800 font-medium hover:text-pink-500 hover:bg-pink-50 rounded-lg transition-colors text-base"
+                  >
+                    {t(link.nameKey)}
+                  </motion.a>
+                ))}
+
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navLinks.length * 0.05 }}
+                >
+                  <Link
+                    to="/faq"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center py-3 px-2 text-gray-800 font-medium hover:text-pink-500 hover:bg-pink-50 rounded-lg transition-colors text-base"
+                  >
+                    {t("nav.faq")}
+                  </Link>
+                </motion.div>
+
+                {/* Divider */}
+                <div className="border-t border-gray-100 my-2 pt-2" />
+
+                {/* Language switcher */}
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: (navLinks.length + 1) * 0.05 }}
+                  className="py-1"
+                >
+                  <LanguageSwitcher
+                    className="pt-0"
+                    triggerClassName="w-full max-w-none"
+                  />
+                </motion.div>
+
+                {/* Divider */}
+                <div className="border-t border-gray-100 my-2 pt-2" />
+
+                {/* Auth + CTAs */}
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: (navLinks.length + 2) * 0.05 }}
+                  className="space-y-3 pt-1"
+                >
+                  <div className="flex gap-3">
+                    <Link
+                      to="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1"
+                    >
+                      <Button
+                        variant="outline"
+                        className="w-full rounded-full font-semibold border-gray-300 text-gray-700 hover:bg-gray-50"
+                      >
+                        Log In
+                      </Button>
+                    </Link>
+
+                    <Link
+                      to="/register"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex-1"
+                    >
+                      <Button
+                        variant="outline"
+                        className="w-full border-pink-400 text-pink-500 hover:bg-pink-50 rounded-full font-semibold"
+                      >
+                        Sign Up
+                      </Button>
+                    </Link>
+                  </div>
+
+                  <Button className="w-full bg-pink-500 text-white rounded-full hover:bg-pink-600 font-semibold">
+                    {t("nav.bookNow")}
+                  </Button>
+
+                  <a
+                    href="#waitlist"
+                    className="block"
+                    onClick={(e) => handleNavClick(e, "#waitlist")}
+                  >
+                    <Button className="w-full bg-purple-500 text-white rounded-full hover:bg-purple-600 font-semibold shadow-md">
+                      {t("nav.joinWaitlist")}
+                    </Button>
+                  </a>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 };
 

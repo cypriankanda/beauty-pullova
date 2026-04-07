@@ -1,17 +1,43 @@
-declare global {
-    interface Window {
-      Tawk_API: any;
-      Tawk_LoadStart: any;
-    }
-  }
 import { createRoot } from "react-dom/client";
 import "./i18n/i18n";
-import App from "./App.tsx";
+import App from "./App";
 import "./index.css";
 import TawkToWidget from "./components/TawkToWidget";
 
+// Extend window types
+declare global {
+  interface Window {
+    googleTranslateElementInit: () => void;
+    google: any;
+  }
+}
+
+// Load Google Translate script
+const addGoogleTranslate = () => {
+  const script = document.createElement("script");
+  script.src =
+    "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  script.async = true;
+  document.body.appendChild(script);
+
+  window.googleTranslateElementInit = () => {
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+        autoDisplay: false,
+      },
+      "google_translate_element"
+    );
+  };
+};
+
+addGoogleTranslate();
+
 createRoot(document.getElementById("root")!).render(
   <>
+    {/* Hidden Google container */}
+    <div id="google_translate_element" style={{ display: "none" }}></div>
+
     <App />
     <TawkToWidget />
   </>

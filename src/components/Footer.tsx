@@ -206,7 +206,7 @@ const Footer = () => {
                 />
               </div>
               <p className="text-gray-400 leading-relaxed mb-8">
-                Luxury beauty &amp; grooming delivered to your door. 150+ cities
+                Luxury beauty &amp; grooming delivered to your door. 50+ cities
                 and growing.
               </p>
 

@@ -48,19 +48,12 @@ All colors MUST be HSL.
     --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -92,6 +85,7 @@ All colors MUST be HSL.
     --border: 208 7% 25%;
     --input: 208 7% 25%;
     --ring: 320 54% 53%;
+
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -110,5 +104,60 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+
+    /* Google Translate fixes */
+    top: 0 !important;
+    position: static !important;
+    font-family: inherit !important;
   }
+}
+
+/* ============================= */
+/* GOOGLE TRANSLATE FIX (CLEAN) */
+/* ============================= */
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  display: none !important;
+}
+
+iframe.goog-te-banner-frame {
+  display: none !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.goog-te-menu-frame {
+  box-shadow: none !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* FORCE REMOVE GOOGLE TOP BAR COMPLETELY */
+html {
+  margin-top: 0 !important;
+}
+
+body {
+  margin-top: 0 !important;
+}
+
+/* Hide Google injected iframe container */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+/* Also hide the translate notification */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
 }

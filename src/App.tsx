@@ -12,6 +12,8 @@ import Login from "./pages/Login";
 import TermsConditions from "./pages/legal/TermsConditions";
 import FAQ from "./pages/FAQ";
 import HtmlLangSync from "./components/HtmlLangSync";
+import LanguageSelector from "./components/LanguageSelector";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <HtmlLangSync />
+        <ScrollToTop />
+        <LanguageSelector />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/register" element={<SignUp />} />

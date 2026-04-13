@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
   Search,
@@ -11,12 +10,13 @@ import {
   TrendingUp,
   UserCheck,
   Settings,
-  Sparkles,
   MapPin,
   Star,
   Clock,
   Shield,
   Target,
+  Check,
+  CheckCircle2
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -62,14 +62,12 @@ const beauticianSteps = [
   {
     icon: Shield,
     title: "Join Our Membership",
-    description:
-      "Become part of our exclusive membership umbrella — unlocking premium perks, priority visibility, and a stronger professional network.",
+    description: "Become part of our exclusive membership umbrella — unlocking premium perks and priority visibility.",
   },
   {
     icon: TrendingUp,
     title: "Grow & Earn More",
-    description:
-      "Build a loyal customer base, leverage membership benefits, and maximize your earnings.",
+    description: "Build a loyal customer base, leverage membership benefits, and maximize your earnings.",
   },
 ];
 
@@ -77,29 +75,24 @@ const agentSteps = [
   {
     icon: Briefcase,
     title: "Join as a Saloon Shop",
-    description:
-      "Partner with Pullova and connect clients to trusted Saloons in your city.",
+    description: "Partner with Pullova and connect clients to trusted Saloons in your city.",
   },
   {
     icon: Users,
     title: "Grow Your Network",
-    description:
-      "Build a local team of professionals and earn from every successful booking.",
+    description: "Build a local team of professionals and earn from every successful booking.",
   },
   {
     icon: Settings,
     title: "Access Tools & Training",
-    description:
-      "Get onboarding, digital tools, and marketing support to help you thrive.",
+    description: "Get onboarding, digital tools, and marketing support to help you thrive.",
   },
   {
     icon: TrendingUp,
     title: "Earn & Advance",
-    description:
-      "Unlock higher commissions and expand into partnership or franchise roles.",
+    description: "Unlock higher commissions and expand into partnership or franchise roles.",
   },
 ];
-
 
 const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
   <motion.div
@@ -109,7 +102,6 @@ const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
     className="mt-24 max-w-5xl mx-auto text-center bg-white p-12 rounded-3xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] border border-gray-100"
   >
     <div className="flex items-center justify-center gap-3 mb-4">
-      {/* <Sparkles className="w-7 h-7 text-primary" /> */}
       <h3 className="text-4xl font-bold text-gray-900 tracking-tight">
         Why Auto-Match?
       </h3>
@@ -117,8 +109,7 @@ const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
 
     <p className="text-gray-600 text-lg leading-relaxed mb-12 max-w-2xl mx-auto">
       We built Auto-Match to take the guesswork out of finding the right professional.
-      It uses real data — not random suggestions — to connect you with people who
-      actually fit your needs, your style, and your schedule.
+      It uses real data to connect you with people who fit your needs, your style, and your schedule.
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
@@ -126,17 +117,17 @@ const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
         {
           icon: Target,
           title: "Skill-Based Precision",
-          text: "We pair you with beauticians who specialize in exactly what you’re looking for — no more trial and error.",
+          text: "We pair you with beauticians who specialize in exactly what you’re looking for.",
         },
         {
           icon: Star,
           title: "Top-Rated Only",
-          text: "Our algorithm favors the most trusted and well-reviewed professionals, so quality is never a gamble.",
+          text: "Our algorithm favors the most trusted professionals, so quality is never a gamble.",
         },
         {
           icon: MapPin,
           title: "Smart Location Match",
-          text: "We prioritize verified experts closest to you, ensuring faster, more reliable service.",
+          text: "We prioritize verified experts closest to you for faster, more reliable service.",
         },
         {
           icon: Clock,
@@ -151,11 +142,11 @@ const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
           transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
           className="flex items-start gap-5 group"
         >
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 text-primary group-hover:from-primary/20 group-hover:to-secondary/20 transition-all duration-300">
+          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-50 text-primary group-hover:bg-primary/10 transition-all duration-300">
             <item.icon className="w-6 h-6" />
           </div>
           <div>
-            <h4 className="font-semibold text-gray-900 text-lg mb-1 group-hover:text-primary transition-colors duration-300">
+            <h4 className="font-semibold text-gray-900 text-lg mb-1 transition-colors duration-300">
               {item.title}
             </h4>
             <p className="text-gray-600 leading-relaxed text-base">{item.text}</p>
@@ -163,12 +154,59 @@ const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
         </motion.div>
       ))}
     </div>
-
-    <p className="text-gray-700 mt-12 font-medium italic text-lg">
-      Auto-Match isn’t just smart — it’s built to save you time and deliver results that feel personal.
-    </p>
   </motion.div>
 );
+
+const WhyPullovaWorks = ({ isInView }: { isInView: boolean }) => {
+  const points = [
+    "On-demand convenience",
+    "Verified professionals",
+    "Consistent service quality",
+    "Flexible scheduling",
+    "Designed around your lifestyle",
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: 0.5 }}
+      className="mt-16 max-w-4xl mx-auto bg-gray-900 p-10 rounded-3xl border border-gray-800 shadow-xl"
+    >
+      <div className="flex flex-col md:flex-row items-center gap-10">
+        <div className="flex-1 text-left">
+          <h3 className="text-3xl font-bold text-white mb-4">
+            Why Pullova Works
+          </h3>
+          <p className="text-gray-400 mb-8">
+            Pullova is the professional bridge between your busy schedule and the high-quality care you deserve.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {points.map((point, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.6 + (i * 0.1) }}
+                className="flex items-center gap-3"
+              >
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Check className="w-3.5 h-3.5 text-primary" />
+                </div>
+                <span className="text-gray-200 font-medium text-sm md:text-base">{point}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="hidden md:flex flex-col items-center justify-center p-8 bg-white/5 rounded-2xl border border-white/10">
+           <CheckCircle2 className="w-12 h-12 text-primary mb-3" />
+           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Certified Platform</span>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const HowItWorks = () => {
   const ref = useRef(null);
@@ -187,14 +225,14 @@ const HowItWorks = () => {
             transition={{ duration: 0.6, delay: index * 0.15 }}
             className="relative group"
           >
-            <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_8px_32px_-10px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_-10px_rgba(0,0,0,0.1)] transition-all duration-500 hover:-translate-y-2">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-gradient-to-br from-primary to-secondary text-white mb-6 shadow-lg">
+            <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-gray-900 text-white mb-6">
                 <Icon className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {step.title}
               </h3>
-              <p className="text-gray-600 leading-relaxed text-base">
+              <p className="text-gray-600 leading-relaxed text-sm">
                 {step.description}
               </p>
             </div>
@@ -208,17 +246,8 @@ const HowItWorks = () => {
     <section
       id="how-it-works"
       ref={ref}
-      className="py-28 bg-gradient-to-b from-gray-50 via-white to-gray-50 relative overflow-hidden"
+      className="py-28 bg-white relative overflow-hidden"
     >
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
-        }}
-      />
-
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -226,56 +255,39 @@ const HowItWorks = () => {
           transition={{ duration: 0.7 }}
           className="text-center mb-20"
         >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block mb-4"
-          >
-            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold tracking-wide">
-              SIMPLE & INTUITIVE
-            </span>
-          </motion.div>
-
+          <span className="px-4 py-1.5 bg-gray-100 text-gray-900 rounded-full text-xs font-bold tracking-widest uppercase mb-4 inline-block">
+            The Process
+          </span>
           <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            How It <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Works</span>
+            How It Works
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            A clean, simple process built for clients, beauticians, and Saloon alike.
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            A seamless experience designed for efficiency and reliability.
           </p>
         </motion.div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-  <TabsList className="grid w-full max-w-3xl mx-auto grid-cols-1 sm:grid-cols-3 gap-3 mb-16 h-auto sm:h-16 bg-white/80 backdrop-blur-sm p-2 rounded-2xl shadow-lg border border-gray-200">
-    <TabsTrigger
-      value="customer"
-      className="text-center text-base font-semibold rounded-xl py-3 sm:py-0 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
-    >
-      For Customers
-    </TabsTrigger>
-    <TabsTrigger
-      value="beautician"
-      className="text-center text-base font-semibold rounded-xl py-3 sm:py-0 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
-    >
-      For Beauticians
-    </TabsTrigger>
-    <TabsTrigger
-      value="agent"
-      className="text-center text-base font-semibold rounded-xl py-3 sm:py-0 data-[state=active]:bg-gradient-to-br data-[state=active]:from-primary data-[state=active]:to-secondary data-[state=active]:text-white transition-all duration-300"
-    >
-      For Saloons
-    </TabsTrigger>
-  </TabsList>
+          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-16 h-14 bg-gray-100 p-1 rounded-2xl">
+            <TabsTrigger value="customer" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm">
+              Customers
+            </TabsTrigger>
+            <TabsTrigger value="beautician" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm">
+              Beauticians
+            </TabsTrigger>
+            <TabsTrigger value="agent" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm">
+              Saloons
+            </TabsTrigger>
+          </TabsList>
 
-  <TabsContent value="customer">
-    {renderSteps(customerSteps)}
-    <AutoMatchInfo isInView={isInView} />
-  </TabsContent>
+          <TabsContent value="customer" className="outline-none">
+            {renderSteps(customerSteps)}
+            <AutoMatchInfo isInView={isInView} />
+            <WhyPullovaWorks isInView={isInView} />
+          </TabsContent>
 
-  <TabsContent value="beautician">{renderSteps(beauticianSteps)}</TabsContent>
-
-  <TabsContent value="agent">{renderSteps(agentSteps)}</TabsContent>
-</Tabs>
+          <TabsContent value="beautician">{renderSteps(beauticianSteps)}</TabsContent>
+          <TabsContent value="agent">{renderSteps(agentSteps)}</TabsContent>
+        </Tabs>
       </div>
     </section>
   );

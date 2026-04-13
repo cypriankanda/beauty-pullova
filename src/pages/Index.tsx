@@ -28,7 +28,7 @@ const Index = () => {
           <Navigation />
           <Hero
             headline="Pullova Kenya 🇰🇪"
-            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available anytime, same-day included."
+            subtext="Trusted beauty, delivered on your terms. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress."
           />
           <Waitlist region="Kenya" />
           {commonComponents}

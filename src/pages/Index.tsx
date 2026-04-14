@@ -28,7 +28,9 @@ const Index = () => {
           <Navigation />
           <Hero
             headline="Pullova Kenya 🇰🇪"
-            subtext="Trusted beauty, delivered on your terms. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress."
+            subtext="Beauty and grooming, delivered on your terms.
+Book trusted professionals for on-demand services at home, work, or anywhere you are on your schedule.
+Verified professionals • Same-day availability • Safe & secure"
           />
           <Waitlist region="Kenya" />
           {commonComponents}
@@ -44,7 +46,9 @@ const Index = () => {
           <Navigation />
           <Hero
             headline="Pullova USA"
-            subtext="Premium beauty & grooming delivered to your door. Book hairstyling, makeup, nails, skin, massage and barber services in minutes — our app automatically matches you to a nearby certified beautician or barber. No lines, no stress. Available anytime, same-day included."
+            subtext="Beauty and grooming, delivered on your terms.
+Book trusted professionals for on-demand services at home, work, or anywhere you are on your schedule.
+Verified professionals • Same-day availability • Safe & secure"
           />
           <Waitlist region="USA" />
           {commonComponents}

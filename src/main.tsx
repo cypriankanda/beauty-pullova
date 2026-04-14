@@ -36,7 +36,7 @@ const addGoogleTranslate = () => {
     );
   };
 };
-
+console.log("POSTHOG KEY:", import.meta.env.VITE_POSTHOG_KEY);
 addGoogleTranslate();
 
 createRoot(document.getElementById("root")!).render(

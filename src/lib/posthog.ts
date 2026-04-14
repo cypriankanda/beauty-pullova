@@ -7,7 +7,7 @@ if (!key) {
 }
 
 posthog.init(key || "", {
-  api_host: "https://app.posthog.com",
+    api_host: "https://us.i.posthog.com",
   capture_pageview: true,
 });
 

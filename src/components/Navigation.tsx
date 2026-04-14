@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLocation } from "react-router-dom";
 
+
 const Navigation = () => {
   const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,7 +59,7 @@ const Navigation = () => {
   const navLinks = [
     { nameKey: "nav.services", href: "#services" },
     { nameKey: "nav.howItWorks", href: "#how-it-works" },
-    { nameKey: "nav.aboutUs", href: "#about" },
+    { nameKey: "nav.aboutUs", href: "/about-us" },
   ] as const;
 
   return (

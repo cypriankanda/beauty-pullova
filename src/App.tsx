@@ -14,6 +14,7 @@ import FAQ from "./pages/FAQ";
 import HtmlLangSync from "./components/HtmlLangSync";
 import LanguageSelector from "./components/LanguageSelector";
 import ScrollToTop from "./components/ScrollToTop";
+import AboutUs from "./pages/AboutUs";
 import Beautician from "./pages/Beautician";
 
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsConditions />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/about-us" element={<AboutUs />} />
           <Route path="/beauticians" element={<Beautician />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

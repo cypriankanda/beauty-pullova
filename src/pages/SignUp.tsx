@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  CheckCircle2,
-  Loader2 // Added for a loading state
-} from "lucide-react";
+import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -15,7 +12,7 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
-  
+
   const [agreed, setAgreed] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -23,56 +20,58 @@ const SignUp = () => {
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
-    if (!form.fullName.trim()) newErrors.fullName = "Full name is required.";
+
+    if (!form.fullName.trim())
+      newErrors.fullName = "Full name is required.";
+
     if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
-      newErrors.email = "Enter a valid email address.";
+      newErrors.email = "Enter a valid email.";
+
     if (!form.phone.match(/^\+?[\d\s\-().]{7,15}$/))
       newErrors.phone = "Enter a valid phone number.";
+
     if (form.password.length < 8)
-      newErrors.password = "Password must be at least 8 characters.";
+      newErrors.password = "Minimum 8 characters required.";
+
     if (form.password !== form.confirmPassword)
       newErrors.confirmPassword = "Passwords do not match.";
+
     if (!agreed)
-      newErrors.agreed = "You must agree to the terms to continue.";
+      newErrors.agreed = "You must accept the terms.";
+
     return newErrors;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const newErrors = validate();
-    
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
-    setErrors({});
     setLoading(true);
+    setErrors({});
 
     try {
-      // REPLACE THIS URL with your deployed Apps Script Web App URL
-      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby8I7radAoTxCRy7AZYowbf7nRgVOgVu5TgaNPT4-Bos1fRNlEXv7M4lfk1BOPgt_UD/exec";
-
-      await fetch(SCRIPT_URL, {
+      await fetch("https://script.google.com/macros/s/AKfycby9W06VSN7JyvzgrjjgV6qQUG7a5jcNpz6d9ogpGyEkRuREi02Vyi0kM22BN2PlT5JW/exec", {
         method: "POST",
-        mode: "no-cors", // Required for Google Apps Script cross-domain requests
+        mode: "no-cors", // IMPORTANT for Apps Script
         headers: {
           "Content-Type": "application/json",
+          "x-api-key": "pullova-2026-secret" // 🔐 add this
         },
         body: JSON.stringify({
           fullName: form.fullName,
           email: form.email,
-          phone: form.phone,
-          password: form.password, // Be mindful of security when saving passwords to Sheets
+          phone: form.phone
         }),
       });
 
-      // Because 'no-cors' is used, we won't get a standard response object back,
-      // so we proceed to the success screen if no network error occurred.
       setSubmitted(true);
-    } catch (error) {
-      console.error("Submission error:", error);
-      setErrors({ submit: "Failed to save data. Please check your connection." });
+    } catch {
+      setErrors({ submit: "Failed to create account." });
     } finally {
       setLoading(false);
     }
@@ -80,27 +79,22 @@ const SignUp = () => {
 
   const handleChange = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
   const inputBase =
-    "w-full pl-4 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-all duration-200";
+    "w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-400";
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="bg-white rounded-3xl shadow-xl p-10 max-w-md w-full text-center"
-        >
-          <CheckCircle2 className="w-10 h-10 mx-auto text-rose-500 mb-4" />
-          <h2 className="text-2xl font-bold mb-2">You're in! 🎉</h2>
-          <p className="text-gray-500 text-sm mb-6">
-            Your Pullova account has been created and your details saved.
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div className="bg-white p-8 rounded-xl text-center shadow">
+          <CheckCircle2 className="mx-auto text-pink-500 mb-3" />
+          <h2 className="text-xl font-bold">Account Created 🎉</h2>
+          <p className="text-sm text-gray-500 mb-4">
+            Your account has been successfully created.
           </p>
-          <Link to="/">
-            <Button className="w-full">Go to Homepage</Button>
+          <Link to="/login">
+            <Button>Login</Button>
           </Link>
         </motion.div>
       </div>
@@ -108,112 +102,141 @@ const SignUp = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="p-6">
-        <Link to="/" className="font-bold text-xl">
-          Pullova
-        </Link>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center px-4">
+      <div className="bg-white p-8 rounded-2xl shadow max-w-md w-full">
+        
+        {/* ✅ Title + Intro */}
+        <h1 className="text-2xl font-bold mb-2">
+          Create Your Pullova Account
+        </h1>
+        <p className="text-sm text-gray-500 mb-6">
+          Sign up to access Pullova services securely.
+        </p>
 
-      <div className="flex-1 flex items-center justify-center px-4">
-        <div className="bg-white p-8 rounded-xl shadow max-w-md w-full">
-          <h1 className="text-2xl font-bold mb-6">Create Account</h1>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <input
-                type="text"
-                placeholder="Full Name"
-                value={form.fullName}
-                onChange={(e) => handleChange("fullName", e.target.value)}
-                className={`${inputBase} ${errors.fullName ? "border-rose-400" : ""}`}
-              />
-              {errors.fullName && <p className="text-rose-500 text-xs mt-1">{errors.fullName}</p>}
-            </div>
-
-            <div>
-              <input
-                type="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={(e) => handleChange("email", e.target.value)}
-                className={`${inputBase} ${errors.email ? "border-rose-400" : ""}`}
-              />
-              {errors.email && <p className="text-rose-500 text-xs mt-1">{errors.email}</p>}
-            </div>
-
-            <div>
-              <input
-                type="tel"
-                placeholder="Phone"
-                value={form.phone}
-                onChange={(e) => handleChange("phone", e.target.value)}
-                className={`${inputBase} ${errors.phone ? "border-rose-400" : ""}`}
-              />
-              {errors.phone && <p className="text-rose-500 text-xs mt-1">{errors.phone}</p>}
-            </div>
-
-            <div>
-              <input
-                type="password"
-                placeholder="Password"
-                value={form.password}
-                onChange={(e) => handleChange("password", e.target.value)}
-                className={`${inputBase} ${errors.password ? "border-rose-400" : ""}`}
-              />
-              {errors.password && <p className="text-rose-500 text-xs mt-1">{errors.password}</p>}
-            </div>
-
-            <div>
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                value={form.confirmPassword}
-                onChange={(e) => handleChange("confirmPassword", e.target.value)}
-                className={`${inputBase} ${errors.confirmPassword ? "border-rose-400" : ""}`}
-              />
-              {errors.confirmPassword && <p className="text-rose-500 text-xs mt-1">{errors.confirmPassword}</p>}
-            </div>
-
-            <label className="flex items-start gap-2 text-sm">
-              <input
-                type="checkbox"
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-1"
-              />
-              <span>
-                I agree to the{" "}
-                <Link to="/privacy-policy" target="_blank" className="text-pink-500 underline">
-                  Privacy Policy
-                </Link>{" "}
-                and{" "}
-                <Link to="/terms" target="_blank" className="text-pink-500 underline">
-                  Terms & Conditions
-                </Link>
-              </span>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          
+          {/* Full Name */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600">
+              Full Name
             </label>
-            {errors.agreed && <p className="text-rose-500 text-xs">{errors.agreed}</p>}
-            {errors.submit && <p className="text-rose-500 text-sm text-center">{errors.submit}</p>}
-
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                "Create Account"
-              )}
-            </Button>
-          </form>
-
-          <div className="mt-4 text-center">
-            <Link to="/login" className="text-sm text-gray-600">
-              Already have an account? Login
-            </Link>
+            <input
+              type="text"
+              className={inputBase}
+              onChange={(e) => handleChange("fullName", e.target.value)}
+            />
           </div>
-        </div>
+
+          {/* Email */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600">
+              Email Address
+            </label>
+            <input
+              type="email"
+              className={inputBase}
+              onChange={(e) => handleChange("email", e.target.value)}
+            />
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600">
+              Mobile Phone Number
+            </label>
+            <input
+              type="tel"
+              className={inputBase}
+              onChange={(e) => handleChange("phone", e.target.value)}
+            />
+
+            {/* ✅ CRITICAL SMS CONSENT TEXT */}
+            <p className="mt-2 text-[11px] text-gray-500 leading-relaxed bg-gray-50 border border-gray-200 rounded-lg p-3">
+              By entering your phone number, you consent to receive SMS messages
+              from <span className="font-semibold">Pullova Technologies</span>{" "}
+              for account verification (OTP). Message frequency may vary. Msg &amp;
+              data rates may apply. Reply STOP to opt out, HELP for help.
+            </p>
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600">
+              Password
+            </label>
+            <input
+              type="password"
+              className={inputBase}
+              onChange={(e) => handleChange("password", e.target.value)}
+            />
+          </div>
+
+          {/* Confirm Password */}
+          <div>
+            <label className="text-xs font-semibold text-gray-600">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              className={inputBase}
+              onChange={(e) =>
+                handleChange("confirmPassword", e.target.value)
+              }
+            />
+          </div>
+
+          {/* ✅ Privacy / Terms */}
+          <p className="text-[11px] text-gray-500 leading-relaxed">
+            By continuing, you agree to our{" "}
+            <Link
+              to="/privacy-policy"
+              target="_blank"
+              className="text-pink-500 font-semibold underline"
+            >
+              Privacy Policy
+            </Link>{" "}
+            and{" "}
+            <Link
+              to="/terms"
+              target="_blank"
+              className="text-pink-500 font-semibold underline"
+            >
+              Terms &amp; Conditions
+            </Link>
+            .
+          </p>
+
+          {/* Checkbox */}
+          <label className="flex gap-2 text-xs">
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+            />
+            I agree to the terms
+          </label>
+
+          {errors.submit && (
+            <p className="text-red-500 text-sm">{errors.submit}</p>
+          )}
+
+          {/* Button */}
+          <Button className="w-full" disabled={loading}>
+            {loading ? (
+              <Loader2 className="animate-spin" />
+            ) : (
+              "Create Account"
+            )}
+          </Button>
+        </form>
+
+        {/* Footer */}
+        <p className="text-sm text-center mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="text-pink-500">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

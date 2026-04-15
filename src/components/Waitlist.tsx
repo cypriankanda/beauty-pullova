@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Diamond, Crown, Zap, Mail, User, Smartphone, ChevronRight, Check, Briefcase } from "lucide-react";
+import { Diamond, ShieldCheck, Zap, Mail, User, Smartphone, ChevronRight, Check, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -53,7 +53,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
       iconColor: COLORS.accentGold,
     },
     {
-      icon: Crown,
+      icon: ShieldCheck,
       title: "VIP Priority Access",
       description: "Book premium stylists before public launch",
       ringClass: "shadow-[0_0_40px_rgba(255,255,255,0.15)] border-white/40",

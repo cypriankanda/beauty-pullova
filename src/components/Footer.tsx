@@ -103,7 +103,7 @@ const Footer = () => {
     { label: "About Us", href: "#", isRoute: false },
     { label: "How It Works", href: "#", isRoute: false },
     { label: "For Beauticians", href: "/beauticians", isRoute: true },
-    { label: "For Saloons", href: "#", isRoute: false },
+    { label: "For Salons", href: "#", isRoute: false },
     { label: "Careers", href: "/career", isRoute: true },
     { label: "Press", href: "#", isRoute: false },
   ];

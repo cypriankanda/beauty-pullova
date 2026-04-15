@@ -1,292 +1,291 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import {
-  Search,
-  Calendar,
-  Home,
-  CreditCard,
-  Briefcase,
-  Users,
-  TrendingUp,
   UserCheck,
-  Settings,
-  MapPin,
-  Star,
-  Clock,
+  Calendar,
+  Users,
   Shield,
-  Target,
-  Check,
-  CheckCircle2
+  TrendingUp,
+  CheckCircle2,
+  ShoppingBag,
+  Clock,
+  Star,
+  MapPin,
+  Briefcase,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const customerSteps = [
-  {
-    icon: Search,
-    title: "Browse Services",
-    description: "Explore a curated list of beauty services tailored to your preferences.",
-  },
-  {
-    icon: Calendar,
-    title: "Book Your Slot",
-    description: "Select a time and date that works best for you — we’ll handle the rest.",
-  },
-  {
-    icon: Home,
-    title: "Auto-Match",
-    description: "Get paired with a trusted professional near you instantly.",
-  },
-  {
-    icon: CreditCard,
-    title: "Pay & Review",
-    description: "Make secure payments and share your experience with others.",
-  },
-];
-
+/* ------------------ BEAUTICIANS ------------------ */
 const beauticianSteps = [
   {
     icon: UserCheck,
     title: "Create Profile",
-    description: "Showcase your expertise, portfolio, and certifications.",
+    description: "Showcase your expertise and certifications.",
+    details: {
+      heading: "Build Your Profile",
+      body: "Stand out with a professional portfolio.",
+      points: ["Upload photos", "Add certifications", "Write bio", "Show skills"],
+    },
   },
   {
     icon: Calendar,
     title: "Set Availability",
-    description: "Manage your schedule with full flexibility.",
+    description: "Manage your schedule freely.",
+    details: {
+      heading: "Control Your Time",
+      body: "Work when you want.",
+      points: ["Set hours", "Sync calendar", "Block time", "Flex schedule"],
+    },
   },
   {
     icon: Users,
     title: "Accept Bookings",
-    description: "Receive and confirm client requests in real time.",
+    description: "Receive client requests instantly.",
+    details: {
+      heading: "Manage Clients",
+      body: "Handle bookings in real time.",
+      points: ["Instant alerts", "Accept/decline", "Chat", "Manage bookings"],
+    },
   },
   {
     icon: Shield,
-    title: "Join Our Membership",
-    description: "Become part of our exclusive membership umbrella — unlocking premium perks and priority visibility.",
+    title: "Membership Access",
+    description: "Unlock growth tools.",
+    details: {
+      heading: "Grow Faster",
+      body: "Boost visibility and reach.",
+      points: ["Priority listing", "Analytics", "Support", "Boost tools"],
+    },
   },
   {
     icon: TrendingUp,
     title: "Grow & Earn More",
-    description: "Build a loyal customer base, leverage membership benefits, and maximize your earnings.",
+    description: "Increase your income.",
+    details: {
+      heading: "Scale Income",
+      body: "Turn skills into earnings.",
+      points: ["Repeat clients", "More bookings", "Stable income", "Brand growth"],
+    },
   },
 ];
 
-const agentSteps = [
+/* ------------------ CUSTOMERS ------------------ */
+const customerSteps = [
   {
-    icon: Briefcase,
-    title: "Join as a Saloon Shop",
-    description: "Partner with Pullova and connect clients to trusted Saloons in your city.",
+    icon: ShoppingBag,
+    title: "Choose Service",
+    description: "Pick from verified professionals.",
+    details: {
+      heading: "Browse Services",
+      body: "Select what you need instantly.",
+      points: ["Search services", "Compare pros", "View ratings", "Check availability"],
+    },
+  },
+  {
+    icon: Clock,
+    title: "Book Time & Location",
+    description: "Schedule at your convenience.",
+    details: {
+      heading: "Flexible Booking",
+      body: "Choose when and where.",
+      points: ["Home service", "Same-day booking", "Flexible time", "Instant confirm"],
+    },
   },
   {
     icon: Users,
-    title: "Grow Your Network",
-    description: "Build a local team of professionals and earn from every successful booking.",
+    title: "Get Matched",
+    description: "We assign the best professional.",
+    details: {
+      heading: "Smart Matching",
+      body: "AI matches you with experts.",
+      points: ["Verified pros", "Nearby match", "Fast assignment", "Reliable service"],
+    },
   },
   {
-    icon: Settings,
-    title: "Access Tools & Training",
-    description: "Get onboarding, digital tools, and marketing support to help you thrive.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Earn & Advance",
-    description: "Unlock higher commissions and expand into partnership or franchise roles.",
+    icon: Star,
+    title: "Enjoy Service",
+    description: "Relax and get serviced.",
+    details: {
+      heading: "Premium Experience",
+      body: "Quality service at your location.",
+      points: ["At home/office", "Safe service", "Rated pros", "Stress-free"],
+    },
   },
 ];
 
-const AutoMatchInfo = ({ isInView }: { isInView: boolean }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    animate={isInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.8, delay: 0.3 }}
-    className="mt-24 max-w-5xl mx-auto text-center bg-white p-12 rounded-3xl shadow-[0_8px_40px_-12px_rgba(0,0,0,0.08)] border border-gray-100"
-  >
-    <div className="flex items-center justify-center gap-3 mb-4">
-      <h3 className="text-4xl font-bold text-gray-900 tracking-tight">
-        Why Auto-Match?
-      </h3>
-    </div>
+/* ------------------ SALONS ------------------ */
+const salonSteps = [
+  {
+    icon: UserCheck,
+    title: "Apply & Join",
+    description: "Become a partner salon.",
+    details: {
+      heading: "Join Pullova",
+      body: "Get verified and onboarded.",
+      points: ["Easy signup", "Verification", "Profile setup", "Approval"],
+    },
+  },
+  {
+    icon: Briefcase,
+    title: "List Services",
+    description: "Set offerings and pricing.",
+    details: {
+      heading: "Define Business",
+      body: "Control your services.",
+      points: ["Add services", "Set prices", "Choose model", "Set availability"],
+    },
+  },
+  {
+    icon: Users,
+    title: "Receive Bookings",
+    description: "Get real clients.",
+    details: {
+      heading: "Incoming Demand",
+      body: "We bring clients to you.",
+      points: ["Real bookings", "No marketing cost", "High intent clients", "Instant alerts"],
+    },
+  },
+  {
+    icon: MapPin,
+    title: "Deliver Services",
+    description: "In-salon or mobile.",
+    details: {
+      heading: "Flexible Delivery",
+      body: "Work your way.",
+      points: ["In-salon", "Home service", "Hybrid model", "Full control"],
+    },
+  },
+];
 
-    <p className="text-gray-600 text-lg leading-relaxed mb-12 max-w-2xl mx-auto">
-      We built Auto-Match to take the guesswork out of finding the right professional.
-      It uses real data to connect you with people who fit your needs, your style, and your schedule.
-    </p>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
-      {[
-        {
-          icon: Target,
-          title: "Skill-Based Precision",
-          text: "We pair you with beauticians who specialize in exactly what you’re looking for.",
-        },
-        {
-          icon: Star,
-          title: "Top-Rated Only",
-          text: "Our algorithm favors the most trusted professionals, so quality is never a gamble.",
-        },
-        {
-          icon: MapPin,
-          title: "Smart Location Match",
-          text: "We prioritize verified experts closest to you for faster, more reliable service.",
-        },
-        {
-          icon: Clock,
-          title: "Real-Time Availability",
-          text: "Instantly see who’s ready to serve you when you actually need them.",
-        },
-      ].map((item, i) => (
-        <motion.div
-          key={item.title}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
-          className="flex items-start gap-5 group"
-        >
-          <div className="flex items-center justify-center w-14 h-14 rounded-2xl bg-gray-50 text-primary group-hover:bg-primary/10 transition-all duration-300">
-            <item.icon className="w-6 h-6" />
-          </div>
-          <div>
-            <h4 className="font-semibold text-gray-900 text-lg mb-1 transition-colors duration-300">
-              {item.title}
-            </h4>
-            <p className="text-gray-600 leading-relaxed text-base">{item.text}</p>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </motion.div>
-);
-
-const WhyPullovaWorks = ({ isInView }: { isInView: boolean }) => {
-  const points = [
-    "On-demand convenience",
-    "Verified professionals",
-    "Consistent service quality",
-    "Flexible scheduling",
-    "Designed around your lifestyle",
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: 0.5 }}
-      className="mt-16 max-w-4xl mx-auto bg-gray-900 p-10 rounded-3xl border border-gray-800 shadow-xl"
-    >
-      <div className="flex flex-col md:flex-row items-center gap-10">
-        <div className="flex-1 text-left">
-          <h3 className="text-3xl font-bold text-white mb-4">
-            Why Pullova Works
-          </h3>
-          <p className="text-gray-400 mb-8">
-            Pullova is the professional bridge between your busy schedule and the high-quality care you deserve.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {points.map((point, i) => (
-              <motion.div 
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.6 + (i * 0.1) }}
-                className="flex items-center gap-3"
-              >
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center">
-                  <Check className="w-3.5 h-3.5 text-primary" />
-                </div>
-                <span className="text-gray-200 font-medium text-sm md:text-base">{point}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="hidden md:flex flex-col items-center justify-center p-8 bg-white/5 rounded-2xl border border-white/10">
-           <CheckCircle2 className="w-12 h-12 text-primary mb-3" />
-           <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary">Certified Platform</span>
-        </div>
-      </div>
-    </motion.div>
-  );
+/* ------------------ FLOW MAP ------------------ */
+const flows: Record<string, any[]> = {
+  beautician: beauticianSteps,
+  customer: customerSteps,
+  salon: salonSteps,
 };
 
 const HowItWorks = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeTab, setActiveTab] = useState("customer");
+  const [activeTab, setActiveTab] = useState("beautician");
+  const [activeStep, setActiveStep] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(true);
 
-  const renderSteps = (steps: typeof customerSteps) => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20 relative">
-      {steps.map((step, index) => {
-        const Icon = step.icon;
-        return (
-          <motion.div
-            key={step.title}
-            initial={{ opacity: 0, y: 40 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: index * 0.15 }}
-            className="relative group"
-          >
-            <div className="bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-500 hover:-translate-y-1">
-              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-gray-900 text-white mb-6">
-                <Icon className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                {step.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
-                {step.description}
-              </p>
-            </div>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
+  const steps = flows[activeTab];
+  const current = steps[activeStep];
+  const Icon = current.icon;
+
+  /* AUTO PLAY */
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const interval = setInterval(() => {
+      setActiveStep((prev) =>
+        prev === steps.length - 1 ? 0 : prev + 1
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isPlaying, activeTab]);
+
+  /* RESET ON TAB CHANGE */
+  useEffect(() => {
+    setActiveStep(0);
+  }, [activeTab]);
 
   return (
-    <section
-      id="how-it-works"
-      ref={ref}
-      className="py-28 bg-white relative overflow-hidden"
-    >
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-20"
-        >
-          <span className="px-4 py-1.5 bg-gray-100 text-gray-900 rounded-full text-xs font-bold tracking-widest uppercase mb-4 inline-block">
-            The Process
-          </span>
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
-            How It Works
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            A seamless experience designed for efficiency and reliability.
-          </p>
-        </motion.div>
+    <section className="py-28 bg-white">
+      <div className="container mx-auto px-6">
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full max-w-2xl mx-auto grid-cols-3 mb-16 h-14 bg-gray-100 p-1 rounded-2xl">
-            <TabsTrigger value="customer" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm">
-              Customers
-            </TabsTrigger>
-            <TabsTrigger value="beautician" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm">
-              Beauticians
-            </TabsTrigger>
-            <TabsTrigger value="agent" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-sm">
-              Saloons
-            </TabsTrigger>
+        {/* HEADER */}
+        <div className="text-center mb-10">
+          <h2 className="text-5xl font-bold">How It Works</h2>
+          <p className="text-gray-600 mt-3">
+            Three experiences in one ecosystem
+          </p>
+
+          <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="mt-6 px-5 py-2 bg-gray-900 text-white rounded-full"
+          >
+            {isPlaying ? "Pause Demo" : "Play Demo"}
+          </button>
+        </div>
+
+        {/* TABS */}
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabsList className="grid grid-cols-3 max-w-2xl mx-auto mb-12">
+            <TabsTrigger value="customer">Customers</TabsTrigger>
+            <TabsTrigger value="beautician">Beauticians</TabsTrigger>
+            <TabsTrigger value="salon">Salons</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="customer" className="outline-none">
-            {renderSteps(customerSteps)}
-            <AutoMatchInfo isInView={isInView} />
-            <WhyPullovaWorks isInView={isInView} />
-          </TabsContent>
+          <TabsContent value={activeTab}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-          <TabsContent value="beautician">{renderSteps(beauticianSteps)}</TabsContent>
-          <TabsContent value="agent">{renderSteps(agentSteps)}</TabsContent>
+              {/* LEFT */}
+              <div className="space-y-3">
+                {steps.map((step, index) => {
+                  const StepIcon = step.icon;
+                  const isActive = activeStep === index;
+
+                  return (
+                    <motion.div
+                      key={step.title}
+                      onClick={() => setActiveStep(index)}
+                      onMouseEnter={() => setIsPlaying(false)}
+                      onMouseLeave={() => setIsPlaying(true)}
+                      className={`p-5 rounded-2xl flex gap-4 cursor-pointer border ${
+                        isActive ? "bg-gray-900 text-white" : "bg-white"
+                      }`}
+                    >
+                      <div className="w-12 h-12 flex items-center justify-center bg-gray-900 text-white rounded-xl">
+                        <StepIcon className="w-6 h-6" />
+                      </div>
+
+                      <div>
+                        <h3 className="font-semibold">{step.title}</h3>
+                        <p className="text-sm opacity-80">
+                          {step.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* RIGHT */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  className="bg-white border rounded-3xl p-10"
+                >
+                  <div className="w-14 h-14 bg-gray-900 text-white rounded-2xl flex items-center justify-center mb-6">
+                    <Icon className="w-7 h-7" />
+                  </div>
+
+                  <h3 className="text-2xl font-bold mb-2">
+                    {current.details.heading}
+                  </h3>
+
+                  <p className="text-gray-600 mb-6">
+                    {current.details.body}
+                  </p>
+
+                  <ul className="space-y-3">
+                    {current.details.points.map((p, i) => (
+                      <li key={i} className="flex gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-600" />
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              </AnimatePresence>
+
+            </div>
+          </TabsContent>
         </Tabs>
       </div>
     </section>

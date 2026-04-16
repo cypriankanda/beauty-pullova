@@ -15,161 +15,154 @@ import {
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-/* ------------------ BEAUTICIANS ------------------ */
-const beauticianSteps = [
-  {
-    icon: UserCheck,
-    title: "Create Profile",
-    description: "Showcase your expertise and certifications.",
-    details: {
-      heading: "Build Your Profile",
-      body: "Stand out with a professional portfolio.",
-      points: ["Upload photos", "Add certifications", "Write bio", "Show skills"],
-    },
+/* ------------------ FLOWS ------------------ */
+const flows = {
+  customer: {
+    label: "Book a Service",
+    steps: [
+      {
+        icon: ShoppingBag,
+        title: "Choose Service",
+        description: "Browse verified professionals.",
+        details: {
+          heading: "Find What You Need",
+          body: "Explore services tailored to you.",
+          points: ["Search", "Compare", "Ratings", "Availability"],
+        },
+      },
+      {
+        icon: Clock,
+        title: "Book Time",
+        description: "Schedule easily.",
+        details: {
+          heading: "Flexible Booking",
+          body: "Choose time and place.",
+          points: ["Home service", "Same-day", "Flexible", "Instant confirm"],
+        },
+      },
+      {
+        icon: Users,
+        title: "Get Matched",
+        description: "We find the best pro.",
+        details: {
+          heading: "Smart Matching",
+          body: "Matched with top pros.",
+          points: ["Nearby", "Verified", "Fast", "Reliable"],
+        },
+      },
+      {
+        icon: Star,
+        title: "Enjoy Service",
+        description: "Relax.",
+        details: {
+          heading: "Premium Experience",
+          body: "Top-quality service.",
+          points: ["Safe", "At home", "Rated pros", "Stress-free"],
+        },
+      },
+    ],
   },
-  {
-    icon: Calendar,
-    title: "Set Availability",
-    description: "Manage your schedule freely.",
-    details: {
-      heading: "Control Your Time",
-      body: "Work when you want.",
-      points: ["Set hours", "Sync calendar", "Block time", "Flex schedule"],
-    },
-  },
-  {
-    icon: Users,
-    title: "Accept Bookings",
-    description: "Receive client requests instantly.",
-    details: {
-      heading: "Manage Clients",
-      body: "Handle bookings in real time.",
-      points: ["Instant alerts", "Accept/decline", "Chat", "Manage bookings"],
-    },
-  },
-  {
-    icon: Shield,
-    title: "Membership Access",
-    description: "Unlock growth tools.",
-    details: {
-      heading: "Grow Faster",
-      body: "Boost visibility and reach.",
-      points: ["Priority listing", "Analytics", "Support", "Boost tools"],
-    },
-  },
-  {
-    icon: TrendingUp,
-    title: "Grow & Earn More",
-    description: "Increase your income.",
-    details: {
-      heading: "Scale Income",
-      body: "Turn skills into earnings.",
-      points: ["Repeat clients", "More bookings", "Stable income", "Brand growth"],
-    },
-  },
-];
 
-/* ------------------ CUSTOMERS ------------------ */
-const customerSteps = [
-  {
-    icon: ShoppingBag,
-    title: "Choose Service",
-    description: "Pick from verified professionals.",
-    details: {
-      heading: "Browse Services",
-      body: "Select what you need instantly.",
-      points: ["Search services", "Compare pros", "View ratings", "Check availability"],
-    },
+  beautician: {
+    label: "Beautician",
+    steps: [
+      {
+        icon: UserCheck,
+        title: "Create Profile",
+        description: "Showcase skills.",
+        details: {
+          heading: "Build Profile",
+          body: "Stand out professionally.",
+          points: ["Portfolio", "Certifications", "Bio", "Skills"],
+        },
+      },
+      {
+        icon: Calendar,
+        title: "Set Availability",
+        description: "Work freely.",
+        details: {
+          heading: "Control Your Time",
+          body: "Flexible schedule.",
+          points: ["Hours", "Sync", "Block time", "Flex"],
+        },
+      },
+      {
+        icon: Users,
+        title: "Accept Bookings",
+        description: "Manage clients.",
+        details: {
+          heading: "Manage Clients",
+          body: "Handle bookings.",
+          points: ["Alerts", "Accept", "Chat", "Manage"],
+        },
+      },
+      {
+        icon: TrendingUp,
+        title: "Grow Income",
+        description: "Earn more.",
+        details: {
+          heading: "Increase Earnings",
+          body: "Scale income.",
+          points: ["Repeat clients", "More bookings", "Stable income"],
+        },
+      },
+    ],
   },
-  {
-    icon: Clock,
-    title: "Book Time & Location",
-    description: "Schedule at your convenience.",
-    details: {
-      heading: "Flexible Booking",
-      body: "Choose when and where.",
-      points: ["Home service", "Same-day booking", "Flexible time", "Instant confirm"],
-    },
-  },
-  {
-    icon: Users,
-    title: "Get Matched",
-    description: "We assign the best professional.",
-    details: {
-      heading: "Smart Matching",
-      body: "AI matches you with experts.",
-      points: ["Verified pros", "Nearby match", "Fast assignment", "Reliable service"],
-    },
-  },
-  {
-    icon: Star,
-    title: "Enjoy Service",
-    description: "Relax and get serviced.",
-    details: {
-      heading: "Premium Experience",
-      body: "Quality service at your location.",
-      points: ["At home/office", "Safe service", "Rated pros", "Stress-free"],
-    },
-  },
-];
 
-/* ------------------ SALONS ------------------ */
-const salonSteps = [
-  {
-    icon: UserCheck,
-    title: "Apply & Join",
-    description: "Become a partner salon.",
-    details: {
-      heading: "Join Pullova",
-      body: "Get verified and onboarded.",
-      points: ["Easy signup", "Verification", "Profile setup", "Approval"],
-    },
+  salon: {
+    label: "Grow Your Salon",
+    steps: [
+      {
+        icon: UserCheck,
+        title: "Join Platform",
+        description: "Get onboarded.",
+        details: {
+          heading: "Become Partner",
+          body: "Start fast.",
+          points: ["Signup", "Verify", "Setup", "Approve"],
+        },
+      },
+      {
+        icon: Briefcase,
+        title: "List Services",
+        description: "Define offerings.",
+        details: {
+          heading: "Set Business",
+          body: "Control services.",
+          points: ["Add services", "Pricing", "Availability"],
+        },
+      },
+      {
+        icon: Users,
+        title: "Receive Clients",
+        description: "Get bookings.",
+        details: {
+          heading: "Real Demand",
+          body: "We bring clients.",
+          points: ["Bookings", "No ads", "Alerts"],
+        },
+      },
+      {
+        icon: MapPin,
+        title: "Deliver Services",
+        description: "Flexible.",
+        details: {
+          heading: "Work Your Way",
+          body: "Full control.",
+          points: ["In-salon", "Home", "Hybrid"],
+        },
+      },
+    ],
   },
-  {
-    icon: Briefcase,
-    title: "List Services",
-    description: "Set offerings and pricing.",
-    details: {
-      heading: "Define Business",
-      body: "Control your services.",
-      points: ["Add services", "Set prices", "Choose model", "Set availability"],
-    },
-  },
-  {
-    icon: Users,
-    title: "Receive Bookings",
-    description: "Get real clients.",
-    details: {
-      heading: "Incoming Demand",
-      body: "We bring clients to you.",
-      points: ["Real bookings", "No marketing cost", "High intent clients", "Instant alerts"],
-    },
-  },
-  {
-    icon: MapPin,
-    title: "Deliver Services",
-    description: "In-salon or mobile.",
-    details: {
-      heading: "Flexible Delivery",
-      body: "Work your way.",
-      points: ["In-salon", "Home service", "Hybrid model", "Full control"],
-    },
-  },
-];
-
-/* ------------------ FLOW MAP ------------------ */
-const flows: Record<string, any[]> = {
-  beautician: beauticianSteps,
-  customer: customerSteps,
-  salon: salonSteps,
 };
 
+/* ------------------ COMPONENT ------------------ */
 const HowItWorks = () => {
-  const [activeTab, setActiveTab] = useState("beautician");
+  const [activeTab, setActiveTab] = useState<keyof typeof flows>("customer");
   const [activeStep, setActiveStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const steps = flows[activeTab];
+  const steps = flows[activeTab].steps;
   const current = steps[activeStep];
   const Icon = current.icon;
 
@@ -184,9 +177,9 @@ const HowItWorks = () => {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isPlaying, activeTab]);
+  }, [isPlaying, steps.length]);
 
-  /* RESET ON TAB CHANGE */
+  /* RESET */
   useEffect(() => {
     setActiveStep(0);
   }, [activeTab]);
@@ -196,28 +189,47 @@ const HowItWorks = () => {
       <div className="container mx-auto px-6">
 
         {/* HEADER */}
-        <div className="text-center mb-10">
+        <div className="text-center mb-12">
           <h2 className="text-5xl font-bold">How It Works</h2>
           <p className="text-gray-600 mt-3">
-            Three experiences in one ecosystem
+            One platform. Three powerful experiences.
           </p>
 
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="mt-6 px-5 py-2 bg-gray-900 text-white rounded-full"
+            className="mt-6 px-6 py-2 bg-gray-900 text-white rounded-full"
           >
             {isPlaying ? "Pause Demo" : "Play Demo"}
           </button>
         </div>
 
-        {/* TABS */}
-        <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid grid-cols-3 max-w-2xl mx-auto mb-12">
-            <TabsTrigger value="customer">Customers</TabsTrigger>
-            <TabsTrigger value="beautician">Beauticians</TabsTrigger>
-            <TabsTrigger value="salon">Salons</TabsTrigger>
+        {/* CTA TABS */}
+        <Tabs value={activeTab} onValueChange={(val) => setActiveTab(val as any)}>
+          <TabsList className="flex justify-center gap-4 mb-12 bg-transparent">
+
+            {Object.entries(flows).map(([key, flow]) => {
+              const isActive = activeTab === key;
+
+              return (
+                <TabsTrigger
+                  key={key}
+                  value={key}
+                  className={`px-6 py-2 rounded-full border transition-all text-sm font-medium
+                    ${
+                      isActive
+                        ? "bg-gray-900 text-white border-gray-900"
+                        : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                    }
+                  `}
+                >
+                  {flow.label}
+                </TabsTrigger>
+              );
+            })}
+
           </TabsList>
 
+          {/* CONTENT */}
           <TabsContent value={activeTab}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
@@ -234,7 +246,9 @@ const HowItWorks = () => {
                       onMouseEnter={() => setIsPlaying(false)}
                       onMouseLeave={() => setIsPlaying(true)}
                       className={`p-5 rounded-2xl flex gap-4 cursor-pointer border ${
-                        isActive ? "bg-gray-900 text-white" : "bg-white"
+                        isActive
+                          ? "bg-gray-900 text-white"
+                          : "bg-white hover:bg-gray-50"
                       }`}
                     >
                       <div className="w-12 h-12 flex items-center justify-center bg-gray-900 text-white rounded-xl">
@@ -256,9 +270,9 @@ const HowItWorks = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
-                  initial={{ opacity: 0, x: 50 }}
+                  initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
+                  exit={{ opacity: 0, x: -40 }}
                   className="bg-white border rounded-3xl p-10"
                 >
                   <div className="w-14 h-14 bg-gray-900 text-white rounded-2xl flex items-center justify-center mb-6">
@@ -276,7 +290,7 @@ const HowItWorks = () => {
                   <ul className="space-y-3">
                     {current.details.points.map((p, i) => (
                       <li key={i} className="flex gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-green-600" />
+                        <CheckCircle2 className="w-5 h-5 text-green-600 mt-1" />
                         {p}
                       </li>
                     ))}

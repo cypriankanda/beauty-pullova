@@ -3,13 +3,8 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { useLocation } from "react-router-dom";
-
 
 const Navigation = () => {
-  const { t } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -20,11 +15,7 @@ const Navigation = () => {
   }, []);
 
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
@@ -35,6 +26,7 @@ const Navigation = () => {
     href: string
   ) => {
     e.preventDefault();
+
     const isNotHomePage =
       window.location.pathname !== "/" &&
       window.location.pathname !== "/index.html";
@@ -43,12 +35,11 @@ const Navigation = () => {
       window.location.href = "/" + href;
     } else if (href.startsWith("#")) {
       const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      if (element) element.scrollIntoView({ behavior: "smooth" });
     } else {
       window.location.href = href;
     }
+
     setIsMobileMenuOpen(false);
   };
 
@@ -56,11 +47,12 @@ const Navigation = () => {
     window.location.href = "/";
   };
 
+  /* 🔁 SWAPPED LINKS (this is the key fix) */
   const navLinks = [
-    { nameKey: "nav.services", href: "#services" },
-    { nameKey: "nav.howItWorks", href: "#how-it-works" },
-    { nameKey: "nav.aboutUs", href: "/about-us" },
-  ] as const;
+    { name: "How It Works", href: "#how-it-works" },
+    { name: "Services", href: "#services" },
+    { name: "About Us", href: "/about-us" },
+  ];
 
   return (
     <>
@@ -73,7 +65,8 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4 h-full">
           <div className="flex items-center justify-between h-full w-full">
-            {/* Logo Group */}
+
+            {/* LOGO */}
             <motion.div
               className="flex items-center gap-3 cursor-pointer flex-shrink-0"
               whileHover={{ scale: 1.02 }}
@@ -81,47 +74,36 @@ const Navigation = () => {
             >
               <img
                 src="/PULLOVA1.svg"
-                alt={t("nav.logoAlt")}
-                className="w-9 h-9 lg:w-12 lg:h-12 flex-shrink-0"
+                alt="Pullova Beauty Services"
+                className="w-9 h-9 lg:w-12 lg:h-12"
               />
-              <span className="hidden lg:block text-xl xl:text-2xl font-extrabold tracking-tight text-gray-900 whitespace-nowrap">
-                {t("nav.brand")}
+              <span className="hidden lg:block text-xl xl:text-2xl font-extrabold text-gray-900 whitespace-nowrap">
+                Pullova Beauty Services
               </span>
-              <span className="lg:hidden text-lg font-extrabold tracking-wide text-gray-900 whitespace-nowrap">
+              <span className="lg:hidden text-lg font-extrabold text-gray-900 whitespace-nowrap">
                 Pullova
               </span>
             </motion.div>
 
-            {/* Spacer: This pushes the logo to the left and nav to the right */}
             <div className="flex-1" />
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-6 flex-shrink-0">
+            {/* DESKTOP NAV */}
+            <div className="hidden lg:flex items-center gap-6">
+
               {navLinks.map((link) => (
                 <a
-                  key={link.nameKey}
+                  key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="font-medium text-gray-700 transition-colors hover:text-pink-500 whitespace-nowrap"
+                  className="font-medium text-gray-700 hover:text-pink-500 transition"
                 >
-                  {t(link.nameKey)}
+                  {link.name}
                 </a>
               ))}
 
               <Link
-                to="/faq"
-                className="font-medium text-gray-700 transition-colors hover:text-pink-500 whitespace-nowrap"
-              >
-                {t("nav.faq")}
-              </Link>
-
-              <div className="h-6 w-px bg-gray-200 mx-1" /> {/* Visual Separator */}
-
-              <LanguageSwitcher />
-
-              <Link
                 to="/login"
-                className="font-medium text-gray-700 transition-colors hover:text-pink-500 whitespace-nowrap"
+                className="font-medium text-gray-700 hover:text-pink-500"
               >
                 Log In
               </Link>
@@ -129,24 +111,24 @@ const Navigation = () => {
               <Link to="/register">
                 <Button
                   variant="outline"
-                  className="px-5 border-pink-400 text-pink-500 hover:bg-pink-50 rounded-full font-semibold whitespace-nowrap"
+                  className="px-5 border-pink-400 text-pink-500 hover:bg-pink-50 rounded-full font-semibold"
                 >
                   Sign Up
                 </Button>
               </Link>
 
-              <Button className="px-5 bg-pink-500 text-white hover:bg-pink-600 rounded-full whitespace-nowrap">
-                {t("nav.bookNow")}
+              <Button className="px-5 bg-pink-500 text-white hover:bg-pink-600 rounded-full">
+                Book Now
               </Button>
 
               <a href="#waitlist" onClick={(e) => handleNavClick(e, "#waitlist")}>
-                <Button className="px-5 bg-purple-500 text-white hover:bg-purple-600 rounded-full shadow-md whitespace-nowrap">
-                  {t("nav.joinWaitlist")}
+                <Button className="px-5 bg-purple-500 text-white hover:bg-purple-600 rounded-full shadow-md">
+                  Join Waitlist
                 </Button>
               </a>
             </div>
 
-            {/* Mobile Controls */}
+            {/* MOBILE */}
             <div className="flex lg:hidden items-center gap-3">
               <a href="#waitlist" onClick={(e) => handleNavClick(e, "#waitlist")}>
                 <Button
@@ -158,18 +140,18 @@ const Navigation = () => {
               </a>
 
               <button
-                aria-label={t("nav.toggleMenu")}
                 className="p-2 text-gray-800"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {isMobileMenuOpen ? <X /> : <Menu />}
               </button>
             </div>
+
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <>
@@ -180,6 +162,7 @@ const Navigation = () => {
               className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm lg:hidden"
               onClick={() => setIsMobileMenuOpen(false)}
             />
+
             <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -188,28 +171,32 @@ const Navigation = () => {
             >
               {navLinks.map((link) => (
                 <a
-                  key={link.nameKey}
+                  key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="block text-lg font-medium text-gray-800"
                 >
-                  {t(link.nameKey)}
+                  {link.name}
                 </a>
               ))}
-              <Link to="/faq" className="block text-lg font-medium text-gray-800">
-                {t("nav.faq")}
-              </Link>
+
               <div className="border-t pt-4 space-y-4">
-                <LanguageSwitcher triggerClassName="w-full justify-start" />
                 <div className="flex gap-4">
                   <Link to="/login" className="flex-1">
-                    <Button variant="outline" className="w-full rounded-full">Log In</Button>
+                    <Button variant="outline" className="w-full rounded-full">
+                      Log In
+                    </Button>
                   </Link>
                   <Link to="/register" className="flex-1">
-                    <Button variant="outline" className="w-full rounded-full border-pink-400 text-pink-500">Sign Up</Button>
+                    <Button className="w-full rounded-full border-pink-400 text-pink-500">
+                      Sign Up
+                    </Button>
                   </Link>
                 </div>
-                <Button className="w-full bg-pink-500 text-white rounded-full">Book Now</Button>
+
+                <Button className="w-full bg-pink-500 text-white rounded-full">
+                  Book Now
+                </Button>
               </div>
             </motion.div>
           </>

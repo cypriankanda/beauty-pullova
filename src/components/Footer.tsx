@@ -33,7 +33,7 @@ const regionalData: Record<string, RegionData> = {
   usa: {
     phone: "+1 (253) 553-9800",
     phoneHref: "tel:+12535539800",
-    location: "Seattle, USA",
+    location: "Corporate Office, Seattle Washington",
     email: "info@pullovabeauty.com",
   },
 };

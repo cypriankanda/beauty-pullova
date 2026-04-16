@@ -56,7 +56,7 @@ const Footer = () => {
           return;
         }
 
-        const response = await fetch("https://ipapi.co/json/");
+        const response = await fetch("/api/region");
         const data = await response.json();
 
         console.log("Detected country code:", data.country_code);

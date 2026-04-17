@@ -14,56 +14,49 @@ const services: Service[] = [
   {
     title: "Hair Styling & Color",
     description: "Professional cuts, coloring, and styling treatments",
-    image:
-      "https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=800&h=600&fit=crop",
     popular: false,
     category: "Hair",
   },
   {
     title: "Makeup & Glam",
     description: "Full makeup for any occasion, natural to glamorous",
-    image:
-      "https://images.unsplash.com/photo-1526045478516-99145907023c?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=800&h=600&fit=crop",
     popular: true,
     category: "Makeup",
   },
   {
     title: "Nails & Manicure",
     description: "Complete nail care, manicures, and artistic designs",
-    image:
-      "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&h=600&fit=crop",
     popular: false,
     category: "Nails",
   },
   {
     title: "Skincare Treatments",
     description: "Advanced facials and skincare therapy sessions",
-    image:
-      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop",
     popular: false,
     category: "Spa",
   },
   {
     title: "Bridal & Events",
     description: "Complete beauty packages for your special day",
-    image:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&h=600&fit=crop",
     popular: true,
     category: "Events",
   },
   {
     title: "Barber Services",
     description: "Fades, beard grooming, and precision cuts",
-    image:
-      "https://images.unsplash.com/photo-1517832606299-7ae9b720a186?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1650066701653-8afec7bca688?w=800&h=600&fit=crop",
     popular: false,
     category: "Barber",
   },
   {
     title: "Braiding & Protective Styles",
     description: "Box braids, cornrows, twists, and protective styling",
-    image:
-      "https://images.unsplash.com/photo-1610701596061-2ecf227e85b2?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1768489134736-af8149e8fef1?w=800&h=600&fit=crop",
     popular: false,
     category: "Braids",
   },

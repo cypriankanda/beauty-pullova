@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  User,
-  Star,
-  Shield,
-  MapPin,
-  Globe,
-} from "lucide-react";
+import { User, Star, Shield, MapPin, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 // --- Constants ---
@@ -19,11 +13,12 @@ const USER_HERO_IMAGES = [
   "https://res.cloudinary.com/djicliqf5/image/upload/v1773683113/beauty1_luhgoc.jpg",
 ];
 
+// ✅ CHANGED: replaced emoji flags with ISO country codes for flagcdn.com
 const INITIAL_STATS = [
-  { country: "USA", flag: "🇺🇸" },
-  { country: "Kenya", flag: "🇰🇪" },
-  { country: "Nigeria", flag: "🇳🇬" },
-  { country: "South Africa", flag: "🇿🇦" },
+  { country: "USA", code: "us" },
+  { country: "Kenya", code: "ke" },
+  { country: "Nigeria", code: "ng" },
+  { country: "South Africa", code: "za" },
 ];
 
 const STARTING_STATS = [
@@ -112,7 +107,6 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900 text-sm">Verified Professionals</p>
-                  {/* <p className="text-xs text-gray-500">Background checked</p> */}
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -162,7 +156,7 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
               </Button>
             </motion.div>
 
-            {/* ADDED TEXT SECTION */}
+            {/* Added Text Section */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -188,11 +182,25 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
                 <Globe className="w-4 h-4 text-purple-500" />
                 Currently Serving Initial Global Markets
               </p>
+
+              {/* ✅ CHANGED: replaced emoji spans with <img> tags from flagcdn.com */}
               <div className="flex gap-x-6 gap-y-3 items-center flex-wrap">
                 {INITIAL_STATS.map((item) => (
-                  <div key={item.country} className="text-gray-700 font-semibold text-lg flex items-center gap-2">
-                    <span className="text-2xl">{item.flag}</span>
-                    <span className="text-base text-gray-900">{item.country}</span>
+                  <div
+                    key={item.country}
+                    className="flex items-center gap-2"
+                  >
+                    <img
+                      src={`https://flagcdn.com/w40/${item.code}.png`}
+                      srcSet={`https://flagcdn.com/w80/${item.code}.png 2x`}
+                      width={28}
+                      height={20}
+                      alt={`${item.country} flag`}
+                      className="rounded-sm object-cover shadow-sm"
+                    />
+                    <span className="text-base font-semibold text-gray-900">
+                      {item.country}
+                    </span>
                   </div>
                 ))}
               </div>

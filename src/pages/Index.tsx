@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import Statistics from "@/components/Statistics";
 import ServiceCategories from "@/components/ServiceCategories";
 import HowItWorks from "@/components/HowItWorks";
-import Services from "@/components/Services";
+// import Services from "@/components/Services";
 import Waitlist from "@/components/Waitlist";
 import AppDownload from "@/components/AppDownload";
 import Footer from "@/components/Footer";
@@ -34,7 +34,7 @@ Verified professionals • Same-day availability • Safe & secure"
           />
           <Waitlist region="Kenya" />
           {commonComponents}
-          <Services region="Kenya" />
+          {/* <Services region="Kenya" /> */}
           <Footer />
         </div>
       );
@@ -52,7 +52,7 @@ Verified professionals • Same-day availability • Safe & secure"
           />
           <Waitlist region="USA" />
           {commonComponents}
-          <Services region="USA" />
+          {/* <Services region="USA" /> */}
           <Footer />
         </div>
       );
@@ -67,7 +67,7 @@ Verified professionals • Same-day availability • Safe & secure"
         />
         <Waitlist />
         {commonComponents}
-        <Services />
+        {/* <Services /> */}
         <Footer />
       </div>
     );

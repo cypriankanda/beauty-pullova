@@ -69,7 +69,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
 
   const userTypes = [
     { value: "client", label: "Client" },
-    { value: "student-client", label: "Student Client" },
+    { value: "salonist", label: "Salonist" },
     { value: "beautician", label: "Beautician" },
     { value: "intern-beautician", label: "Intern Beautician" },
   ];

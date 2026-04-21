@@ -67,10 +67,10 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-full w-full">
 
             {/* LOGO */}
+            <Link to="/">
             <motion.div
               className="flex items-center gap-3 cursor-pointer flex-shrink-0"
               whileHover={{ scale: 1.02 }}
-              onClick={handleLogoClick}
             >
               <img
                 src="/PULLOVA1.svg"
@@ -84,6 +84,7 @@ const Navigation = () => {
                 Pullova
               </span>
             </motion.div>
+            </Link>
 
             <div className="flex-1" />
 
@@ -117,9 +118,9 @@ const Navigation = () => {
                 </Button>
               </Link>
 
-              <Button className="px-5 bg-pink-500 text-white hover:bg-pink-600 rounded-full">
+              {/* <Button className="px-5 bg-pink-500 text-white hover:bg-pink-600 rounded-full">
                 Book Now
-              </Button>
+              </Button> */}
 
               <a href="#waitlist" onClick={(e) => handleNavClick(e, "#waitlist")}>
                 <Button className="px-5 bg-purple-500 text-white hover:bg-purple-600 rounded-full shadow-md">

@@ -132,9 +132,14 @@ const Login = () => {
             </div>
 
             {/* Button */}
-            <Button className="w-full flex items-center justify-center gap-2">
-              Log In <ArrowRight className="w-4 h-4" />
-            </Button>
+<Button className="w-full flex items-center justify-center gap-2">
+  Log In <ArrowRight className="w-4 h-4" />
+</Button>
+
+{/* SMS Consent Message */}
+<p className="text-xs text-gray-500 text-center mt-3 leading-relaxed">
+  By logging in with your mobile number, you agree to receive SMS messages from Pullova Technologies.
+</p>
           </form>
 
           {/* Footer */}

@@ -16,6 +16,8 @@ import LanguageSelector from "./components/LanguageSelector";
 import ScrollToTop from "./components/ScrollToTop";
 import AboutUs from "./pages/AboutUs";
 import Beautician from "./pages/Beautician";
+import Salon from "./pages/Salon";
+import Client from "./pages/Client";
 
 
 const queryClient = new QueryClient();
@@ -25,7 +27,12 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter
+  future={{
+    v7_startTransition: true,
+    v7_relativeSplatPath: true,
+  }}
+>
         <HtmlLangSync />
         <ScrollToTop />
         <LanguageSelector />
@@ -39,6 +46,8 @@ const App = () => (
           <Route path="/faq" element={<FAQ />} />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/beauticians" element={<Beautician />} />
+          <Route path="/salon" element={<Salon />} />
+          <Route path="/Client" element={<Client />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

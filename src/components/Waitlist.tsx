@@ -48,21 +48,21 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
   const features = [
     {
       icon: Diamond,
-      title: "$50 Welcome Credit",
-      description: "Exclusive founding member bonus for your first service",
+      title: "Convenience",
+      description: "Book beauty services anytime, anywhere—on your schedule",
       iconColor: COLORS.accentGold,
     },
     {
       icon: ShieldCheck,
-      title: "VIP Priority Access",
-      description: "Book premium stylists before public launch",
+      title: "Transparency",
+      description: "Clear pricing, verified professionals, and no hidden costs",
       ringClass: "shadow-[0_0_40px_rgba(255,255,255,0.15)] border-white/40",
       iconColor: COLORS.accentPurple,
     },
     {
       icon: Zap,
-      title: "Lifetime Benefits",
-      description: "15% off all services, forever—lock in your rate now",
+      title: "Lifestyle Solutions",
+      description: "Beauty services designed to fit seamlessly into your lifestyle",
       iconColor: COLORS.accentButton,
     },
   ];

@@ -14,7 +14,7 @@ const services: Service[] = [
   {
     title: "Hair Styling & Color",
     description: "Professional cuts, coloring, and styling treatments",
-    image: "https://images.unsplash.com/photo-1567894340315-735d7c361db0?w=800&h=600&fit=crop",
+    image: "https://images.unsplash.com/photo-1707812343087-c9ff9e5abb43?w=800&h=600&fit=crop",
     popular: false,
     category: "Hair",
   },

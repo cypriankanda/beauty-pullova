@@ -27,7 +27,7 @@ const STARTING_STATS = [
   { value: "800+", label: "Licensed Professionals" },
 ];
 
-const TRUST_TEXT = "Trusted beauty. Delivered on your terms.";
+const TRUST_TEXT = "Your Time. Your Space. Your Beauty.";
 
 interface HeroProps {
   headline: string;

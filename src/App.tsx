@@ -3,6 +3,14 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Components
+import Navigation from "./components/Navigation"; // 1. IMPORT YOUR NAVIGATION
+import HtmlLangSync from "./components/HtmlLangSync";
+import LanguageSelector from "./components/LanguageSelector";
+import ScrollToTop from "./components/ScrollToTop";
+
+// Pages
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import CareerPage from "./pages/career";
@@ -11,14 +19,10 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import TermsConditions from "./pages/legal/TermsConditions";
 import FAQ from "./pages/FAQ";
-import HtmlLangSync from "./components/HtmlLangSync";
-import LanguageSelector from "./components/LanguageSelector";
-import ScrollToTop from "./components/ScrollToTop";
 import AboutUs from "./pages/AboutUs";
 import Beautician from "./pages/Beautician";
 import Salon from "./pages/Salon";
 import Client from "./pages/Client";
-
 
 const queryClient = new QueryClient();
 
@@ -28,14 +32,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter
-  future={{
-    v7_startTransition: true,
-    v7_relativeSplatPath: true,
-  }}
->
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
         <HtmlLangSync />
         <ScrollToTop />
+        
+        {/* 2. PLACE NAVIGATION HERE so it shows on every page */}
+        <Navigation /> 
+
         <LanguageSelector />
+        
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/register" element={<SignUp />} />
@@ -48,7 +57,8 @@ const App = () => (
           <Route path="/beauticians" element={<Beautician />} />
           <Route path="/salon" element={<Salon />} />
           <Route path="/Client" element={<Client />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          
+          {/* CATCH-ALL ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

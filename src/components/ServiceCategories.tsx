@@ -86,11 +86,11 @@ const ServiceCategories = () => {
 
   return (
     <section
+      id="services" // <--- Added this ID here
       ref={ref}
       className="py-24 bg-gradient-to-b from-white via-gray-50 to-white"
     >
       <div className="container mx-auto px-4">
-
         {/* HEADER */}
         <div className="text-center mb-12">
           <h2 className="text-5xl font-bold text-gray-900 mb-4">
@@ -101,6 +101,8 @@ const ServiceCategories = () => {
           </h2>
         </div>
 
+        {/* ... rest of your component remains the same ... */}
+        
         {/* FILTERS */}
         <div className="flex flex-wrap justify-center gap-3 mb-14">
           {categories.map((cat) => (
@@ -129,19 +131,13 @@ const ServiceCategories = () => {
               className="group"
             >
               <div className="bg-white border shadow-lg rounded-3xl overflow-hidden h-full flex flex-col hover:shadow-2xl transition-all">
-
-                {/* IMAGE HEADER (replaces icon) */}
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
                   />
-
-                  {/* overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-
-                  {/* optional badge */}
                   {service.popular && (
                     <div className="absolute top-4 left-4 bg-pink-600 text-white text-xs px-3 py-1 rounded-full">
                       Popular
@@ -149,29 +145,19 @@ const ServiceCategories = () => {
                   )}
                 </div>
 
-                {/* CONTENT */}
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-bold mb-2">
-                    {service.title}
-                  </h3>
-
-                  <p className="text-gray-600 mb-6 flex-grow">
-                    {service.description}
-                  </p>
-
-                  {/* CTA */}
+                  <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
+                  <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
                   <div className="mt-auto pt-4 border-t flex justify-end">
                     <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl px-6 h-12 hover:opacity-90 transition">
                       Book Now
                     </button>
                   </div>
                 </div>
-
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

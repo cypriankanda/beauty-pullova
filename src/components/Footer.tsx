@@ -12,6 +12,7 @@ import {
   MapPin,
   ArrowRight,
 } from "lucide-react";
+import { FaTiktok } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -81,12 +82,33 @@ const Footer = () => {
     detectRegion();
   }, []);
 
-  const socialLinks = [
-    { icon: Facebook, href: "https://web.facebook.com/profile.php?id=61584951542048", label: "Facebook" },
-    { icon: Instagram, href: "https://www.instagram.com/pullovabeauty/", label: "Instagram" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-  ];
+const socialLinks = [
+  {
+    icon: Facebook,
+    href: "https://web.facebook.com/profile.php?id=61584951542048",
+    label: "Facebook",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/pullovabeautyservices/",
+    label: "Instagram",
+  },
+  {
+    icon: Twitter,
+    href: "#",
+    label: "Twitter",
+  },
+  {
+    icon: Linkedin,
+    href: "https://www.linkedin.com/in/pullova-beauty-services-359a0a3a3/",
+    label: "LinkedIn",
+  },
+  {
+    icon: FaTiktok,
+    href: "https://www.tiktok.com/@pullovabeautyservices",
+    label: "TikTok",
+  },
+];
 
   const services = [
     "Makeup & Styling",
@@ -137,16 +159,24 @@ const Footer = () => {
             Trusted beauty. Delivered on your terms.
           </p>
 
-          <div className="flex gap-3">
-            {socialLinks.map((s, i) => {
-              const Icon = s.icon;
-              return (
-                <a key={i} href={s.href}>
-                  <Icon />
-                </a>
-              );
-            })}
-          </div>
+<div className="flex gap-3">
+  {socialLinks.map((s, i) => {
+    const Icon = s.icon;
+    const isTikTok = s.label === "TikTok";
+
+    return (
+      <a
+        key={i}
+        href={s.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={s.label}
+      >
+        <Icon className={isTikTok ? "w-5 h-5" : "w-5 h-5"} />
+      </a>
+    );
+  })}
+</div>
         </div>
 
         {/* Services */}

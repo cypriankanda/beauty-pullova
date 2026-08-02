@@ -135,6 +135,7 @@ const ServiceCategories = () => {
                   <img
                     src={service.image}
                     alt={service.title}
+                    loading="lazy"
                     className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />

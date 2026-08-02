@@ -4,6 +4,7 @@ import App from "./App";
 import "./index.css";
 import TawkToWidget from "./components/TawkToWidget";
 import "@/lib/posthog";
+import { HelmetProvider } from "react-helmet-async";
 // Extend window types
 declare global {
   interface Window {
@@ -37,7 +38,9 @@ createRoot(document.getElementById("root")!).render(
     {/* Hidden Google container */}
     <div id="google_translate_element" style={{ display: "none" }}></div>
 
-    <App />
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
     <TawkToWidget />
   </>
 );

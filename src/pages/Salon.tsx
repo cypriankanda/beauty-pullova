@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/Seo"
 
 const Salon = () => {
   const [formData, setFormData] = useState({
@@ -65,6 +66,11 @@ const Salon = () => {
 
   return (
     <div>
+      <SEO
+        title="Partner Your Salon with Pullova | Grow Your Beauty Business"
+        description="Partner your salon with Pullova to attract more clients, increase revenue, offer mobile beauty services, and grow your salon business through our trusted beauty marketplace."
+        canonical="https://pullova.com/salon"
+      />
       <Navigation />
 
       <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white pt-24 pb-20">

@@ -154,7 +154,7 @@ const socialLinks = [
 
         {/* Brand */}
         <div>
-          <img src="/pullova_logo.svg" className="w-32 mb-4" />
+          <img src="/pullova_logo.svg" alt="Pullova Technologies logo" className="w-32 mb-4" />
           <p className="text-gray-400 mb-6">
             Trusted beauty. Delivered on your terms.
           </p>

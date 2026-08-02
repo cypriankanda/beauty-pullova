@@ -19,6 +19,8 @@ import {
   Send,
 } from "lucide-react";
 
+import SEO from "@/components/Seo"
+
 /* -------------------- ANIMATIONS -------------------- */
 
 const fadeUp = {
@@ -236,6 +238,11 @@ const BookingForm = () => {
 const Client = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black text-white">
+       <SEO
+        title="Book Beauty & Grooming Services | Pullova"
+        description="Book trusted beauty professionals for hair, makeup, nails, barbering, spa and wellness services at your home, office or preferred location with Pullova."
+        canonical="https://pullova.com/client"
+      />
       <Navigation />
 
       <div className="pt-28 px-4 space-y-24">

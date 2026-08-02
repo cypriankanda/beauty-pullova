@@ -14,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/Seo"
 
 const Beautician = () => {
   const [formData, setFormData] = useState({
@@ -64,6 +65,11 @@ const Beautician = () => {
 
   return (
     <div>
+       <SEO
+          title="Join Pullova as a Beauty Professional | Grow Your Beauty Business"
+          description="Join Pullova as a beautician, barber, makeup artist, nail technician or salon professional. Receive booking requests, grow your income and build your beauty business."
+          canonical="https://pullova.com/beauticians"
+        />
       {/* NAVBAR */}
       <Navigation />
 

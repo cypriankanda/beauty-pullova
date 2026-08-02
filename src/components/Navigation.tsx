@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -21,31 +23,39 @@ const Navigation = () => {
     };
   }, [isMobileMenuOpen]);
 
+  const navigate = useNavigate();
+
   const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
 
-    const isNotHomePage =
-      window.location.pathname !== "/" &&
-      window.location.pathname !== "/index.html";
+    if (href.startsWith("#")) {
+      if (window.location.pathname !== "/") {
+        navigate("/");
 
-    if (isNotHomePage && href.startsWith("#")) {
-      window.location.href = "/" + href;
-    } else if (href.startsWith("#")) {
-      const element = document.querySelector(href);
-      if (element) element.scrollIntoView({ behavior: "smooth" });
+        // Wait for the home page to render
+        setTimeout(() => {
+          document
+            .querySelector(href)
+            ?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        document
+          .querySelector(href)
+          ?.scrollIntoView({ behavior: "smooth" });
+      }
     } else {
-      window.location.href = href;
+      navigate(href);
     }
 
     setIsMobileMenuOpen(false);
   };
 
-  const handleLogoClick = () => {
-    window.location.href = "/";
-  };
+  // const handleLogoClick = () => {
+  //   window.location.href = "/";
+  // };
 
   /* 🔁 SWAPPED LINKS (this is the key fix) */
   const navLinks = [
@@ -122,11 +132,16 @@ const Navigation = () => {
                 Book Now
               </Button> */}
 
-              <a href="#waitlist" onClick={(e) => handleNavClick(e, "#waitlist")}>
-                <Button className="px-5 bg-purple-500 text-white hover:bg-purple-600 rounded-full shadow-md">
-                  Join Waitlist
-                </Button>
-              </a>
+              <Button
+                onClick={(e) =>
+                  handleNavClick(
+                    e as unknown as React.MouseEvent<HTMLAnchorElement>,
+                    "#waitlist"
+                  )
+                }
+              >
+                Join Waitlist
+              </Button>
             </div>
 
             {/* MOBILE */}

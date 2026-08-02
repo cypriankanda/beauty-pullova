@@ -8,6 +8,7 @@ import Waitlist from "@/components/Waitlist";
 import AppDownload from "@/components/AppDownload";
 import Footer from "@/components/Footer";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
+import SEO from "@/components/Seo"
 
 const Index = () => {
   const { country, loading } = useGeoCountry();
@@ -25,12 +26,17 @@ const Index = () => {
     if (country === "Kenya") {
       return (
         <div className="min-h-screen flex flex-col">
+          < SEO
+            title="Pullova Kenya - On-Demand Beauty & Grooming Services"
+            description="Experience the best in beauty and grooming with Pullova Kenya. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
+            canonical="https://pullova.com/kenya"
+          />
           <Navigation />
           <Hero
             headline="Pullova Kenya 🇰🇪"
             subtext="Beauty and grooming, delivered on your terms.
-Book trusted professionals for on-demand services at home, work, or anywhere you are on your schedule.
-Verified professionals • Same-day availability • Safe & secure"
+            Book trusted professionals for on-demand services at home, work, or anywhere you are on your schedule.
+            Verified professionals • Same-day availability • Safe & secure"
           />
           <Waitlist region="Kenya" />
           {commonComponents}
@@ -43,12 +49,17 @@ Verified professionals • Same-day availability • Safe & secure"
     if (country === "United States") {
       return (
         <div className="min-h-screen flex flex-col">
+          < SEO
+            title="Pullova USA - On-Demand Beauty & Grooming Services"
+            description="Experience the best in beauty and grooming with Pullova USA. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
+            canonical="https://pullova.com/usa"
+          />
           <Navigation />
           <Hero
             headline="Pullova USA"
             subtext="Beauty and grooming, delivered on your terms.
-Book trusted professionals for on-demand services at home, work, or anywhere you are on your schedule.
-Verified professionals • Same-day availability • Safe & secure"
+            Book trusted professionals for on-demand services at home, work, or anywhere you are on your schedule.
+            Verified professionals • Same-day availability • Safe & secure"
           />
           <Waitlist region="USA" />
           {commonComponents}
@@ -60,6 +71,11 @@ Verified professionals • Same-day availability • Safe & secure"
 
     return (
       <div className="min-h-screen flex flex-col">
+        < SEO
+            title="Pullova - On-Demand Beauty & Grooming Services"
+            description="Experience the best in beauty and grooming with Pullova Kenya. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
+            canonical="https://pullova.com"
+          />
         <Navigation />
         <Hero
           headline="Pullova 🌍"

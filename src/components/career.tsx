@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import { Upload, User, Mail, FileText, Briefcase, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SEO from "@/components/Seo";
 
 const CareerPage = () => {
   const ref = useRef(null);
@@ -38,6 +39,11 @@ const CareerPage = () => {
 
   return (
     <div ref={ref} className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white pt-24 pb-16">
+      <SEO
+        title="Careers at Pullova | Join Our Talent Community"
+        description="Join the Pullova Talent Community. Explore opportunities for beauty professionals, designers, marketers, developers and other talented individuals passionate about transforming the beauty industry."
+        canonical="https://pullova.com/careers"
+      />
       <div className="container mx-auto px-4 max-w-4xl text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}

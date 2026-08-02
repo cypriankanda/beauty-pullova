@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff, Phone, Lock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import SEO from "@/components/Seo"
 
 const Login = () => {
   const [form, setForm] = useState({ identifier: "", password: "" });
@@ -45,6 +46,12 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-white to-purple-50 flex flex-col">
+      <SEO
+        title="Login to Your Pullova Account"
+        description="Sign in to your Pullova account to book beauty services, manage appointments, and access your profile."
+        canonical="https://pullova.com/login"
+        noIndex
+      />
       {/* Background */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-72 h-72 bg-rose-200/30 rounded-full blur-3xl" />

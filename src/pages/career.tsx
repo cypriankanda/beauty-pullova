@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { Upload, User, Mail, FileText, Briefcase, Send, CheckCircle2, AlertCircle, Phone, Linkedin, Globe, X } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import SEO from "@/components/Seo"
 
 const CareerPage = () => {
   const ref = useRef(null);
@@ -151,8 +152,14 @@ const CareerPage = () => {
 
   return (
     <>
+    <SEO
+        title="Careers at Pullova | Join Our Talent Community"
+        description="Join the Pullova Talent Community. Explore opportunities for beauty professionals, designers, marketers, developers and other talented individuals passionate about transforming the beauty industry."
+        canonical="https://pullova.com/careers"
+      />
       <Navigation />
       <div ref={ref} className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-gray-800 text-white pt-24 pb-16">
+        
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-12">
             <motion.h1

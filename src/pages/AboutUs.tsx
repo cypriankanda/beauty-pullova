@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-
+import SEO from "@/components/Seo"
 
 const COLORS = {
   bgStart: "#1E0D33",
@@ -15,6 +15,11 @@ const COLORS = {
 const AboutUs = () => {
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
+      <SEO
+        title="About Pullova | On-Demand Beauty & Grooming Platform"
+        description="Learn about Pullova, our mission, vision, and how we connect clients with trusted beauty and grooming professionals for safe, convenient on-demand services."
+        canonical="https://pullova.com/about"
+      />
 
       {/* BACKGROUND GRADIENT */}
       <div

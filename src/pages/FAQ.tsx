@@ -8,6 +8,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import SEO from "@/components/Seo"
+
 /* ---------------- TYPES ---------------- */
 type FaqEntry = {
   q: string;
@@ -251,6 +253,11 @@ const FAQ = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <SEO
+        title="Frequently Asked Questions | Pullova Legal & Support"
+        description="Find answers to frequently asked questions about Pullova, including bookings, privacy, data protection, consumer rights, beauty professionals, payments, and legal information."
+        canonical="https://pullova.com/faq"
+      />
       <Navigation />
 
       <main className="flex-1 pt-24 pb-16 container mx-auto px-4 max-w-4xl">

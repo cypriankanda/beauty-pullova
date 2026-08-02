@@ -4,6 +4,7 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
+import SEO from "@/components/Seo"
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -96,6 +97,12 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
+      <SEO
+        title="Create Your Pullova Account | Sign Up"
+        description="Create your Pullova account to access beauty and grooming services."
+        canonical="https://pullova.com/signup"
+        noIndex
+      />
 
       {/* NAVIGATION */}
       <Navigation />

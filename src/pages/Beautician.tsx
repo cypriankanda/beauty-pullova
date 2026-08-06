@@ -14,7 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import SEO from "@/components/Seo"
+import SEO from "@/components/SEO";
 
 const Beautician = () => {
   const [formData, setFormData] = useState({

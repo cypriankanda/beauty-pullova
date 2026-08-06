@@ -4,7 +4,7 @@ import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
-import SEO from "@/components/Seo"
+import SEO from "@/components/SEO";
 
 const SignUp = () => {
   const [form, setForm] = useState({

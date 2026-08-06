@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import { Upload, User, Mail, FileText, Briefcase, Send, CheckCircle2, AlertCircle, Phone, Linkedin, Globe, X } from "lucide-react";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import SEO from "@/components/Seo"
+import SEO from "@/components/SEO";
 
 const CareerPage = () => {
   const ref = useRef(null);

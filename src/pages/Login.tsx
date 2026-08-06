@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff, Phone, Lock, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import SEO from "@/components/Seo"
+import SEO from "@/components/SEO";
 
 const Login = () => {
   const [form, setForm] = useState({ identifier: "", password: "" });

@@ -8,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import SEO from "@/components/Seo"
+import SEO from "@/components/SEO";
 
 /* ---------------- TYPES ---------------- */
 type FaqEntry = {

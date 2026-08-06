@@ -8,7 +8,7 @@ import Waitlist from "@/components/Waitlist";
 import AppDownload from "@/components/AppDownload";
 import Footer from "@/components/Footer";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
-import SEO from "@/components/Seo"
+import SEO from "@/components/SEO";
 
 const Index = () => {
   const { country, loading } = useGeoCountry();

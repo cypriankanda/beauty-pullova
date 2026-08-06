@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useGeoCountry } from "@/hooks/useGeoCountry";
 import {
   Facebook,
   Instagram,
@@ -24,16 +25,24 @@ interface RegionData {
 }
 
 const regionalData: Record<string, RegionData> = {
-  kenya: {
-    phone: "+254 714 714 405",
-    phoneHref: "tel:+254714714405",
-    location: "Nairobi, Kenya",
-    email: "info@pullovabeauty.com",
-  },
-  usa: {
+  Kenya: {
+      phone: "+254 714 714 405",
+      phoneHref: "tel:+254714714405",
+      location: "Nairobi, Kenya",
+      email: "info@pullovabeauty.com",
+    },
+
+  "United States": {
     phone: "+1 (253) 553-9800",
     phoneHref: "tel:+12535539800",
-    location: "Corporate Office, Seattle Washington",
+    location: "Seattle, Washington, USA",
+    email: "info@pullovabeauty.com",
+  },
+
+  Global: {
+    phone: "+1 (253) 553-9800",
+    phoneHref: "tel:+12535539800",
+    location: "Global Operations",
     email: "info@pullovabeauty.com",
   },
 };
@@ -44,43 +53,49 @@ const Footer = () => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const navigate = useNavigate();
 
-  const [contactData, setContactData] = useState<RegionData>(regionalData.usa);
+  const { country } = useGeoCountry();
+  console.log(JSON.stringify(country));
 
-  useEffect(() => {
-    const detectRegion = async () => {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const testRegion = urlParams.get("region");
+  const contactData =
+    regionalData[country ?? "Global"] || regionalData.Global;
 
-        if (testRegion === "kenya" || testRegion === "usa") {
-          setContactData(regionalData[testRegion]);
-          return;
-        }
+  // const [contactData, setContactData] = useState<RegionData>(regionalData.usa);
 
-        const response = await fetch("/api/region");
+  // useEffect(() => {
+  //   const detectRegion = async () => {
+  //     try {
+  //       const urlParams = new URLSearchParams(window.location.search);
+  //       const testRegion = urlParams.get("region");
 
-        // ✅ FIX: prevent JSON crash
-        const text = await response.text();
-        let data;
-        try {
-          data = JSON.parse(text);
-        } catch {
-          throw new Error("Invalid JSON response");
-        }
+  //       if (testRegion === "kenya" || testRegion === "usa") {
+  //         setContactData(regionalData[testRegion]);
+  //         return;
+  //       }
 
-        if (data.country_code === "KE") {
-          setContactData(regionalData.kenya);
-        } else {
-          setContactData(regionalData.usa);
-        }
-      } catch (error) {
-        console.error("Region detection failed:", error);
-        setContactData(regionalData.usa);
-      }
-    };
+  //       const response = await fetch("/api/region");
 
-    detectRegion();
-  }, []);
+  //       // ✅ FIX: prevent JSON crash
+  //       const text = await response.text();
+  //       let data;
+  //       try {
+  //         data = JSON.parse(text);
+  //       } catch {
+  //         throw new Error("Invalid JSON response");
+  //       }
+
+  //       if (data.country_code === "KE") {
+  //         setContactData(regionalData.kenya);
+  //       } else {
+  //         setContactData(regionalData.usa);
+  //       }
+  //     } catch (error) {
+  //       console.error("Region detection failed:", error);
+  //       setContactData(regionalData.usa);
+  //     }
+  //   };
+
+  //   detectRegion();
+  // }, []);
 
 const socialLinks = [
   {
@@ -159,24 +174,24 @@ const socialLinks = [
             Trusted beauty. Delivered on your terms.
           </p>
 
-<div className="flex gap-3">
-  {socialLinks.map((s, i) => {
-    const Icon = s.icon;
-    const isTikTok = s.label === "TikTok";
+        <div className="flex gap-3">
+          {socialLinks.map((s, i) => {
+            const Icon = s.icon;
+            const isTikTok = s.label === "TikTok";
 
-    return (
-      <a
-        key={i}
-        href={s.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={s.label}
-      >
-        <Icon className={isTikTok ? "w-5 h-5" : "w-5 h-5"} />
-      </a>
-    );
-  })}
-</div>
+            return (
+              <a
+                key={i}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
+              >
+                <Icon className={isTikTok ? "w-5 h-5" : "w-5 h-5"} />
+              </a>
+            );
+          })}
+        </div>
         </div>
 
         {/* Services */}
@@ -206,6 +221,7 @@ const socialLinks = [
           <h3 className="font-bold mb-4">Contact</h3>
           <p>{contactData.email}</p>
           <p>{contactData.phone}</p>
+          <p>{contactData.email}</p>
           <p>{contactData.location}</p>
         </div>
 

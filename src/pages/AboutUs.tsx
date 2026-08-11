@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import SEO from "@/components/Seo"
+import SEO from "@/components/SEO";
 
 const COLORS = {
   bgStart: "#1E0D33",

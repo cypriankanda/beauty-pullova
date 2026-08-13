@@ -83,9 +83,9 @@ const Navigation = () => {
               whileHover={{ scale: 1.02 }}
             >
               <img
-                src="/PULLOVA1.svg"
+                src="/pullova_logo.svg"
                 alt="Pullova Beauty Services"
-                className="w-9 h-9 lg:w-12 lg:h-12"
+                className="w-11 h-11 lg:w-16 lg:h-16"
               />
               <span className="hidden lg:block text-xl xl:text-2xl font-extrabold text-gray-900 whitespace-nowrap">
                 Pullova Beauty Services

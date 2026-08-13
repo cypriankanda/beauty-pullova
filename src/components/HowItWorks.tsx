@@ -49,7 +49,7 @@ const HowItWorks = () => {
                 data-[state=active]:scale-105
               "
             >
-              Customer
+              Clients
             </TabsTrigger>
 
             {/* BEAUTICIAN */}

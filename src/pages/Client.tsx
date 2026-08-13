@@ -62,6 +62,9 @@ const Hero = () => (
     <div className="flex flex-wrap justify-center gap-3 mt-6 text-xs text-gray-300">
       {[
         "Verified Professionals",
+        "Future Booking",
+        "Transparent Pricing",
+        "Top-notch Security",
         "Same-Day Availability",
         "Secure Payments",
         "Trusted Platform",
@@ -80,9 +83,9 @@ const Hero = () => (
         Download App
       </Button>
 
-      <Button className="bg-white text-gray-900 hover:bg-gray-100 border border-white/20">
+      {/* <Button className="bg-white text-gray-900 hover:bg-gray-100 border border-white/20">
         Book Service
-      </Button>
+      </Button> */}
     </div>
   </section>
 );

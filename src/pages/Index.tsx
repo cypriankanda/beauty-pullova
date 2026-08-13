@@ -9,6 +9,7 @@ import AppDownload from "@/components/AppDownload";
 import Footer from "@/components/Footer";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import SEO from "@/components/SEO";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   const { country, loading } = useGeoCountry();
@@ -18,6 +19,7 @@ const Index = () => {
       <Statistics />
       <ServiceCategories />
       <HowItWorks />
+      <FAQ />
       <AppDownload />
     </>
   );

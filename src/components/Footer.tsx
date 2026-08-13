@@ -126,11 +126,15 @@ const socialLinks = [
 ];
 
   const services = [
-    "Makeup & Styling",
-    "Hair Services",
+    "Makeup & Facials",
+    "Hair Services & Styling",
     "Nail Care",
-    "Skincare & Spa",
+    "Eyebrow & Eyelash Services",
+    "Skincare & Treatments",
+    "Spa Treatments",
     "Bridal Packages",
+    "Men's Grooming",
+    "Barber Services",
     "Special Events",
   ];
 

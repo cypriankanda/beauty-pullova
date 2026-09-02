@@ -18,7 +18,7 @@ const AboutUs = () => {
       <SEO
         title="About Pullova | On-Demand Beauty & Grooming Platform"
         description="Learn about Pullova, our mission, vision, and how we connect clients with trusted beauty and grooming professionals for safe, convenient on-demand services."
-        canonical="https://pullova.com/about"
+        canonical="https://www.pullovabeauty.com/about"
       />
 
       {/* BACKGROUND GRADIENT */}

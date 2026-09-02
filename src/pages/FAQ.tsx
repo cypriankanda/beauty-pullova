@@ -256,7 +256,7 @@ const FAQ = () => {
       <SEO
         title="Frequently Asked Questions | Pullova Legal & Support"
         description="Find answers to frequently asked questions about Pullova, including bookings, privacy, data protection, consumer rights, beauty professionals, payments, and legal information."
-        canonical="https://pullova.com/faq"
+        canonical="https://www.pullovabeauty.com/faq"
       />
       <Navigation />
 

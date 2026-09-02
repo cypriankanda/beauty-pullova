@@ -69,7 +69,7 @@ const Salon = () => {
       <SEO
         title="Partner Your Salon with Pullova | Grow Your Beauty Business"
         description="Partner your salon with Pullova to attract more clients, increase revenue, offer mobile beauty services, and grow your salon business through our trusted beauty marketplace."
-        canonical="https://pullova.com/salon"
+        canonical="https://www.pullovabeauty.com/salon"
       />
       <Navigation />
 

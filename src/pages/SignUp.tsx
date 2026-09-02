@@ -100,7 +100,7 @@ const SignUp = () => {
       <SEO
         title="Create Your Pullova Account | Sign Up"
         description="Create your Pullova account to access beauty and grooming services."
-        canonical="https://pullova.com/signup"
+        canonical="https://www.pullovabeauty.com/signup"
         noIndex
       />
 

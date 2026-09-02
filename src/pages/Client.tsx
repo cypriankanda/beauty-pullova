@@ -244,7 +244,7 @@ const Client = () => {
        <SEO
         title="Book Beauty & Grooming Services | Pullova"
         description="Book trusted beauty professionals for hair, makeup, nails, barbering, spa and wellness services at your home, office or preferred location with Pullova."
-        canonical="https://pullova.com/client"
+        canonical="https://www.pullovabeauty.com/faq"
       />
       <Navigation />
 

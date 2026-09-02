@@ -68,7 +68,7 @@ const Beautician = () => {
        <SEO
           title="Join Pullova as a Beauty Professional | Grow Your Beauty Business"
           description="Join Pullova as a beautician, barber, makeup artist, nail technician or salon professional. Receive booking requests, grow your income and build your beauty business."
-          canonical="https://pullova.com/beauticians"
+          canonical="https://www.pullovabeauty.com/beauticians"
         />
       {/* NAVBAR */}
       <Navigation />

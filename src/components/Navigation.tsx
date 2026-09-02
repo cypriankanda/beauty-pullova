@@ -149,7 +149,7 @@ const Navigation = () => {
               <a href="#waitlist" onClick={(e) => handleNavClick(e, "#waitlist")}>
                 <Button
                   size="sm"
-                  className="bg-pink-500 text-white rounded-full px-4 text-xs font-bold h-8"
+                  className="bg-pink-600 text-white rounded-full px-4 text-xs font-bold h-8"
                 >
                   Join
                 </Button>

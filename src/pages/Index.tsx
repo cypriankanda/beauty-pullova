@@ -31,7 +31,7 @@ const Index = () => {
           < SEO
             title="Pullova Kenya - On-Demand Beauty & Grooming Services"
             description="Experience the best in beauty and grooming with Pullova Kenya. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
-            canonical="https://pullova.com/kenya"
+            canonical="https://www.pullovabeauty.com/kenya"
           />
           <Navigation />
           <Hero
@@ -54,7 +54,7 @@ const Index = () => {
           < SEO
             title="Pullova USA - On-Demand Beauty & Grooming Services"
             description="Experience the best in beauty and grooming with Pullova USA. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
-            canonical="https://pullova.com/usa"
+            canonical="https://www.pullovabeauty.com/usa"
           />
           <Navigation />
           <Hero
@@ -76,7 +76,7 @@ const Index = () => {
         < SEO
             title="Pullova - On-Demand Beauty & Grooming Services"
             description="Experience the best in beauty and grooming with Pullova Kenya. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
-            canonical="https://pullova.com"
+            canonical="https://www.pullovabeauty.com"
           />
         <Navigation />
         <Hero

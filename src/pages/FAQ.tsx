@@ -289,7 +289,7 @@ const FAQ = () => {
                   {section.items.map((item, i) => (
                     <AccordionItem key={i} value={String(i)}>
                       <AccordionTrigger>{item.q}</AccordionTrigger>
-                      <AccordionContent>
+                      <AccordionContent forceMount>
                         {renderEntry(item)}
                       </AccordionContent>
                     </AccordionItem>

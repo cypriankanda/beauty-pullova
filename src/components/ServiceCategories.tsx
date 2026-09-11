@@ -26,16 +26,30 @@ const services: Service[] = [
     category: "Makeup",
   },
   {
-    title: "Nails & Manicure",
+    title: "Pedicure and Manicure",
     description: "Complete nail care, manicures, and artistic designs",
     image: "https://images.unsplash.com/photo-1604654894610-df63bc536371?w=800&h=600&fit=crop",
     popular: false,
     category: "Nails",
   },
   {
+    title: "Eyebrow & Eyelash",
+    description: "Beautiful brow shaping, lash treatments, extensions, and enhancements",
+    image: "https://media.istockphoto.com/id/1443199153/photo/make-up-artist-makes-the-procedure-of-lamination-and-dyeing-of-eyelashes-to-a-beautiful-woman.webp?a=1&b=1&s=612x612&w=0&k=20&c=GQ2iBKm_cxBya0vVShTo15tzW-Aqfv_LnUVSkt5wZxU=",
+    popular: false,
+    category: "Brows & Lashes",
+  },
+  {
     title: "Skincare Treatments",
     description: "Advanced facials and skincare therapy sessions",
     image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop",
+    popular: false,
+    category: "Skincare",
+  },
+  {
+    title: "Spa & Wellness",
+    description: "Relaxing massages and rejuvenating body treatments",
+    image: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNwYXxlbnwwfHwwfHx8MA%3D%3D",
     popular: false,
     category: "Spa",
   },
@@ -67,10 +81,12 @@ const categories = [
   "Hair",
   "Makeup",
   "Nails",
+  "Skincare",
   "Spa",
   "Events",
   "Barber",
   "Braids",
+  "Brows & Lashes",
 ];
 
 const ServiceCategories = () => {

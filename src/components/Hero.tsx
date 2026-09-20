@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 // --- Constants ---
 const USER_HERO_IMAGES = [
   "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955407/hero-beautyy_pmruqi.jpg",
-  "https://res.cloudinary.com/djicliqf5/image/upload/v1773683753/eze-joseph-YxJraqxH3aQ-unsplash_tuwlnu.jpg",
+  // "https://res.cloudinary.com/djicliqf5/image/upload/v1773683753/eze-joseph-YxJraqxH3aQ-unsplash_tuwlnu.jpg",
+  "https://images.unsplash.com/photo-1635273051937-a0ddef9573b6?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   "https://res.cloudinary.com/djicliqf5/image/upload/v1773683754/faustina-okeke-JHbu-eg1rnE-unsplash_x3omug.jpg",
-  "https://res.cloudinary.com/djicliqf5/image/upload/v1773683760/chidy-young-_9cuaC6Y4iA-unsplash_fnww8j.jpg",
-  "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955277/Gemini_Generated_Image_mdr1psmdr1psmdr1_zgvctm.png",
-  "https://res.cloudinary.com/djicliqf5/image/upload/v1773683113/beauty1_luhgoc.jpg",
+  // "https://res.cloudinary.com/djicliqf5/image/upload/v1773683760/chidy-young-_9cuaC6Y4iA-unsplash_fnww8j.jpg",
+  "https://plus.unsplash.com/premium_photo-1664375246301-0765cc8c8ded?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D                                                   ",
+  // "https://res.cloudinary.com/djkqh6uhr/image/upload/f_auto,q_auto,w_1200,c_fill/v1760955277/Gemini_Generated_Image_mdr1psmdr1psmdr1_zgvctm.png",
+  "https://images.unsplash.com/photo-1696841212541-449ca29397cc?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  // "https://res.cloudinary.com/djicliqf5/image/upload/v1773683113/beauty1_luhgoc.jpg",
+  "https://images.unsplash.com/photo-1582576192532-06353147fcbf?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
 // ✅ CHANGED: replaced emoji flags with ISO country codes for flagcdn.com
@@ -18,7 +22,7 @@ const INITIAL_STATS = [
   { country: "USA", code: "us" },
   { country: "Kenya", code: "ke" },
   { country: "Nigeria", code: "ng" },
-  { country: "South Africa", code: "za" },
+  // { country: "South Africa", code: "za" },
 ];
 
 const STARTING_STATS = [

@@ -38,6 +38,12 @@ const regionalData: Record<string, RegionData> = {
     location: "Seattle, Washington, USA",
     email: "info@pullovabeauty.com",
   },
+  "United Kingdom": {
+    phone: "+1 (253) 553-9800",
+    phoneHref: "tel:+12535539800",
+    location: "29,Josheph Luckman Bedworth West Midlands , UK",
+    email: "info@pullovabeauty.com",
+  },
 
   Global: {
     phone: "+1 (253) 553-9800",

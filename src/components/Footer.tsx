@@ -31,6 +31,12 @@ const regionalData: Record<string, RegionData> = {
       location: "Nairobi, Kenya",
       email: "info@pullovabeauty.com",
     },
+  Nigeria: {
+      phone: "+1 (253) 553-9800",
+      phoneHref: "tel:+12535539800",
+      location: "13 Olori Mojisola Onikoyi Banana Island ,   Ikoyi , Lagos",
+      email: "info@pullovabeauty.com",
+    },
 
   "United States": {
     phone: "+1 (253) 553-9800",
@@ -41,7 +47,7 @@ const regionalData: Record<string, RegionData> = {
   "United Kingdom": {
     phone: "+1 (253) 553-9800",
     phoneHref: "tel:+12535539800",
-    location: "29,Josheph Luckman Bedworth West Midlands , UK",
+    location: "29 Joseph Luckman Bedworth , West Midlands , Cv12 8bh  UK",
     email: "info@pullovabeauty.com",
   },
 

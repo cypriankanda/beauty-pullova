@@ -79,9 +79,9 @@ const Hero = () => (
     </div>
 
     <div className="flex gap-4 justify-center mt-8">
-      <Button className="bg-gradient-to-r from-primary to-secondary text-white">
+      {/* <Button className="bg-gradient-to-r from-primary to-secondary text-white">
         Download App
-      </Button>
+      </Button> */}
 
       {/* <Button className="bg-white text-gray-900 hover:bg-gray-100 border border-white/20">
         Book Service
@@ -221,10 +221,10 @@ const BookingForm = () => {
         />
         <p className="text-red-400 text-xs">{errors.service?.message}</p>
 
-        <Button disabled={status === "loading"} className="w-full">
+        {/* <Button disabled={status === "loading"} className="w-full">
           {status === "loading" ? "Submitting..." : "Get Started"}
           <Send className="ml-2 w-4 h-4" />
-        </Button>
+        </Button> */}
 
         {status === "success" && (
           <p className="text-green-400 text-center text-sm">

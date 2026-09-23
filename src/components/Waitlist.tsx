@@ -307,7 +307,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
             </div>
 
             {/* Submit Button */}
-            <Button
+            {/* <Button
               type="submit"
               disabled={loading || !form.userType}
               size="lg"
@@ -319,7 +319,7 @@ const Waitlist: React.FC<WaitlistProps> = ({ region }) => {
             >
               {loading ? "Securing Spot..." : "Join the waitlist"}
               <ChevronRight className="w-5 h-5 ml-2" />
-            </Button>
+            </Button> */}
 
             {/* Info & Message */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-6 text-sm font-medium text-white/60">

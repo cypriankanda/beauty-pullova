@@ -112,27 +112,27 @@ const Navigation = () => {
                 </a>
               ))}
 
-              <Link
+              {/* <Link
                 to="/login"
                 className="font-medium text-gray-700 hover:text-pink-500"
               >
                 Log In
-              </Link>
+              </Link> */}
 
-              <Link to="/register">
+              {/* <Link to="/register">
                 <Button
                   variant="outline"
                   className="px-5 border-pink-400 text-pink-500 hover:bg-pink-50 rounded-full font-semibold"
                 >
                   Sign Up
                 </Button>
-              </Link>
+              </Link> */}
 
               {/* <Button className="px-5 bg-pink-500 text-white hover:bg-pink-600 rounded-full">
                 Book Now
               </Button> */}
 
-              <Button
+              {/* <Button
                 onClick={(e) =>
                   handleNavClick(
                     e as unknown as React.MouseEvent<HTMLAnchorElement>,
@@ -141,7 +141,7 @@ const Navigation = () => {
                 }
               >
                 Join Waitlist
-              </Button>
+              </Button> */}
             </div>
 
             {/* MOBILE */}

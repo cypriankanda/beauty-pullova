@@ -94,9 +94,9 @@ const Salon = () => {
           </motion.p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button className="bg-gradient-to-r from-primary to-secondary px-8 py-4">
+            {/* <Button className="bg-gradient-to-r from-primary to-secondary px-8 py-4">
               Partner With Us
-            </Button>
+            </Button> */}
             <Button className="bg-white text-gray-900 hover:bg-gray-200 px-8 py-4 font-semibold">
               How It Works
             </Button>
@@ -230,9 +230,9 @@ const Salon = () => {
               />
             </div>
 
-            <Button className="w-full bg-gradient-to-r from-primary to-secondary">
+            {/* <Button className="w-full bg-gradient-to-r from-primary to-secondary">
               Partner With Us <Send className="ml-2 w-4 h-4" />
-            </Button>
+            </Button> */}
 
             {status === "success" && (
               <p className="text-green-400 mt-4 text-sm text-center">

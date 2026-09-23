@@ -165,11 +165,11 @@ const ServiceCategories = () => {
                 <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
                   <p className="text-gray-600 mb-6 flex-grow">{service.description}</p>
-                  <div className="mt-auto pt-4 border-t flex justify-end">
+                  {/* <div className="mt-auto pt-4 border-t flex justify-end">
                     <button className="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl px-6 h-12 hover:opacity-90 transition">
                       Book Now
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </motion.div>

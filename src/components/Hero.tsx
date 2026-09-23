@@ -20,6 +20,7 @@ const USER_HERO_IMAGES = [
 // ✅ CHANGED: replaced emoji flags with ISO country codes for flagcdn.com
 const INITIAL_STATS = [
   { country: "USA", code: "us" },
+  { country: "UK", code: "gb" },
   { country: "Kenya", code: "ke" },
   { country: "Nigeria", code: "ng" },
   // { country: "South Africa", code: "za" },
@@ -140,13 +141,13 @@ const Hero: React.FC<HeroProps> = ({ headline, subtext }) => {
               transition={{ delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4 mb-4"
             >
-              <Button
+              {/* <Button
                 size="lg"
                 className="bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white px-8 py-6 font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group"
               >
                 <User className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 Book Your Service Now
-              </Button>
+              </Button> */}
               <Button
                 size="lg"
                 variant="outline"

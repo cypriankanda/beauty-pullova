@@ -165,14 +165,14 @@ const socialLinks = [
       className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white overflow-hidden"
     >
       {/* Newsletter */}
-      <div className="border-b border-white/10 py-16 text-center">
+      {/* <div className="border-b border-white/10 py-16 text-center">
         <Mail className="mx-auto mb-4" />
         <h3 className="text-3xl font-bold mb-4">Stay Updated</h3>
         <div className="flex gap-4 max-w-xl mx-auto">
           <input className="flex-1 px-4 py-3 bg-white/10 rounded-xl" />
           <Button>Subscribe</Button>
         </div>
-      </div>
+      </div> */}
 
       {/* Main */}
       <div className="py-16 container mx-auto px-4 grid md:grid-cols-4 gap-12">

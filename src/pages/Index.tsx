@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import { useGeoCountry } from "@/hooks/useGeoCountry";
 import SEO from "@/components/SEO";
 import FAQ from "@/components/FAQ";
+import IntroVideo from "@/components/IntroVideo";
 
 const Index = () => {
   const { country, loading } = useGeoCountry();
@@ -75,7 +76,7 @@ const Index = () => {
       <div className="min-h-screen flex flex-col">
         < SEO
             title="Pullova - On-Demand Beauty & Grooming Services"
-            description="Experience the best in beauty and grooming with Pullova Kenya. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
+            description="Experience the best in beauty and grooming with Pullova. Book trusted professionals for on-demand services at home, work, or anywhere you are. Verified professionals, same-day availability, and a safe & secure experience."
             canonical="https://www.pullovabeauty.com"
           />
         <Navigation />
@@ -99,7 +100,13 @@ const Index = () => {
     );
   }
 
-  return renderContent(country);
+  // return renderContent(country);
+  return (
+    <>
+      <IntroVideo />
+      {renderContent(country)}
+    </>
+  );
 };
 
 export default Index;

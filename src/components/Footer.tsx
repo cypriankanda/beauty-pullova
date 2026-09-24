@@ -235,7 +235,7 @@ const socialLinks = [
         {/* Contact */}
         <div>
           <h3 className="font-bold mb-4">Contact</h3>
-          <p>{contactData.email}</p>
+          {/* <p>{contactData.email}</p> */}
           <p>{contactData.phone}</p>
           <p>{contactData.email}</p>
           <p>{contactData.location}</p>

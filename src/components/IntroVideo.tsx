@@ -70,18 +70,16 @@ const IntroVideo = () => {
                 ref={videoRef}
                 autoPlay
                 muted
+                loop
                 playsInline
                 onPlay={handlePlay}
                 onPause={handlePause}
-                onEnded={closeIntro}
+                // onEnded={closeIntro}
+                onEnded={() => setIsPlaying(false)}
                 className="w-full h-full object-contain"
             >
-              <source
-                src="/intro-video.mp4"
-                type="video/mp4"
-              />
-
-              Your browser does not support the video tag.
+              <source src="/intro-video.mp4" type="video/mp4"/>
+                Your browser does not support the video tag.
             </video>
 
             {/* Subtle overlay */}

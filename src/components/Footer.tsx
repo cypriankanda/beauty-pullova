@@ -6,14 +6,13 @@ import { useGeoCountry } from "@/hooks/useGeoCountry";
 import {
   Facebook,
   Instagram,
-  Twitter,
   Linkedin,
   Mail,
   Phone,
   MapPin,
   ArrowRight,
 } from "lucide-react";
-import { FaTiktok } from "react-icons/fa";
+import { FaTiktok, FaXTwitter } from "react-icons/fa6";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -121,7 +120,7 @@ const socialLinks = [
     label: "Instagram",
   },
   {
-    icon: Twitter,
+    icon: FaXTwitter,
     href: "#",
     label: "Twitter",
   },

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import { Upload, User, Mail, FileText, Briefcase, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SEO from "@/components/Seo";
+import SEO from "@/components/SEO";
 
 const CareerPage = () => {
   const ref = useRef(null);

@@ -132,7 +132,7 @@ const Navigation = () => {
                 Book Now
               </Button> */}
 
-              {/* <Button
+              <Button
                 onClick={(e) =>
                   handleNavClick(
                     e as unknown as React.MouseEvent<HTMLAnchorElement>,
@@ -141,7 +141,7 @@ const Navigation = () => {
                 }
               >
                 Join Waitlist
-              </Button> */}
+              </Button>
             </div>
 
             {/* MOBILE */}
